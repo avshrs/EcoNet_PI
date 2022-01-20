@@ -1,0 +1,16 @@
+mqtt:
+    ClientId: BramaGaraz
+    ServerIp: 192.168.1.111
+    serverPort: 1883
+    username: mqttuser
+    password: mqttuser
+    keepAliveTopic: brama_garaz_main
+    keepAliveMsg: Online
+    Substring: brama_garaz_set
+    Pubstring: brama_garaz_get
+
+  
+econet:
+    boudrate: 19200
+    serial_file: /dev/ttyUSB1
+    remove_lead_zero: 1
