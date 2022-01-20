@@ -13,7 +13,7 @@ int main()
     int rs_lead_zero = cfg.get_eco_lead_zeros();
     int boudrate = cfg.get_eco_boudrate();
     econet.init(serial_file_name.c_str(), boudrate, rs_lead_zero);
-    
+    econet.run();
 
 
 
