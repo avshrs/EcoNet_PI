@@ -5,7 +5,7 @@
 class Config_manager{
     private:
         Mqtt_config mqtt_config;
-        Hoermann_cfg h_config;
+        EcoNet_cfg eco_config;
 
     public:
         void read_config();
@@ -20,22 +20,9 @@ class Config_manager{
         std::string get_mqtt_Substring();
         std::string get_mqtt_Pubstring();
 
-        std::string get_hoer_serial_file();
-        int         get_hoer_boudrate();
-        int         get_hoer_lead_zeros();
+        std::string get_eco_serial_file();
+        int         get_eco_boudrate();
+        int         get_eco_lead_zeros();
         
-        // hoermann config
-        std::string get_open_string();
-        std::string get_stopped_string();
-        std::string get_closed_string();
-        std::string get_opening_string();
-        std::string get_closing_string();
-        std::string get_venting_string();
-        std::string get_error_string();
-        std::string get_offline_string();
-        std::string set_open_string();
-        std::string set_close_string();
-        std::string set_stop_string();
-        std::string set_venting_string();
-        std::string toggle_Light_string();
+     
 };

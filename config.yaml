@@ -12,5 +12,5 @@ mqtt:
   
 econet:
     boudrate: 19200
-    serial_file: /dev/ttyUSB1
-    remove_lead_zero: 1
+    serial_file: /dev/ttyUSB2
+    remove_lead_zero: 0
