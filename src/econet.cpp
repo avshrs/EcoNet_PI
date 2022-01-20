@@ -1,9 +1,9 @@
 #include "econet.h"
-#include "USB_serial.h"
 #include <iomanip>
 #include <iostream>
 #include <ctime>   // localtime
 #include <stdlib.h>
+
 
 void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
 {
@@ -17,11 +17,8 @@ void EcoNet::run()
         rx_buf.buf.clear();
         tx_buf.buf.clear();
         serial.serial_read(rx_buf);
-        print_buffer(tx_buf.buf.data(),tx_buf.buf.size());
+        print_buffer(rx_buf.buf.data(),rx_buf.buf.size());
     }
-
-
-
 }
 
 void EcoNet::print_buffer(uint8_t *buf, int len)
