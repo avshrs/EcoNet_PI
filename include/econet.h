@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "vars.h"
+#include "USB_serial.h"
 
 class EcoNet{
     public:
