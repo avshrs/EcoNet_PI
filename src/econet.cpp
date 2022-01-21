@@ -19,25 +19,34 @@ void EcoNet::run()
 
         serial.serial_read(rx_buf);
         for(auto const& value: rx_buf.buf){
-            if(value==0x89)
+            if(value==0x68)
             {
-                std::cout<<date()<< "ramka start------------------------------------------------------: \n";
+                std::cout<<date()<< "ramka start-----------------------------------------------------------------------------------------: \n";
                 break;
             }
 
-        }
-        // for(auto const& value: rx_buf.buf){
-        //     if(value==0x16)
-        //     {
-        //         std::cout<<date()<< "ramka stop----------------------------------------------------: \n";
-        //         break;
-        //     }
 
-        // }
                 print_buffer(rx_buf.buf.data(),rx_buf.buf.size());        
 
-
-            
+                                    
+            // 0000: 68 0a 00 52 45 fc 30 40  f9 16  Lower buffer temperature 52.9                                 
+            // 0000: 68 0a 00 53 45 fc 30 40  f8 16  Upper buffer temperature 53.6                                  
+            // 0000: 68 0a 00 04 45 fc 30 40  af 16  ? outside temp?                                  
+            // 0000: 68 0a 00 55 45 fc 30 0a  b4 16  set temp on buffer
+                 
+                 
+            //       1  2  3  4  5  6   7  8  9   10
+            // 0000: 68 10 00 82 69 252 48 64 259 16  Lower buffer temperature 52.9                                 
+            // 0000: 68 10 00 83 69 252 48 64 248 16  Upper buffer temperature 53.6                                  
+            // 0000: 68 10 00  4 69 252 48 64 175 16  ? outside temp?                                  
+            // 0000: 68 10 00 85 69 252 48 10 180 16  set temp on buffer
+            // 1 ramka 
+            // 2 długość ramki 
+            // 3 ?
+            // 4 temp? 
+            // ...
+            // 9 checksum?
+            // 10 znak końca ramki 
         
     }
 }
