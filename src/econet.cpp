@@ -15,11 +15,11 @@ void EcoNet::run()
     while (true)
     {
         rx_buf.buf.clear();
-        tx_buf.buf.clear();
 
         serial.serial_read(rx_buf);
-            if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08)
+            if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08 && rx_buf.buf.at(4)==0x45)
             {
+            
             analyze_frame(rx_buf);
             }
     }
