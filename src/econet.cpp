@@ -20,33 +20,8 @@ void EcoNet::run()
         serial.serial_read(rx_buf);
             if(rx_buf.buf.at(0)==0x68)
             {
-                std::cout<<date()<< "\nramka start-----------------------------------------------------------------------------------------: \n";
-                
+            analyze_frame(rx_buf);
             }
-
-        
-                print_buffer(rx_buf.buf.data(),rx_buf.buf.size());        
-
-                                    
-            // 0000: 68 0a 00 52 45 fc 30 40  f9 16  Lower buffer temperature 52.9                                 
-            // 0000: 68 0a 00 53 45 fc 30 40  f8 16  Upper buffer temperature 53.6                                  
-            // 0000: 68 0a 00 04 45 fc 30 40  af 16  ? outside temp?                                  
-            // 0000: 68 0a 00 55 45 fc 30 0a  b4 16  set temp on buffer
-                 
-                 
-            //       1  2  3  4  5  6   7  8  9   10
-            // 0000: 68 10 00 82 69 252 48 64 259 16  Lower buffer temperature 52.9                                 
-            // 0000: 68 10 00 83 69 252 48 64 248 16  Upper buffer temperature 53.6                                  
-            // 0000: 68 10 00  4 69 252 48 64 175 16  ? outside temp?                                  
-            // 0000: 68 10 00 85 69 252 48 10 180 16  set temp on buffer
-            // 1 ramka 
-            // 2 długość ramki 
-            // 3 ?
-            // 4 temp? 
-            // ...
-            // 9 checksum?
-            // 10 znak końca ramki 
-        
     }
 }
 
@@ -68,4 +43,69 @@ std::string EcoNet::date(){
     std::stringstream ss; 
     ss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S | ") ;
     return ss.str();
+}
+
+
+void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
+{   
+
+    eco_payload.payload_type = rx_buffer.buf.at(7);
+    eco_payload.operating_status = rx_buffer.buf.at(40);
+    eco_payload.cwu_temp = ((rx_buffer.buf.at(81)) | 
+                            (rx_buffer.buf.at(82) << 8) | 
+                            (rx_buffer.buf.at(82) << 16) | 
+                            (rx_buffer.buf.at(84) << 24)) ;
+    eco_payload.feader_temp = (rx_buffer.buf.at(85)) |
+                              (rx_buffer.buf.at(86) << 8) | 
+                              (rx_buffer.buf.at(87) << 16) | 
+                              (rx_buffer.buf.at(88) << 24) ;
+    eco_payload.co_temp = (rx_buffer.buf.at(89)) |
+                          (rx_buffer.buf.at(90) << 8) | 
+                          (rx_buffer.buf.at(91) << 16) | 
+                          (rx_buffer.buf.at(92) << 24) ;
+    eco_payload.weather_temp = (rx_buffer.buf.at(97)) |
+                               (rx_buffer.buf.at(98) << 8) | 
+                               (rx_buffer.buf.at(99) << 16) | 
+                               (rx_buffer.buf.at(100) << 24) ;
+    eco_payload.exhoust_temp = (rx_buffer.buf.at(101)) |
+                               (rx_buffer.buf.at(102) << 8) | 
+                               (rx_buffer.buf.at(103) << 16) | 
+                               (rx_buffer.buf.at(104) << 24) ;                                                      
+    eco_payload.mixer_temp = (rx_buffer.buf.at(113)) |
+                             (rx_buffer.buf.at(114) << 8) | 
+                             (rx_buffer.buf.at(115) << 16) | 
+                             (rx_buffer.buf.at(116) << 24) ;                                                      
+
+
+}
+
+
+std::string EcoNet::get_operating_status()
+{
+    return operating_status_sting.at(eco_payload.operating_status);
+    
+}
+float EcoNet::get_cwu_temp()
+{
+    return eco_payload.cwu_temp;
+}
+float EcoNet::get_feader_temp()
+{
+    return eco_payload.feader_temp;
+}
+float EcoNet::get_co_temp()
+{
+    return eco_payload.co_temp;
+}
+float EcoNet::get_weather_temp()
+{
+    return eco_payload.weather_temp;
+}
+float EcoNet::get_exhoust_temp()
+{
+    return eco_payload.exhoust_temp;
+}
+float EcoNet::get_mixer_temp()
+{
+    return eco_payload.mixer_temp;
 }
