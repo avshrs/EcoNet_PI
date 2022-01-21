@@ -76,11 +76,10 @@ float EcoNet::retrun_float(RX_Buffer &rx_buffer, int p)
 {
     union {
         float f;
-        uint8_t ui[4];
+        uint32_t ui;
     } u;
-    p = p+4;
-    for(int i = 0 ; i< 4 ; i++)
-        u.ui[i] = rx_buffer.buf.at(p-i);
+    u.ui = (rx_buffer.buf.at(p) << 24) | (rx_buffer.buf.at(p+1) << 16) | 
+           (rx_buffer.buf.at(p+2) << 8) |(rx_buffer.buf.at(p+3) );
     return u.f;
 }
 
