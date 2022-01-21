@@ -17,7 +17,7 @@ void EcoNet::run()
         rx_buf.buf.clear();
 
         serial.serial_read(rx_buf);
-            if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08 && rx_buf.buf.at(4)==0x45 && rx_buf.buf.size()>252)
+            if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08 && rx_buf.buf.at(4)==0x45 )
             {
             print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
             analyze_frame(rx_buf);
