@@ -18,10 +18,9 @@ void EcoNet::run()
         tx_buf.buf.clear();
 
         serial.serial_read(rx_buf);
-        for(auto const& value: rx_buf.buf){
-            if(value==0x68)
+            if(rx_buf.buf.at(0)==0x68)
             {
-                std::cout<<date()<< "ramka start-----------------------------------------------------------------------------------------: \n";
+                std::cout<<date()<< "\nramka start-----------------------------------------------------------------------------------------: \n";
                 break;
             }
 

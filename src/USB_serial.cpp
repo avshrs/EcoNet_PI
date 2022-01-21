@@ -104,7 +104,7 @@ void USB_serial::serial_send(TX_Buffer &tx_buffer)
 
 void USB_serial::serial_read(RX_Buffer &rx_buffer)
 {	
-  uint8_t buf[64] = {0};
+  uint8_t buf[1024] = {0};
   int s = read(fd, buf, sizeof(buf));
   for(int i=0+lead_z; i < s; i++)
   {

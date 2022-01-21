@@ -8,11 +8,11 @@
 struct TX_Buffer{
     
     std::vector<uint8_t> buf;
-    TX_Buffer(){buf.reserve(64);}
+    TX_Buffer(){buf.reserve(1024);}
 
 };
 struct RX_Buffer{
-    RX_Buffer(){buf.reserve(64);}
+    RX_Buffer(){buf.reserve(1024);}
     std::vector<uint8_t> buf;
 };
 
