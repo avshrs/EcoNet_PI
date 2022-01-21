@@ -141,7 +141,6 @@ struct packet_structure{
     uint8_t src_address = 0;
     uint8_t sender_type = 0;
     uint8_t econet_version = 0;
-    uint8_t frame_type = 0;
     uint8_t crc = 0;
 
 };
