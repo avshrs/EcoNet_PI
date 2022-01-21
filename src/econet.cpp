@@ -17,15 +17,13 @@ void EcoNet::run()
         rx_buf.buf.clear();
         tx_buf.buf.clear();
         serial.serial_read(rx_buf);
-        
+        print_buffer(rx_buf.buf.data(),rx_buf.buf.size());        
         for(auto const& value: rx_buf.buf){
             if(value==0x68)
             {
                 std::cout<<date()<< "ramka start: ";
-                print_buffer(rx_buf.buf.data(),rx_buf.buf.size());
+                break;
             }
-            else    
-            print_buffer(rx_buf.buf.data(),rx_buf.buf.size());
 
         }
 
