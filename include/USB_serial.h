@@ -10,6 +10,7 @@ class USB_serial
     void serial_open(const char* serial_name, int boudrate, int lead_zero );
     void serial_send(TX_Buffer &tx_buffer);
     void serial_read(RX_Buffer &rx_buffer);
+    void serial_read_byte(uint8_t *sign);
     void clear_buffer();
     void send_brake();
 
@@ -20,4 +21,5 @@ class USB_serial
 
 
 };
+
 

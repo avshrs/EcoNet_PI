@@ -51,8 +51,7 @@ void USB_serial::serial_open(const char *serial_name, int boudrate, int lead_zer
   newtermios.c_cflag &= ~CRTSCTS; // Disable RTS/CTS hardware flow control (most common)
   // newtermios.c_cflag |= CRTSCTS;  // Enable RTS/CTS hardware flow control
   newtermios.c_cflag |= CREAD | CLOCAL; // Turn on READ & ignore ctrl lines (CLOCAL = 1)
-  // newtermios.c_lflag &= ~ICANON;
-  newtermios.c_lflag |= ICANON;
+  newtermios.c_lflag &= ~ICANON;
   newtermios.c_lflag &= ~ECHO; // Disable echo
   newtermios.c_lflag &= ~ECHOE; // Disable erasure
   newtermios.c_lflag &= ~ECHONL; // Disable new-line echo
@@ -106,11 +105,20 @@ void USB_serial::serial_send(TX_Buffer &tx_buffer)
 void USB_serial::serial_read(RX_Buffer &rx_buffer)
 {	
   uint8_t buf[1024] = {0};
+
   int s = read(fd, buf, sizeof(buf));
   for(int i=0+lead_z; i < s; i++)
   {
     rx_buffer.buf.push_back(buf[i]);
   }
+   
+}
+
+void USB_serial::serial_read_byte(uint8_t *sign)
+{	
+  
+  
+  read(fd, sign, 1);
    
 }
 

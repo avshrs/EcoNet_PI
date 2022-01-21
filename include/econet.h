@@ -5,7 +5,7 @@
 
 class EcoNet{
     public:
-        TX_Buffer tx_buf;
+        TX_Buffer buf;
         RX_Buffer rx_buf;
         payload eco_payload;
         USB_serial serial;

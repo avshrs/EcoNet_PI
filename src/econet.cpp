@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ctime>   // localtime
 #include <stdlib.h>
+#include <algorithm>
 
 
 void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
@@ -11,17 +12,27 @@ void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
 }
 
 void EcoNet::run()
-{
+{   uint8_t sign[1] = {0};
     while (true)
     {
         rx_buf.buf.clear();
+        sign[0] = 0;
+        serial.serial_read_byte(sign);
+        if(sign[0] == 0x68)
+        {
+            rx_buf.buf.push_back(sign[0]);
+            while(true)
+            {   sign[0] = 0;
+                serial.serial_read_byte(sign);
+                rx_buf.buf.push_back(sign[0]);
 
-        serial.serial_read(rx_buf);
-            if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08 && rx_buf.buf.at(4)==0x45 )
-            {
+                if(sign[0] == 0x16)
+                    break;
+            }
+        }
             print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
             analyze_frame(rx_buf);
-            }
+     
     }
 }
 
