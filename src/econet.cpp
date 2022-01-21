@@ -16,23 +16,24 @@ void EcoNet::run()
     {
         rx_buf.buf.clear();
         tx_buf.buf.clear();
+
         serial.serial_read(rx_buf);
         for(auto const& value: rx_buf.buf){
-            if(value==0x68)
+            if(value==0x89)
             {
-                std::cout<<date()<< "ramka start------------------------------------------------------: ";
+                std::cout<<date()<< "ramka start------------------------------------------------------: \n";
                 break;
             }
 
         }
-        for(auto const& value: rx_buf.buf){
-            if(value==0x16)
-            {
-                std::cout<<date()<< "ramka stop----------------------------------------------------: ";
-                break;
-            }
+        // for(auto const& value: rx_buf.buf){
+        //     if(value==0x16)
+        //     {
+        //         std::cout<<date()<< "ramka stop----------------------------------------------------: \n";
+        //         break;
+        //     }
 
-        }
+        // }
                 print_buffer(rx_buf.buf.data(),rx_buf.buf.size());        
 
 
