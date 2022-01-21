@@ -63,34 +63,26 @@ void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
 
     eco_payload.payload_type = rx_buffer.buf.at(7);
     eco_payload.operating_status = rx_buffer.buf.at(40);
-    eco_payload.cwu_temp = ((rx_buffer.buf.at(81) << 0) | 
-                            (rx_buffer.buf.at(82) << 8) | 
-                            (rx_buffer.buf.at(82) << 16) | 
-                            (rx_buffer.buf.at(84) << 24)) ;
-    eco_payload.feader_temp = ((rx_buffer.buf.at(85)<<0) |
-                              (rx_buffer.buf.at(86) << 8) | 
-                              (rx_buffer.buf.at(87) << 16) | 
-                              (rx_buffer.buf.at(88) << 24)) ;
-    eco_payload.co_temp = ((rx_buffer.buf.at(89)) |
-                          (rx_buffer.buf.at(90) << 8) | 
-                          (rx_buffer.buf.at(91) << 16) | 
-                          (rx_buffer.buf.at(92) << 24) );
-    eco_payload.weather_temp = ((rx_buffer.buf.at(97)) |
-                               (rx_buffer.buf.at(98) << 8) | 
-                               (rx_buffer.buf.at(99) << 16) | 
-                               (rx_buffer.buf.at(100) << 24)) ;
-    eco_payload.exhoust_temp = ((rx_buffer.buf.at(101)) |
-                               (rx_buffer.buf.at(102) << 8) | 
-                               (rx_buffer.buf.at(103) << 16) | 
-                               (rx_buffer.buf.at(104) << 24)) ;                                                      
-    eco_payload.mixer_temp = ((rx_buffer.buf.at(113)) |
-                             (rx_buffer.buf.at(114) << 8) | 
-                             (rx_buffer.buf.at(115) << 16) | 
-                             (rx_buffer.buf.at(116) << 24)) ;                                                      
+    eco_payload.cwu_temp = retrun_float(rx_buffer, 81);
+    eco_payload.feader_temp = retrun_float(rx_buffer, 85);
+    eco_payload.co_temp = retrun_float(rx_buffer, 89);
+    eco_payload.weather_temp = retrun_float(rx_buffer, 97);
+    eco_payload.exhoust_temp = retrun_float(rx_buffer, 101);                                                      
+    eco_payload.mixer_temp = retrun_float(rx_buffer, 113);                                                   
 
 
 }
+float EcoNet::retrun_float(RX_Buffer &rx_buffer, int p)
+{
+union {
+    float f;
+    uint8_t ui[4];
+ } u;
 
+    for(int i = 0 ; i< 4 ; i++)
+        u.ui[i] = rx_buffer.buf.at(i+p);
+ return u.f;
+}
 
 std::string EcoNet::get_operating_status()
 {
