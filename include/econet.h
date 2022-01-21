@@ -12,7 +12,20 @@ class EcoNet{
         
         void init(std::string serialName, int boudrate, int lead_zero);
         void run();
-
+        std::map<uint8_t, std::string> operating_status_sting
+        { 
+            {0, "WYLACZONY"}, 
+            {1, "ROZPALANIE"}, 
+            {2, "STABILIZACJA"}, 
+            {3, "PRACA"}, 
+            {4, "NADZOR"}, 
+            {5, "WYGASZANIE"}, 
+            {6, "POSTÓJ"}, 
+            {7, "WYGASZANIE_NA_ZĄDANIE"}, 
+            {9, "ALARM"}, 
+            {10, "ROZSZCZELNIENIE"}, 
+            
+        };
     public:
         void print_buffer(uint8_t *buf, int len);
         std::string date();
