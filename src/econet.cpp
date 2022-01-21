@@ -51,7 +51,7 @@ void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
 
     eco_payload.payload_type = rx_buffer.buf.at(7);
     eco_payload.operating_status = rx_buffer.buf.at(40);
-    eco_payload.cwu_temp = ((rx_buffer.buf.at(81)) | 
+    eco_payload.cwu_temp = static_cast<float>((rx_buffer.buf.at(81)) | 
                             (rx_buffer.buf.at(82) << 8) | 
                             (rx_buffer.buf.at(82) << 16) | 
                             (rx_buffer.buf.at(84) << 24)) ;
