@@ -36,20 +36,7 @@ struct Mqtt_config{
 
 
 };
-std::map<uint8_t, std::string> operating_status_sting
-{ 
-    {0, "WYLACZONY"}, 
-    {1, "ROZPALANIE"}, 
-    {2, "STABILIZACJA"}, 
-    {3, "PRACA"}, 
-    {4, "NADZOR"}, 
-    {5, "WYGASZANIE"}, 
-    {6, "POSTÓJ"}, 
-    {7, "WYGASZANIE_NA_ZĄDANIE"}, 
-    {9, "ALARM"}, 
-    {10, "ROZSZCZELNIENIE"}, 
-    
-};
+
 
 
 struct payload{
