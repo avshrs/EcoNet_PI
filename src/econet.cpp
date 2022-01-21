@@ -51,30 +51,30 @@ void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
 
     eco_payload.payload_type = rx_buffer.buf.at(7);
     eco_payload.operating_status = rx_buffer.buf.at(40);
-    eco_payload.cwu_temp = static_cast<float>((rx_buffer.buf.at(81)) | 
-                            (rx_buffer.buf.at(82) << 8) | 
+    eco_payload.cwu_temp = static_cast<float>((rx_buffer.buf.at(81) <<24) | 
                             (rx_buffer.buf.at(82) << 16) | 
-                            (rx_buffer.buf.at(84) << 24)) ;
-    eco_payload.feader_temp = (rx_buffer.buf.at(85)) |
+                            (rx_buffer.buf.at(82) << 8) | 
+                            (rx_buffer.buf.at(84) << 0)) ;
+    eco_payload.feader_temp = static_cast<float>((rx_buffer.buf.at(85)) |
                               (rx_buffer.buf.at(86) << 8) | 
                               (rx_buffer.buf.at(87) << 16) | 
-                              (rx_buffer.buf.at(88) << 24) ;
-    eco_payload.co_temp = (rx_buffer.buf.at(89)) |
+                              (rx_buffer.buf.at(88) << 24)) ;
+    eco_payload.co_temp = static_cast<float>((rx_buffer.buf.at(89)) |
                           (rx_buffer.buf.at(90) << 8) | 
                           (rx_buffer.buf.at(91) << 16) | 
-                          (rx_buffer.buf.at(92) << 24) ;
-    eco_payload.weather_temp = (rx_buffer.buf.at(97)) |
+                          (rx_buffer.buf.at(92) << 24) );
+    eco_payload.weather_temp = static_cast<float>((rx_buffer.buf.at(97)) |
                                (rx_buffer.buf.at(98) << 8) | 
                                (rx_buffer.buf.at(99) << 16) | 
-                               (rx_buffer.buf.at(100) << 24) ;
-    eco_payload.exhoust_temp = (rx_buffer.buf.at(101)) |
+                               (rx_buffer.buf.at(100) << 24)) ;
+    eco_payload.exhoust_temp = static_cast<float>((rx_buffer.buf.at(101)) |
                                (rx_buffer.buf.at(102) << 8) | 
                                (rx_buffer.buf.at(103) << 16) | 
-                               (rx_buffer.buf.at(104) << 24) ;                                                      
-    eco_payload.mixer_temp = (rx_buffer.buf.at(113)) |
+                               (rx_buffer.buf.at(104) << 24)) ;                                                      
+    eco_payload.mixer_temp = static_cast<float>((rx_buffer.buf.at(113)) |
                              (rx_buffer.buf.at(114) << 8) | 
                              (rx_buffer.buf.at(115) << 16) | 
-                             (rx_buffer.buf.at(116) << 24) ;                                                      
+                             (rx_buffer.buf.at(116) << 24)) ;                                                      
 
 
 }
