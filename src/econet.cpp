@@ -31,7 +31,7 @@ void EcoNet::run()
                     break;
                 }
             }
-            print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
+            // print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
             analyze_frame(rx_buf);
         }
     }
