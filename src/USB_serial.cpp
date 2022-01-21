@@ -51,7 +51,8 @@ void USB_serial::serial_open(const char *serial_name, int boudrate, int lead_zer
   newtermios.c_cflag &= ~CRTSCTS; // Disable RTS/CTS hardware flow control (most common)
   // newtermios.c_cflag |= CRTSCTS;  // Enable RTS/CTS hardware flow control
   newtermios.c_cflag |= CREAD | CLOCAL; // Turn on READ & ignore ctrl lines (CLOCAL = 1)
-  newtermios.c_lflag &= ~ICANON;
+  // newtermios.c_lflag &= ~ICANON;
+  newtermios.c_lflag |= ICANON;
   newtermios.c_lflag &= ~ECHO; // Disable echo
   newtermios.c_lflag &= ~ECHOE; // Disable erasure
   newtermios.c_lflag &= ~ECHONL; // Disable new-line echo
