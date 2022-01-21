@@ -18,7 +18,7 @@ void EcoNet::run()
         rx_buf.buf.clear();
 
         serial.serial_read(rx_buf);
-        if(rx_buf.buf.at(0)==0x68)
+        if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08 && rx_buf.buf.at(4)==0x45)
         {
             buf.buf.insert(buf.buf.end(), rx_buf.buf.begin(), rx_buf.buf.end() );
             while(true)
