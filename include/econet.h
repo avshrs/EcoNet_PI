@@ -14,16 +14,17 @@ class EcoNet{
         void run();
         std::map<uint8_t, std::string> operating_status_sting
         { 
-            {0, "WYLACZONY"}, 
-            {1, "ROZPALANIE"}, 
-            {2, "STABILIZACJA"}, 
-            {3, "PRACA"}, 
-            {4, "NADZOR"}, 
-            {5, "WYGASZANIE"}, 
-            {6, "POSTÓJ"}, 
-            {7, "WYGASZANIE_NA_ZĄDANIE"}, 
-            {9, "ALARM"}, 
-            {10, "ROZSZCZELNIENIE"}, 
+            {0, "Turned Off"}, 
+            {1, "1"}, 
+            {2, "Work"}, //
+            {3, "3"}, //
+            {4, "Burning_Off"}, 
+            {5, "Halted"}, //
+            {6, "6"}, 
+            {7, "7"}, 
+            {8, "Cleaning"}, 
+            {9, "9"}, 
+            {10, "10"}, 
             
         };
     private:

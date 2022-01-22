@@ -142,9 +142,7 @@ short int EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
 
 std::string EcoNet::get_operating_status()
 {
-    std::string tmp;
-    tmp = std::to_string(static_cast<int>(eco_payload.operating_status));
-    return tmp;
+    return operating_status_sting.at(eco_payload.operating_status);
 }
 float EcoNet::get_huw_temp()
 {
