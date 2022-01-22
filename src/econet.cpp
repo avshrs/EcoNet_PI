@@ -84,11 +84,12 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 {   
     eco_payload.operating_status = payload.at(33);
     eco_payload.cwu_temp = retrun_float(payload, 74);
-    eco_payload.feader_temp = retrun_float(payload, 98);//98
-    eco_payload.co_temp = retrun_float(payload, 82);
-    eco_payload.weather_temp = retrun_float(payload, 90);
-    eco_payload.exhoust_temp = retrun_float(payload, 94);//94                                                  
-    eco_payload.mixer_temp = retrun_float(payload, 98);                                                   
+    eco_payload.feader_temp = retrun_float(payload, 98);   //98
+    eco_payload.co_temp = retrun_float(payload, 78);
+    eco_payload.weather_temp = retrun_float(payload, 86);
+    eco_payload.exhoust_temp = retrun_float(payload, 94);  //94                                                  
+    eco_payload.return_temp = retrun_float(payload, 90);   //90
+    eco_payload.mixer_temp = retrun_float(payload, 82);    //82                                               
     eco_payload.outside_temp = retrun_float(payload, 112);                                                   
 
 }
