@@ -94,20 +94,20 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
     eco_payload.upper_buffer_temp = retrun_float(payload, 110); 
     eco_payload.lower_buffer_temp = retrun_float(payload, 114); 
     
-    eco_payload.huw_temp_target = static_cast<int>(payload.at(166));
-    eco_payload.boiler_temp_target = static_cast<int>(payload.at(172));
-    eco_payload.mixer_temp_target =  static_cast<int>(payload.at(167));
-    eco_payload.fuel_level = static_cast<int>(payload.at(217));
-    eco_payload.fan_out_power = static_cast<int>(payload.at(256));
-    eco_payload.fan_in_power = static_cast<int>(payload.at(255));
-    eco_payload.fuel_stream = retrun_float(payload, 261);
-    eco_payload.boiler_power_kw = retrun_float(payload, 257);
-    eco_payload.power_max_time = retrun_short(payload, 267); 
-    eco_payload.power_medium_time = retrun_short(payload, 269);
-    eco_payload.power_min_time = retrun_short(payload, 271);
-    eco_payload.feader_time = retrun_short(payload, 273);
-    eco_payload.ignisions = retrun_short(payload, 275);
-    eco_payload.ignisions_fails = retrun_short(payload, 277);
+    eco_payload.huw_temp_target = static_cast<int>(payload.at(165));
+    eco_payload.boiler_temp_target = static_cast<int>(payload.at(171));
+    eco_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
+    eco_payload.fuel_level = static_cast<int>(payload.at(216));
+    eco_payload.fan_out_power = static_cast<int>(payload.at(255));
+    eco_payload.fan_in_power = static_cast<int>(payload.at(254));
+    eco_payload.fuel_stream = retrun_float(payload, 260);
+    eco_payload.boiler_power_kw = retrun_float(payload, 256);
+    eco_payload.power_max_time = retrun_short(payload, 266); 
+    eco_payload.power_medium_time = retrun_short(payload, 268);
+    eco_payload.power_min_time = retrun_short(payload, 270);
+    eco_payload.feader_time = retrun_short(payload, 272);
+    eco_payload.ignisions = retrun_short(payload, 274);
+    eco_payload.ignisions_fails = retrun_short(payload, 276);
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
