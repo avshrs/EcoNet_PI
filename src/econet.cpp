@@ -45,7 +45,8 @@ void EcoNet::run()
                     // print_buffer(message.data(), message.size() );
                     // analyze_frame_ecomax_920P1(payload);
                 }
-                else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+                // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+                else if(header.at(4)==econet_address)
                 {   
                     // std::cout <<date() << "econet: " ;
                     // print_buffer(message.data(), message.size() );
@@ -55,10 +56,10 @@ void EcoNet::run()
                     // std::cout <<date() << "ecoster: " ;
                     // print_buffer(message.data(), message.size() );
                 } 
-                else
-                {
-                    print_buffer(message.data(), message.size() );
-                }
+                // else
+                // {
+                //     print_buffer(message.data(), message.size() );
+                // }
             }
         }
        
