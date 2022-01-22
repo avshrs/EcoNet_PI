@@ -21,6 +21,7 @@ int main()
     std::thread Hoermann_door_service(th1, &econet);
     while (true)
     {
+        std::cout<< "--------------------------------"<< std::endl;
         std::cout<< "oper stat: "<< econet.get_operating_status()  <<std::endl;
         std::cout<< "CO temp: "<< econet.get_co_temp()  <<std::endl;
         std::cout<< "CWU temp: "<< econet.get_cwu_temp()     <<std::endl;
