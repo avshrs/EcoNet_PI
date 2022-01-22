@@ -69,7 +69,7 @@ std::string EcoNet::date(){
 uint8_t EcoNet::crc(std::vector<uint8_t> &message)
 {   
     uint8_t tmp = message.at(0);
-    for(int i = 1 ; i< message.size() ; i++ )
+    for(int i = 1 ; i < static_cast<int>(message.size()) ; i++ )
     {
         tmp = tmp^message.at(i);
     }
