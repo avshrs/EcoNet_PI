@@ -80,8 +80,8 @@ float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
         float f;
         uint32_t ui;
     } u;
-    u.ui = (payload.at(p+3) << 24) | (payload.at(p+2) << 16) | 
-           (payload.at(p+1) << 8) |(payload.at(p) );
+    u.ui = (payload.at(p) << 24) | (payload.at(p+1) << 16) | 
+           (payload.at(p+2) << 8) | (payload.at(p+3) );
     return u.f;
 }
 
