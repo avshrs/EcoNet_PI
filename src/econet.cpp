@@ -26,7 +26,8 @@ void EcoNet::run()
         message.clear();
 
         serial.serial_read_bytes(header, 8); // read frame header
-        if(header.at(0)==frame_begin && header.at(7)==header_end )
+        // if(header.at(0)==frame_begin && header.at(7)==header_end )
+        if(header.at(0)==frame_begin)
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
             for(int i =0 ; i< paylod_len - 8; i++)
