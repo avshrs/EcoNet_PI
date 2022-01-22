@@ -26,10 +26,10 @@ void EcoNet::run()
         message.clear();
 
         serial.serial_read_bytes(header, 8); // read frame header
-        if(header.at(0)==0x68 && header.at(7)==0x08 && header.at(4)==0x45)
+        if(header.at(0)==0x68  && header.at(4)==0x45)
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            payload.push_back(header.at(7));
+            // payload.push_back(header.at(7));
             print_buffer(header.data(), header.size());
             for(int i =0 ; i< paylod_len - 8; i++)
                 serial.serial_read_byte(payload);
