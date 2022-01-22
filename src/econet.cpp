@@ -120,7 +120,7 @@ float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
     return u.f;
 }
 
-short EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
+short int EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
 {
     union {
         short sh;
