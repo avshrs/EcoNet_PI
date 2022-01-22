@@ -12,28 +12,24 @@ void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
 }
 
 void EcoNet::run()
-{
+{   
+    std::vector<uint8_t> header;
+    header.reserve(10);
+    std::vector<uint8_t> payload;
+    payload.reserve(400);
+
     while (true)
     {
-        rx_buf.buf.clear();
+        header.clear();
+        payload.clear();
 
-        serial.serial_read(rx_buf);
-        if(rx_buf.buf.at(0)==0x68 && rx_buf.buf.at(7)==0x08 && rx_buf.buf.at(4)==0x45)
+        serial.serial_read_bytes(header, 8); // read frame header
+        if(header.at(0)==0x68 && header.at(7)==0x08 && header.at(4)==0x45)
         {
-            buf.buf.insert(buf.buf.end(), rx_buf.buf.begin(), rx_buf.buf.end() );
-            while(true)
-            {
-                serial.serial_read(rx_buf);
-                buf.buf.insert(buf.buf.end(), rx_buf.buf.begin(), rx_buf.buf.end() );
-                if ( std::find(rx_buf.buf.begin(),
-                     rx_buf.buf.end(), 0x16) != rx_buf.buf.end() )
-                {
-                    buf.buf.insert(buf.buf.end(), rx_buf.buf.begin(), rx_buf.buf.end() );
-                    break;
-                }
-            }
-            print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
-            analyze_frame(rx_buf);
+            short paylod_len = ((header.at(1)<<8) | (header.at(2)));
+            std::cout<< paylod_len<< std::endl;
+            // print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
+            // analyze_frame(rx_buf);
         }
     }
 }
@@ -59,6 +55,8 @@ std::string EcoNet::date(){
 }
 
 
+
+
 void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
 {   
 
@@ -71,7 +69,6 @@ void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
     eco_payload.exhoust_temp = retrun_float(rx_buffer, 104);                                                      
     eco_payload.mixer_temp = retrun_float(rx_buffer, 108);                                                   
     eco_payload.outside_temp = retrun_float(rx_buffer, 112);                                                   
-
 
 }
 float EcoNet::retrun_float(RX_Buffer &rx_buffer, int p)

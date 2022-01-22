@@ -102,7 +102,7 @@ void USB_serial::serial_send(TX_Buffer &tx_buffer)
      write(fd, tx_buffer.buf.data(), tx_buffer.buf.size());
 }
 
-void USB_serial::serial_read(RX_Buffer &rx_buffer)
+void USB_serial::serial_read_buffer(RX_Buffer &rx_buffer)
 {	
   uint8_t buf[1024] = {0};
 
@@ -114,11 +114,22 @@ void USB_serial::serial_read(RX_Buffer &rx_buffer)
    
 }
 
-void USB_serial::serial_read_byte(uint8_t *sign)
+void USB_serial::serial_read_byte(std::vector<uint8_t> &vect)
 {	
-  
-  
-  read(fd, sign, 1);
+  uint8_t buf[1] = {0};
+    
+  read(fd, buf, 1);
+  vect.push_back(buf[0]);
+   
+}
+void USB_serial::serial_read_bytes(std::vector<uint8_t> &vect, int len)
+{	
+  uint8_t buf[1024] = {0};
+  read(fd, buf, len);
+  for(int i =0 ; i<len ; i++)
+  {
+    vect.push_back(buf[i]);
+  }
    
 }
 
