@@ -83,14 +83,14 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
 void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 {   
     eco_payload.operating_status = payload.at(33);
-    eco_payload.cwu_temp = retrun_float(payload, 78);      //78
-    eco_payload.feader_temp = retrun_float(payload, 98);   //98
-    eco_payload.co_temp = retrun_float(payload, 102);
-    eco_payload.weather_temp = retrun_float(payload, 86);  //86
-    eco_payload.exhoust_temp = retrun_float(payload, 94);  //94                                                  
-    eco_payload.return_temp = retrun_float(payload, 90);   //90
-    eco_payload.mixer_temp = retrun_float(payload, 82);    //82                                               
-    eco_payload.outside_temp = retrun_float(payload, 112);                                                   
+    eco_payload.cwu_temp = retrun_float(payload, 78);      //78 HUW
+    eco_payload.feader_temp = retrun_float(payload, 98);   //98 Feader
+    eco_payload.co_temp = retrun_float(payload, 102);      //102 BOILER
+    eco_payload.weather_temp = retrun_float(payload, 86);  //86 Weather / outside temp
+    eco_payload.exhoust_temp = retrun_float(payload, 94);  //94 Exhoust                                                
+    eco_payload.return_temp = retrun_float(payload, 90);   //90 return 
+    eco_payload.mixer_temp = retrun_float(payload, 82);    //82 mixer1                                              
+    eco_payload.outside_temp = retrun_float(payload, 106);                                                   
 
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
