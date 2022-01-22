@@ -36,8 +36,8 @@ void EcoNet::run()
 
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
-            std::cout << date() << " checking crc" << std::endl;
-            if(crc(message) == static_cast<uint8_t>(payload.at(paylod_len-2)))
+            
+            if(crc(message) == static_cast<uint8_t>(payload.at(message.size()-2)))
                 
                 {
                 print_buffer(payload.data(), payload.size() );
@@ -70,7 +70,7 @@ std::string EcoNet::date(){
 uint8_t EcoNet::crc(std::vector<uint8_t> &message)
 {   
     uint8_t tmp = message.at(0);
-    for(int i = 1 ; i < static_cast<int>(message.size()) ; i++ )
+    for(int i = 1 ; i < static_cast<int>(message.size()-2) ; i++ )
     {
         tmp = tmp^message.at(i);
     }
