@@ -19,6 +19,8 @@ void EcoNet::run()
     payload.reserve(400);
     std::vector<uint8_t> message;
     payload.reserve(400);
+    std::vector<uint8_t> tmp;
+    tmp.reserve(400);
     while (true)
     {
         header.clear();
@@ -42,6 +44,12 @@ void EcoNet::run()
                 
                 print_buffer(payload.data(), payload.size() );
                 analyze_frame(payload);
+                for(int i = 0 ; i<message.size() ; i++)
+                {
+                    if(tmp.at(i) != message.at(i))
+                        std::cout << "dif at: " << i << std::endl;
+                }
+                tmp = message; 
                 }
         }
     }
@@ -82,7 +90,7 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
 
 void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 {   
-    eco_payload.operating_status = payload.at(33);
+    eco_payload.operating_status = payload.at(29);
     eco_payload.huw_temp = retrun_float(payload, 78);      
     eco_payload.mixer_temp = retrun_float(payload, 82);                                             
     eco_payload.weather_temp = retrun_float(payload, 86);  
@@ -97,7 +105,7 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
     eco_payload.huw_temp_target = static_cast<int>(payload.at(166));
     eco_payload.boiler_temp_target = static_cast<int>(payload.at(172));
     eco_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
-    eco_payload.fuel_level = static_cast<int>(payload.at(216));
+    eco_payload.fuel_level = static_cast<int>(payload.at(217));
     eco_payload.fan_out_power = static_cast<int>(payload.at(255));
     eco_payload.fan_in_power = static_cast<int>(payload.at(254));
     eco_payload.fuel_stream = retrun_float(payload, 260);
@@ -133,7 +141,9 @@ short int EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
 
 std::string EcoNet::get_operating_status()
 {
-    return operating_status_sting.at(eco_payload.operating_status);
+    std::string tmp;
+    tmp = std::to_string(static_cast<int>(eco_payload.operating_status));
+    return tmp;
 }
 float EcoNet::get_huw_temp()
 {
