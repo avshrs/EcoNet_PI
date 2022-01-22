@@ -42,47 +42,35 @@ struct Mqtt_config{
 struct payload{
     uint8_t payload_type = 0;      
     uint8_t operating_status = 0;   
-    float  cwu_temp = 0;        
+    float  huw_temp = 0;        
     float  feader_temp = 0;     
-    float  co_temp = 0;        
-    float  return_temp = 0;
-    float  flame = 0;
+    float  boiler_temp = 0;        
+    float  boiler_return_temp = 0;
+    float  flame_sensor = 0;
     float  upper_buffer_temp = 0;
     float  lower_buffer_temp = 0;
-    float  outside_temp = 0;        
     float  weather_temp = 0;   
-    float  exhoust_temp = 0;    
+    float  exhaust_temp = 0;    
     float  mixer_temp = 0;      
-    uint32_t pomp_states = 0;
-    uint32_t pomp_sets = 0;
-    uint8_t cwu_temp_set = 0; 
-    uint8_t co_temp_set = 0;  
-    uint8_t co_status = 0;  
-    uint8_t cwu_status = 0; 
-    uint8_t alarms_no = 0;
-    uint8_t fuel_level = 0;  
-    uint8_t transmission = 0;
-    float fanPower = 0;    
-    uint8_t boiler_power = 0;
     float boiler_power_kw = 0;    
     float fuel_stream = 0;  
-    uint8_t thermostat = 0;
-    float versionInfo = 0;    
-    float moduleBSoftVer = 0;    
-    float moduleCSoftVer = 0;    
-    float moduleLambdaSoftVer = 0;    
-    float moduleEcoSTERSoftVer = 0;    
-    float modulePanelSoftVer = 0;    
-    float lambdaStatus = 0;    
-    float lambdaSet = 0;   
-    float lambda_level = 0;   
-    float oxygen = 0;   
-    uint16_t power100_time = 0;   
-    uint16_t power50_time = 0; 
-    uint16_t power30_time = 0; 
-    
-    uint16_t feader_time = 0; 
-    uint16_t ignisions = 0; 
+    uint8_t huw_temp_target = 0; 
+    uint8_t boiler_temp_target = 0;  
+    uint8_t mixer_temp_target = 0;  
+
+    uint8_t fuel_level = 0;  
+    uint8_t transmission = 0;
+
+    uint8_t fan_in_power = 0;    
+    uint8_t fan_out_power = 0;    
+    uint8_t boiler_power = 0;
+
+    short power_max_time = 0;   
+    short power_medium_time = 0; 
+    short power_min_time = 0; 
+    short feader_time = 0; 
+    short ignisions = 0; 
+    short ignisions_fails = 0; 
 
 };
 

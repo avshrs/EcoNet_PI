@@ -26,54 +26,43 @@ class EcoNet{
             {10, "ROZSZCZELNIENIE"}, 
             
         };
-    public:
+    private:
         void print_buffer(uint8_t *buf, int len);
         std::string date();
         void analyze_frame(std::vector<uint8_t> &payload);
         float retrun_float(std::vector<uint8_t> &payload, int position);
-        std::string get_operating_status();
+        short retrun_short(std::vector<uint8_t> &payload, int p);
+        
         uint8_t crc(std::vector<uint8_t> &message);
-
-        float get_cwu_temp();
+    public:
+        std::string get_operating_status();
+        
+        float get_huw_temp();
         float get_feader_temp();
-        float get_co_temp();
+        float get_boiler_temp();
         float get_weather_temp();
-        float get_exhoust_temp();
+        float get_exhaust_temp();
         float get_mixer_temp();
-        float get_pomp_states();
-        float get_pomp_sets();
-        float get_outside_temp();
-        float get_return_temp();
-
+        float get_boiler_return_temp();
         float get_upper_buffer_temp();
         float get_lower_buffer_temp();
-        float get_flame();
+        float get_flame_sensor();
 
-        uint8_t get_cwu_temp_set();
-        uint8_t get_co_temp_set();
-        uint8_t get_co_status();
-        uint8_t get_cwu_status();
-        uint8_t get_alarms_no();
+        uint8_t get_huw_temp_target();
+        uint8_t get_boiler_temp_target();
+        uint8_t get_mixer_temp_target();
         uint8_t get_fuel_level();
-        uint8_t get_transmission();
-        float get_fanPower();
-        uint8_t get_boiler_power();
-        float get_boiler_power_kw();
+        uint8_t get_fan_out_power();
+        uint8_t get_fan_in_power();
         float get_fuel_stream();
-        uint8_t get_thermostat();
-        float get_versionInfo();
-        float get_moduleBSoftVer();
-        float get_moduleCSoftVer();
-        float get_moduleLambdaSoftVer();
-        float get_moduleEcoSTERSoftVer();
-        float get_modulePanelSoftVer();
-        float get_lambda_level();
-        float get_oxygen();
-        short get_power100_time();
-        short get_power50_time();
-        short get_power30_time();
+        float get_boiler_power_kw();
+        short get_power_max_time();
+        short get_power_medium_time();
+        short get_power_min_time();
         short get_feader_time();
         short get_ignisions();
+        short get_ignisions_fails();
+
 
 
 
