@@ -25,13 +25,14 @@ void EcoNet::run()
             {
                 serial.serial_read(rx_buf);
                 buf.buf.insert(buf.buf.end(), rx_buf.buf.begin(), rx_buf.buf.end() );
-                if ( std::find(rx_buf.buf.begin(), rx_buf.buf.end(), 0x16) != rx_buf.buf.end() )
+                if ( std::find(rx_buf.buf.begin(),
+                     rx_buf.buf.end(), 0x16) != rx_buf.buf.end() )
                 {
                     buf.buf.insert(buf.buf.end(), rx_buf.buf.begin(), rx_buf.buf.end() );
                     break;
                 }
             }
-            // print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
+            print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
             analyze_frame(rx_buf);
         }
     }
