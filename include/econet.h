@@ -29,8 +29,8 @@ class EcoNet{
     public:
         void print_buffer(uint8_t *buf, int len);
         std::string date();
-        void analyze_frame(RX_Buffer &rx_buffer);
-        float retrun_float(RX_Buffer &rx_buffer, int position);
+        void analyze_frame(std::vector<uint8_t> &payload);
+        float retrun_float(std::vector<uint8_t> &payload, int position);
         std::string get_operating_status();
         float get_cwu_temp();
         float get_feader_temp();

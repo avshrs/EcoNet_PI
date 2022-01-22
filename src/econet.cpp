@@ -32,7 +32,7 @@ void EcoNet::run()
                 serial.serial_read_byte(payload);
 
             print_buffer(payload.data(), payload.size());
-            analyze_frame(rx_buf);
+            analyze_frame(payload);
         }
     }
 }
@@ -60,28 +60,28 @@ std::string EcoNet::date(){
 
 
 
-void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
+void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 {   
 
-    eco_payload.payload_type = rx_buffer.buf.at(7);
-    eco_payload.operating_status = rx_buffer.buf.at(40);
-    eco_payload.cwu_temp = retrun_float(rx_buffer, 86);
-    eco_payload.feader_temp = retrun_float(rx_buffer, 90);
-    eco_payload.co_temp = retrun_float(rx_buffer, 96);
-    eco_payload.weather_temp = retrun_float(rx_buffer, 100);
-    eco_payload.exhoust_temp = retrun_float(rx_buffer, 104);                                                      
-    eco_payload.mixer_temp = retrun_float(rx_buffer, 108);                                                   
-    eco_payload.outside_temp = retrun_float(rx_buffer, 112);                                                   
+    eco_payload.payload_type = payload.at(7);
+    eco_payload.operating_status = payload.at(40);
+    eco_payload.cwu_temp = retrun_float(payload, 86);
+    eco_payload.feader_temp = retrun_float(payload, 90);
+    eco_payload.co_temp = retrun_float(payload, 96);
+    eco_payload.weather_temp = retrun_float(payload, 100);
+    eco_payload.exhoust_temp = retrun_float(payload, 104);                                                      
+    eco_payload.mixer_temp = retrun_float(payload, 108);                                                   
+    eco_payload.outside_temp = retrun_float(payload, 112);                                                   
 
 }
-float EcoNet::retrun_float(RX_Buffer &rx_buffer, int p)
+float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
     union {
         float f;
         uint32_t ui;
     } u;
-    u.ui = (rx_buffer.buf.at(p+3) << 24) | (rx_buffer.buf.at(p+2) << 16) | 
-           (rx_buffer.buf.at(p+1) << 8) |(rx_buffer.buf.at(p) );
+    u.ui = (payload.at(p+3) << 24) | (payload.at(p+2) << 16) | 
+           (payload.at(p+1) << 8) |(payload.at(p) );
     return u.f;
 }
 
