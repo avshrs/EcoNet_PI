@@ -47,6 +47,7 @@ struct payload{
     float  co_temp = 0;        
     float  return_temp = 0;
     float  flame = 0;
+    float  upper_buffer_temp = 0;
     float  outside_temp = 0;        
     float  weather_temp = 0;   
     float  exhoust_temp = 0;    
