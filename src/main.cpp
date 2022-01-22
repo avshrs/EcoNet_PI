@@ -34,20 +34,20 @@ int main()
         std::cout<< "get_lower_buffer_temp temp: "<< econet.get_lower_buffer_temp()   <<std::endl;
         std::cout<< "flame : "<< econet.get_flame_sensor()   <<std::endl;
 
-        std::cout<< "get_huw_temp_target : "<< econet.get_huw_temp_target()   <<std::endl;
-        std::cout<< "get_boiler_temp_target : "<< econet.get_boiler_temp_target()   <<std::endl;
-        std::cout<< "get_mixer_temp_target : "<< econet.get_mixer_temp_target()   <<std::endl;
-        std::cout<< "get_fuel_level : "<< econet.get_fuel_level()   <<std::endl;
-        std::cout<< "get_fan_out_power : "<< econet.get_fan_out_power()   <<std::endl;
-        std::cout<< "get_fan_in_power : "<< econet.get_fan_in_power()   <<std::endl;
-        std::cout<< "get_fuel_stream : "<< econet.get_fuel_stream()   <<std::endl;
-        std::cout<< "get_boiler_power_kw : "<< econet.get_boiler_power_kw()   <<std::endl;
-        std::cout<< "get_power_max_time : "<< econet.get_power_max_time()   <<std::endl;
-        std::cout<< "get_power_medium_time : "<< econet.get_power_medium_time()   <<std::endl;
-        std::cout<< "get_power_min_time : "<< econet.get_power_min_time()   <<std::endl;
-        std::cout<< "get_feader_time : "<< econet.get_feader_time()   <<std::endl;
-        std::cout<< "get_ignisions : "<< econet.get_ignisions()   <<std::endl;
-        std::cout<< "get_ignisions_fails : "<< econet.get_ignisions_fails()   <<std::endl;
+        std::cout<< "get_huw_temp_target : "<< static_cast<int>(econet.get_huw_temp_target() )  <<std::endl;
+        std::cout<< "get_boiler_temp_target : "<< static_cast<int>(econet.get_boiler_temp_target()  ) <<std::endl;
+        std::cout<< "get_mixer_temp_target : "<< static_cast<int>(econet.get_mixer_temp_target() )  <<std::endl;
+        std::cout<< "get_fuel_level : "<< static_cast<int>(econet.get_fuel_level())   <<std::endl;
+        std::cout<< "get_fan_out_power : "<< static_cast<int>(econet.get_fan_out_power()   )<<std::endl;
+        std::cout<< "get_fan_in_power : "<< static_cast<int>(econet.get_fan_in_power() )  <<std::endl;
+        std::cout<< "get_fuel_stream : "<< static_cast<float>(econet.get_fuel_stream() )  <<std::endl;
+        std::cout<< "get_boiler_power_kw : "<< static_cast<float>(econet.get_boiler_power_kw() )  <<std::endl;
+        std::cout<< "get_power_max_time : "<< static_cast<int>(econet.get_power_max_time())   <<std::endl;
+        std::cout<< "get_power_medium_time : "<< static_cast<int>(econet.get_power_medium_time())   <<std::endl;
+        std::cout<< "get_power_min_time : "<< static_cast<int>(econet.get_power_min_time())   <<std::endl;
+        std::cout<< "get_feader_time : "<< static_cast<int>(econet.get_feader_time())   <<std::endl;
+        std::cout<< "get_ignisions : "<< static_cast<int>(econet.get_ignisions())   <<std::endl;
+        std::cout<< "get_ignisions_fails : "<< static_cast<int>(econet.get_ignisions_fails())   <<std::endl;
 
         
         
