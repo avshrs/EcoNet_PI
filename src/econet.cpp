@@ -44,7 +44,7 @@ void EcoNet::run()
                 
                 print_buffer(payload.data(), payload.size() );
                 analyze_frame(payload);
-                for(int i = 0 ; i<message.size() ; i++)
+                for(int i = 0 ; i< static_cast<int>(message.size()) ; i++)
                 {
                     if(tmp.at(i) != message.at(i))
                         std::cout << "dif at: " << i << std::endl;
