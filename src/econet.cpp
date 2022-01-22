@@ -60,7 +60,7 @@ void EcoNet::run()
         else
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            if (paylod_len > 5)
+            if (paylod_len > 5 && paylod_len < 500)
             {
             std::cout << "len: " << std::dec << paylod_len<< " | ";
             // for(int i =0 ; i< paylod_len - 8; i++)
