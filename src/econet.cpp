@@ -59,12 +59,12 @@ void EcoNet::run()
         }
         else
         {
-            short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            for(int i =0 ; i< paylod_len - 8; i++)
-                serial.serial_read_byte(payload);
-            message.insert(message.end(), header.begin(), header.end());
-            message.insert(message.end(), payload.begin(), payload.end());
-            print_buffer(message.data(), message.size() );
+            // short paylod_len = ((header.at(1)) | (header.at(2)<<8));
+            // for(int i =0 ; i< paylod_len - 8; i++)
+            //     serial.serial_read_byte(payload);
+            // message.insert(message.end(), header.begin(), header.end());
+            // message.insert(message.end(), payload.begin(), payload.end());
+            print_buffer(header.data(), header.size() );
 
         }
 
