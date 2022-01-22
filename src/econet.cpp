@@ -86,7 +86,6 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
     {
         tmp = tmp^message.at(i);
     }
-    uint8_t tmp2[1] = {tmp};
     return tmp;
 }
 
