@@ -31,7 +31,7 @@ void EcoNet::run()
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
             // payload.push_back(header.at(7));
             print_buffer(header.data(), header.size());
-            for(int i =0 ; i< paylod_len - 9; i++)
+            for(int i =0 ; i< paylod_len - 8; i++)
                 serial.serial_read_byte(payload);
 
             message.insert(message.end(), header.begin(), header.end());
