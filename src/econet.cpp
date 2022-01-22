@@ -48,7 +48,7 @@ void EcoNet::run()
                 {   if(tmp.size() != message.size())
                         break;
                     if(tmp.at(i) != message.at(i))
-                        std::cout << "dif at: " << i << std::endl;
+                        std::cout << "dif at: " << std::dec<<i << std::endl;
                 }
                 tmp = message; 
                 }
