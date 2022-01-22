@@ -17,11 +17,13 @@ void EcoNet::run()
     header.reserve(10);
     std::vector<uint8_t> payload;
     payload.reserve(400);
-
+    std::vector<uint8_t> message;
+    payload.reserve(400);
     while (true)
     {
         header.clear();
         payload.clear();
+        message.clear();
 
         serial.serial_read_bytes(header, 8); // read frame header
         if(header.at(0)==0x68 && header.at(7)==0x08 && header.at(4)==0x45)
@@ -32,8 +34,14 @@ void EcoNet::run()
             for(int i =0 ; i< paylod_len - 8; i++)
                 serial.serial_read_byte(payload);
 
-            print_buffer(payload.data(), payload.size());
-            analyze_frame(payload);
+            message.insert(message.end(), header.begin(), header.end());
+            message.insert(message.end(), payload.begin(), payload.end());
+            if(crc(message) == payload.at(paylod_len-2))
+                
+                {
+                print_buffer(payload.data(), payload.size() );
+                analyze_frame(payload);
+                }
         }
     }
 }
@@ -58,7 +66,17 @@ std::string EcoNet::date(){
     return ss.str();
 }
 
-
+uint8_t EcoNet::crc(std::vector<uint8_t> &message)
+{   
+    uint8_t tmp = message.at(0);
+    for(int i = 1 ; i< message.size() ; i++ )
+    {
+        tmp = tmp^message.at(i);
+    }
+    uint8_t tmp2[1] = {tmp};
+    print_buffer(tmp2, 1);
+    return tmp;
+}
 
 
 void EcoNet::analyze_frame(std::vector<uint8_t> &payload)

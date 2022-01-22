@@ -32,6 +32,8 @@ class EcoNet{
         void analyze_frame(std::vector<uint8_t> &payload);
         float retrun_float(std::vector<uint8_t> &payload, int position);
         std::string get_operating_status();
+        uint8_t crc(std::vector<uint8_t> &message);
+
         float get_cwu_temp();
         float get_feader_temp();
         float get_co_temp();
