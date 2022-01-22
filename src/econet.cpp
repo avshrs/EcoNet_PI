@@ -64,9 +64,9 @@ void EcoNet::analyze_frame(RX_Buffer &rx_buffer)
 
     eco_payload.payload_type = rx_buffer.buf.at(7);
     eco_payload.operating_status = rx_buffer.buf.at(40);
-    eco_payload.cwu_temp = retrun_float(rx_buffer, 81);
-    eco_payload.feader_temp = retrun_float(rx_buffer, 85);
-    eco_payload.co_temp = retrun_float(rx_buffer, 89);
+    eco_payload.cwu_temp = retrun_float(rx_buffer, 86);
+    eco_payload.feader_temp = retrun_float(rx_buffer, 90);
+    eco_payload.co_temp = retrun_float(rx_buffer, 94);
     eco_payload.weather_temp = retrun_float(rx_buffer, 97);
     eco_payload.exhoust_temp = retrun_float(rx_buffer, 101);                                                      
     eco_payload.mixer_temp = retrun_float(rx_buffer, 113);                                                   
