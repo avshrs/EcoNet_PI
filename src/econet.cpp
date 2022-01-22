@@ -43,6 +43,7 @@ void EcoNet::run()
                 print_buffer(payload.data(), payload.size() );
                 analyze_frame(payload);
                 }
+                print_buffer(message.data(), message.size() );
         }
     }
 }
