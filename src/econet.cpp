@@ -39,7 +39,7 @@ void EcoNet::run()
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
                 
                 {
-                payload.push_back(header.at(7));
+                
                 print_buffer(payload.data(), payload.size() );
                 analyze_frame(payload);
                 }
@@ -84,14 +84,14 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 {   
 
     
-    eco_payload.operating_status = payload.at(33);
-    eco_payload.cwu_temp = retrun_float(payload, 74);
-    eco_payload.feader_temp = retrun_float(payload, 78);
-    eco_payload.co_temp = retrun_float(payload, 82);
-    eco_payload.weather_temp = retrun_float(payload, 90);
-    eco_payload.exhoust_temp = retrun_float(payload, 94);                                                      
-    eco_payload.mixer_temp = retrun_float(payload, 106);                                                   
-    eco_payload.outside_temp = retrun_float(payload, 110);                                                   
+    eco_payload.operating_status = payload.at(32);
+    eco_payload.cwu_temp = retrun_float(payload, 73);
+    eco_payload.feader_temp = retrun_float(payload, 77);
+    eco_payload.co_temp = retrun_float(payload, 81);
+    eco_payload.weather_temp = retrun_float(payload, 89);
+    eco_payload.exhoust_temp = retrun_float(payload, 93);                                                      
+    eco_payload.mixer_temp = retrun_float(payload, 105);                                                   
+    eco_payload.outside_temp = retrun_float(payload, 109);                                                   
 
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
