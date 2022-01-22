@@ -83,28 +83,31 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
 void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 {   
     eco_payload.operating_status = payload.at(33);
-    eco_payload.cwu_temp = retrun_float(payload, 78);      //78 HUW
-    eco_payload.feader_temp = retrun_float(payload, 98);   //98 Feader
-    eco_payload.co_temp = retrun_float(payload, 102);      //102 BOILER
-    eco_payload.weather_temp = retrun_float(payload, 86);  //86 Weather / outside temp
-    eco_payload.exhoust_temp = retrun_float(payload, 94);  //94 Exhoust                                                
-    eco_payload.return_temp = retrun_float(payload, 90);   //90 return 
-    eco_payload.mixer_temp = retrun_float(payload, 82);    //82 mixer1                                              
-    eco_payload.upper_buffer_temp = retrun_float(payload, 110); //110 upper buffer
-    eco_payload.lower_buffer_temp = retrun_float(payload, 114); //110 upper buffer
-    eco_payload.flame = retrun_float(payload, 106);                                                   
-
-    eco_payload.outside_temp = retrun_float(payload, 122);
-    std::cout<< " cwu set temp"  <<std::dec << static_cast<int>(payload.at(146)) << std::endl;
-    std::cout<< " cwu set temp"  <<std::dec << static_cast<int>(payload.at(146)) << std::endl;
-    std::cout<< " ? set ?"  <<std::dec << static_cast<int>(payload.at(147)) << std::endl;
-    std::cout<< " co set temp" << std::dec << static_cast<int>(payload.at(148)) << std::endl;
-    std::cout<< " FUEL LEVEL" << std::dec << static_cast<int>(payload.at(189)) << std::endl;
-    std::cout<< " BOILER POWER" << std::dec << static_cast<int>(payload.at(196)) << std::endl;
-
-    std::cout<< " FUEL STREAM" << std::dec << retrun_float(payload, 201) << std::endl;
-    std::cout<< " BOILER POWER KW" << std::dec << retrun_float(payload, 197) << std::endl;
-
+    eco_payload.huw_temp = retrun_float(payload, 78);      
+    eco_payload.mixer_temp = retrun_float(payload, 82);                                             
+    eco_payload.weather_temp = retrun_float(payload, 86);  
+    eco_payload.boiler_return_temp = retrun_float(payload, 90);   
+    eco_payload.exhaust_temp = retrun_float(payload, 94); 
+    eco_payload.feader_temp = retrun_float(payload, 98);   
+    eco_payload.boiler_temp = retrun_float(payload, 102);      
+    eco_payload.flame_sensor = retrun_float(payload, 106);                                                   
+    eco_payload.upper_buffer_temp = retrun_float(payload, 110); 
+    eco_payload.lower_buffer_temp = retrun_float(payload, 114); 
+    
+    eco_payload.huw_temp_target = static_cast<int>(payload.at(166));
+    eco_payload.boiler_temp_target = static_cast<int>(payload.at(172));
+    eco_payload.mixer_temp_target =  static_cast<int>(payload.at(167));
+    eco_payload.fuel_level = static_cast<int>(payload.at(217));
+    eco_payload.fan_out_power = static_cast<int>(payload.at(256));
+    eco_payload.fan_in_power = static_cast<int>(payload.at(255));
+    eco_payload.fuel_stream = retrun_float(payload, 261);
+    eco_payload.boiler_power_kw = retrun_float(payload, 257);
+    eco_payload.power_max_time = retrun_short(payload, 267); 
+    eco_payload.power_medium_time = retrun_short(payload, 269);
+    eco_payload.power_min_time = retrun_short(payload, 271);
+    eco_payload.feader_time = retrun_short(payload, 273);
+    eco_payload.ignisions = retrun_short(payload, 275);
+    eco_payload.ignisions_fails = retrun_short(payload, 277);
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
@@ -117,42 +120,48 @@ float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
     return u.f;
 }
 
+short EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
+{
+    union {
+        short sh;
+        uint16_t ui;
+    } u;
+    u.ui = ((payload.at(p)) | (payload.at(p+1) << 8)) ;
+           
+    return u.sh;
+}
+
 std::string EcoNet::get_operating_status()
 {
     return operating_status_sting.at(eco_payload.operating_status);
-    
 }
-float EcoNet::get_cwu_temp()
+float EcoNet::get_huw_temp()
 {
-    return eco_payload.cwu_temp;
+    return eco_payload.huw_temp;
 }
 float EcoNet::get_feader_temp()
 {
     return eco_payload.feader_temp;
 }
-float EcoNet::get_co_temp()
+float EcoNet::get_boiler_temp()
 {
-    return eco_payload.co_temp;
+    return eco_payload.boiler_temp;
 }
 float EcoNet::get_weather_temp()
 {
     return eco_payload.weather_temp;
 }
-float EcoNet::get_exhoust_temp()
+float EcoNet::get_exhaust_temp()
 {
-    return eco_payload.exhoust_temp;
+    return eco_payload.exhaust_temp;
 }
 float EcoNet::get_mixer_temp()
 {
     return eco_payload.mixer_temp;
 }
-float EcoNet::get_outside_temp()
+float EcoNet::get_boiler_return_temp()
 {
-    return eco_payload.outside_temp;
-}
-float EcoNet::get_return_temp()
-{
-    return eco_payload.return_temp;
+    return eco_payload.boiler_return_temp;
 }
 float EcoNet::get_upper_buffer_temp()
 {
@@ -162,7 +171,63 @@ float EcoNet::get_lower_buffer_temp()
 {
     return eco_payload.lower_buffer_temp;
 }
-float EcoNet::get_flame()
+float EcoNet::get_flame_sensor()
 {
-    return eco_payload.flame;
+    return eco_payload.flame_sensor;
+}
+uint8_t EcoNet::get_huw_temp_target()
+{
+    return eco_payload.huw_temp_target;
+}
+uint8_t EcoNet::get_boiler_temp_target()
+{
+    return eco_payload.boiler_temp_target;
+}
+uint8_t EcoNet::get_mixer_temp_target()
+{
+    return eco_payload.mixer_temp_target;
+}
+uint8_t EcoNet::get_fuel_level()
+{
+    return eco_payload.fuel_level;
+}
+uint8_t EcoNet::get_fan_out_power()
+{
+    return eco_payload.fan_out_power;
+}
+uint8_t EcoNet::get_fan_in_power()
+{
+    return eco_payload.fan_in_power;
+}
+float EcoNet::get_fuel_stream()
+{
+    return eco_payload.fuel_stream;
+}
+float EcoNet::get_boiler_power_kw()
+{
+    return eco_payload.boiler_power_kw;
+}
+short EcoNet::get_power_max_time()
+{
+    return eco_payload.power_max_time;
+}
+short EcoNet::get_power_medium_time()
+{
+    return eco_payload.power_medium_time;
+}
+short EcoNet::get_power_min_time()
+{
+    return eco_payload.power_min_time;
+}
+short EcoNet::get_feader_time()
+{
+    return eco_payload.feader_time;
+}
+short EcoNet::get_ignisions()
+{
+    return eco_payload.ignisions;
+}
+short EcoNet::get_ignisions_fails()
+{
+    return eco_payload.ignisions_fails;
 }

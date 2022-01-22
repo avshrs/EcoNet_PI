@@ -23,19 +23,35 @@ int main()
     {
         std::cout<< "--------------------------------"<< std::endl;
         std::cout<< "oper stat: "<< econet.get_operating_status()  <<std::endl;
-        std::cout<< "CO temp: "<< econet.get_co_temp()  <<std::endl;
-        std::cout<< "CWU temp: "<< econet.get_cwu_temp()     <<std::endl;
+        std::cout<< "CO temp: "<< econet.get_boiler_temp()  <<std::endl;
+        std::cout<< "CWU temp: "<< econet.get_huw_temp()     <<std::endl;
         std::cout<< "Feader temp: "<< econet.get_feader_temp()    <<std::endl;
         std::cout<< "Wather temp: "<< econet.get_weather_temp()    <<std::endl;
-        std::cout<< "Exhoust temp: "<< econet.get_exhoust_temp()   <<std::endl;
+        std::cout<< "Exhoust temp: "<< econet.get_exhaust_temp()   <<std::endl;
         std::cout<< "mixer temp: "<< econet.get_mixer_temp()   <<std::endl;
-        std::cout<< "return temp: "<< econet.get_return_temp()   <<std::endl;
+        std::cout<< "return temp: "<< econet.get_boiler_return_temp()   <<std::endl;
         std::cout<< "get_upper_buffer_temp temp: "<< econet.get_upper_buffer_temp()   <<std::endl;
         std::cout<< "get_lower_buffer_temp temp: "<< econet.get_lower_buffer_temp()   <<std::endl;
-        std::cout<< "flame : "<< econet.get_flame()   <<std::endl;
+        std::cout<< "flame : "<< econet.get_flame_sensor()   <<std::endl;
+
+        std::cout<< "get_huw_temp_target : "<< econet.get_huw_temp_target()   <<std::endl;
+        std::cout<< "get_boiler_temp_target : "<< econet.get_boiler_temp_target()   <<std::endl;
+        std::cout<< "get_mixer_temp_target : "<< econet.get_mixer_temp_target()   <<std::endl;
+        std::cout<< "get_fuel_level : "<< econet.get_fuel_level()   <<std::endl;
+        std::cout<< "get_fan_out_power : "<< econet.get_fan_out_power()   <<std::endl;
+        std::cout<< "get_fan_in_power : "<< econet.get_fan_in_power()   <<std::endl;
+        std::cout<< "get_fuel_stream : "<< econet.get_fuel_stream()   <<std::endl;
+        std::cout<< "get_boiler_power_kw : "<< econet.get_boiler_power_kw()   <<std::endl;
+        std::cout<< "get_power_max_time : "<< econet.get_power_max_time()   <<std::endl;
+        std::cout<< "get_power_medium_time : "<< econet.get_power_medium_time()   <<std::endl;
+        std::cout<< "get_power_min_time : "<< econet.get_power_min_time()   <<std::endl;
+        std::cout<< "get_feader_time : "<< econet.get_feader_time()   <<std::endl;
+        std::cout<< "get_ignisions : "<< econet.get_ignisions()   <<std::endl;
+        std::cout<< "get_ignisions_fails : "<< econet.get_ignisions_fails()   <<std::endl;
+
         
         
-        std::cout<< "outside temp: "<< econet.get_outside_temp()   <<std::endl;
+
         sleep(1);
     }
     
