@@ -27,6 +27,8 @@ int main()
         std::cout<< "Feader temp: "<< econet.get_feader_temp()    <<std::endl;
         std::cout<< "Wather temp: "<< econet.get_weather_temp()    <<std::endl;
         std::cout<< "Exhoust temp: "<< econet.get_exhoust_temp()   <<std::endl;
+        std::cout<< "mixer temp: "<< econet.get_mixer_temp()   <<std::endl;
+        std::cout<< "outside temp: "<< econet.get_outside_temp()   <<std::endl;
         sleep(1);
     }
     

@@ -40,6 +40,7 @@ class EcoNet{
         float get_mixer_temp();
         float get_pomp_states();
         float get_pomp_sets();
+        float get_outside_temp();
         uint8_t get_cwu_temp_set();
         uint8_t get_co_temp_set();
         uint8_t get_co_status();

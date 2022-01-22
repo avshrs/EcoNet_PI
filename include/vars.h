@@ -45,6 +45,7 @@ struct payload{
     float  cwu_temp = 0;        
     float  feader_temp = 0;     
     float  co_temp = 0;        
+    float  outside_temp = 0;        
     float  weather_temp = 0;   
     float  exhoust_temp = 0;    
     float  mixer_temp = 0;      
@@ -84,12 +85,13 @@ struct payload{
 enum payload_addresses{
     payload_type = 7,      
     operating_status = 40,   
-    cwu_temp = 81,        
+    cwu_temp = 8,        
     feader_temp = 85,     
     co_temp = 89,        
     weather_temp = 97,   
     exhoust_temp = 101,    
     mixer_temp = 113,      
+
      pomp_states = 117,
      pomp_sets = 121,
      cwu_temp_set = 153, 
