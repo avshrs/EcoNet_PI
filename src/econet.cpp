@@ -55,21 +55,13 @@ void EcoNet::run()
                     // std::cout <<date() << "ecoster: " ;
                     // print_buffer(message.data(), message.size() );
                 } 
+                else
+                {
+                    print_buffer(message.data(), message.size() );
+                }
             }
         }
-        else
-        {
-            short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            if (paylod_len > 5 && paylod_len < 500)
-            {
-            std::cout << "len: " << std::dec << paylod_len<< " | ";
-            // for(int i =0 ; i< paylod_len - 8; i++)
-            //     serial.serial_read_byte(payload);
-            // message.insert(message.end(), header.begin(), header.end());
-            // message.insert(message.end(), payload.begin(), payload.end());
-            print_buffer(header.data(), header.size() );
-            }
-        }
+       
 
     }
 }
