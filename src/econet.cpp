@@ -27,11 +27,12 @@ void EcoNet::run()
         if(header.at(0)==0x68 && header.at(7)==0x08 && header.at(4)==0x45)
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
+            payload.push_back(header.at(7));
             for(int i =0 ; i< paylod_len - 8; i++)
                 serial.serial_read_byte(payload);
 
             print_buffer(payload.data(), payload.size());
-            // analyze_frame(rx_buf);
+            analyze_frame(rx_buf);
         }
     }
 }
