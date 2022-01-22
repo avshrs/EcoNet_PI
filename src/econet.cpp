@@ -23,12 +23,14 @@ void EcoNet::run()
         header.clear();
         payload.clear();
 
-        serial.serial_read_bytes(header, 8); // read frame header
+        serial.serial_read_bytes(header, 7); // read frame header
         if(header.at(0)==0x68 && header.at(7)==0x08 && header.at(4)==0x45)
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            std::cout<< paylod_len<< std::endl;
-            // print_buffer(rx_buf.buf.data(), rx_buf.buf.size());
+            for(int i =0 ; i< paylod_len - 7; i++)
+                serial.serial_read_byte(payload);
+
+            print_buffer(payload.data(), payload.size());
             // analyze_frame(rx_buf);
         }
     }
