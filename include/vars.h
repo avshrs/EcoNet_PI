@@ -37,9 +37,16 @@ struct Mqtt_config{
 
 };
 
+struct Ecoster_payload{
+    float home_temp_target = 0; 
+    float home_temp = 0;
+};
+struct Econet_payload{
+};
 
 
 struct Ecomax920_payload{
+
     uint8_t payload_type = 0;      
     uint8_t operating_status = 0;   
     float  huw_temp = 0;        

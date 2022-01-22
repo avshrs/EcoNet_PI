@@ -4,21 +4,28 @@
 #include "USB_serial.h"
 
 class EcoNet{
-    public:
+    private:
+        USB_serial serial;
+
         TX_Buffer buf;
         RX_Buffer rx_buf;
+
         Ecomax920_payload ecomax920_payload;
-        USB_serial serial;
+        Ecoster_payload ecoster_payload;
+        Econet_payload  econet_payload;
+
         uint8_t frame_begin = 0x68;
         uint8_t frame_end = 0x16;
-        uint8_t header_end = 0x08;
 
         uint8_t econet_address = 0x56;
-        uint8_t ecomax_address = 0x45;
-        uint8_t ecoster_address = 0x51;
+        uint8_t econet_frame = 0xb0;
 
-        void init(std::string serialName, int boudrate, int lead_zero);
-        void run();
+        uint8_t ecomax_address = 0x45;
+        uint8_t ecomax_frame = 0x08;
+        
+        uint8_t ecoster_address = 0x51;
+        uint8_t ecoster_frame = 0x89;
+
         std::map<uint8_t, std::string> operating_status_sting
         { 
             {0, "Turned Off"}, 
@@ -34,10 +41,16 @@ class EcoNet{
             {10, "10"}, 
             
         };
+    public:
+        void init(std::string serialName, int boudrate, int lead_zero);
+        void run();
+       
     private:
         void print_buffer(uint8_t *buf, int len);
         std::string date();
         void analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload);
+        void analyze_frame_econet(std::vector<uint8_t> &payload);
+        void analyze_frame_ecoster(std::vector<uint8_t> &payload);
         float retrun_float(std::vector<uint8_t> &payload, int position);
         short retrun_short(std::vector<uint8_t> &payload, int p);
         
@@ -55,6 +68,9 @@ class EcoNet{
         float get_upper_buffer_temp();
         float get_lower_buffer_temp();
         float get_flame_sensor();
+
+        float get_ecoster_home_temp();
+        float get_ecoster_home_temp_target();
 
         uint8_t get_huw_temp_target();
         uint8_t get_boiler_temp_target();

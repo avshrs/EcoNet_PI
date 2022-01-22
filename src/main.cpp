@@ -48,7 +48,9 @@ int main()
         // std::cout<< "get_feader_time : "<< std::dec << static_cast<int>(econet.get_feader_time())   <<std::endl;
         // std::cout<< "get_ignisions : "<< std::dec << static_cast<int>(econet.get_ignisions())   <<std::endl;
         // std::cout<< "get_ignisions_fails : "<< std::dec << static_cast<int>(econet.get_ignisions_fails())   <<std::endl;
-
+ 
+        // std::cout<< "get_ecoster_home_temp : "<< std::dec << static_cast<float>(econet.get_ecoster_home_temp())   <<std::endl;
+        // std::cout<< "get_ecoster_home_temp_target : "<< std::dec << static_cast<float>(econet.get_ecoster_home_temp_target())   <<std::endl;
         
         
 

@@ -38,23 +38,23 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                print_buffer(message.data(), message.size() );
+                // print_buffer(message.data(), message.size() );
 
-                // if(header.at(4)==ecomax_address)
-                // {
-                //     print_buffer(message.data(), message.size() );
-                //     analyze_frame_ecomax_920P1(payload);
-                // }
-                // else if(header.at(4)==econet_address)
-                // {   
-                //     std::cout <<date() << "econet: " ;
-                //     print_buffer(message.data(), message.size() );
-                // }               
-                // else if(header.at(4)==ecoster_address)
-                // {
-                //     std::cout <<date() << "ecoster: " ;
-                //     print_buffer(message.data(), message.size() );
-                // } 
+                if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
+                {
+                    print_buffer(message.data(), message.size() );
+                    // analyze_frame_ecomax_920P1(payload);
+                }
+                else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+                {   
+                    std::cout <<date() << "econet: " ;
+                    print_buffer(message.data(), message.size() );
+                }               
+                else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
+                {
+                    std::cout <<date() << "ecoster: " ;
+                    // print_buffer(message.data(), message.size() );
+                } 
             }
         }
     }
@@ -90,6 +90,16 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
     return tmp;
 }
 
+void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
+{  
+    ecoster_payload.home_temp = retrun_float(payload, 16); 
+    ecoster_payload.home_temp_target = retrun_float(payload, 20); 
+}
+
+void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
+{
+
+}
 
 void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
 {   
@@ -248,3 +258,12 @@ short EcoNet::get_ignisions_fails()
 {
     return ecomax920_payload.ignisions_fails;
 }
+
+float EcoNet::get_ecoster_home_temp()
+{
+    return ecoster_payload.home_temp;
+}
+float EcoNet::get_ecoster_home_temp_target()
+{
+    return ecoster_payload.home_temp_target;
+} 
