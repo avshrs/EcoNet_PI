@@ -45,6 +45,10 @@ class EcoNet{
         float get_outside_temp();
         float get_return_temp();
 
+        float get_upper_buffer_temp();
+        float get_lower_buffer_temp();
+        float get_flame();
+
         uint8_t get_cwu_temp_set();
         uint8_t get_co_temp_set();
         uint8_t get_co_status();

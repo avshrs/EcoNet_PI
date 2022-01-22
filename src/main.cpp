@@ -28,8 +28,13 @@ int main()
         std::cout<< "Wather temp: "<< econet.get_weather_temp()    <<std::endl;
         std::cout<< "Exhoust temp: "<< econet.get_exhoust_temp()   <<std::endl;
         std::cout<< "mixer temp: "<< econet.get_mixer_temp()   <<std::endl;
-        std::cout<< "outside temp: "<< econet.get_outside_temp()   <<std::endl;
         std::cout<< "return temp: "<< econet.get_return_temp()   <<std::endl;
+        std::cout<< "get_upper_buffer_temp temp: "<< econet.get_upper_buffer_temp()   <<std::endl;
+        std::cout<< "get_lower_buffer_temp temp: "<< econet.get_lower_buffer_temp()   <<std::endl;
+        std::cout<< "flame : "<< econet.get_flame()   <<std::endl;
+        
+        
+        std::cout<< "outside temp: "<< econet.get_outside_temp()   <<std::endl;
         sleep(1);
     }
     

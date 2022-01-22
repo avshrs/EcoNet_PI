@@ -96,6 +96,7 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
 
     eco_payload.flame = retrun_float(payload, 106);                                                   
     std::cout<< " cwu set temp"  <<std::dec << static_cast<int>(payload.at(146)) << std::endl;
+    std::cout<< " cwu set temp"  <<std::dec << static_cast<int>(payload.at(146)) << std::endl;
     std::cout<< " ? set ?"  <<std::dec << static_cast<int>(payload.at(147)) << std::endl;
     std::cout<< " co set temp" << std::dec << static_cast<int>(payload.at(148)) << std::endl;
     std::cout<< " FUEL LEVEL" << std::dec << static_cast<int>(payload.at(189)) << std::endl;
@@ -152,4 +153,16 @@ float EcoNet::get_outside_temp()
 float EcoNet::get_return_temp()
 {
     return eco_payload.return_temp;
+}
+float EcoNet::get_upper_buffer_temp()
+{
+    return eco_payload.upper_buffer_temp;
+}
+float EcoNet::get_lower_buffer_temp()
+{
+    return eco_payload.lower_buffer_temp;
+}
+float EcoNet::get_flame()
+{
+    return eco_payload.flame;
 }
