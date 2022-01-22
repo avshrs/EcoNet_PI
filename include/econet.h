@@ -43,6 +43,8 @@ class EcoNet{
         float get_pomp_states();
         float get_pomp_sets();
         float get_outside_temp();
+        float get_return_temp();
+
         uint8_t get_cwu_temp_set();
         uint8_t get_co_temp_set();
         uint8_t get_co_status();

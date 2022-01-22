@@ -29,6 +29,7 @@ int main()
         std::cout<< "Exhoust temp: "<< econet.get_exhoust_temp()   <<std::endl;
         std::cout<< "mixer temp: "<< econet.get_mixer_temp()   <<std::endl;
         std::cout<< "outside temp: "<< econet.get_outside_temp()   <<std::endl;
+        std::cout<< "return temp: "<< econet.get_return_temp()   <<std::endl;
         sleep(1);
     }
     

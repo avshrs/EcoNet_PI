@@ -137,3 +137,7 @@ float EcoNet::get_outside_temp()
 {
     return eco_payload.outside_temp;
 }
+float EcoNet::get_return_temp()
+{
+    return eco_payload.return_temp;
+}
