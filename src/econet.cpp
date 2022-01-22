@@ -94,8 +94,8 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
     eco_payload.upper_buffer_temp = retrun_float(payload, 110); 
     eco_payload.lower_buffer_temp = retrun_float(payload, 114); 
     
-    eco_payload.huw_temp_target = static_cast<int>(payload.at(165));
-    eco_payload.boiler_temp_target = static_cast<int>(payload.at(171));
+    eco_payload.huw_temp_target = static_cast<int>(payload.at(166));
+    eco_payload.boiler_temp_target = static_cast<int>(payload.at(172));
     eco_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
     eco_payload.fuel_level = static_cast<int>(payload.at(216));
     eco_payload.fan_out_power = static_cast<int>(payload.at(255));
