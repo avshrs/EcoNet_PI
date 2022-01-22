@@ -41,7 +41,7 @@ void EcoNet::run()
 
                 if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                    // print_buffer(message.data(), message.size() );
+                    print_buffer(message.data(), message.size() );
                     // analyze_frame_ecomax_920P1(payload);
                 }
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
@@ -53,7 +53,7 @@ void EcoNet::run()
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
                     // std::cout <<date() << "ecoster: " ;
-                    // print_buffer(message.data(), message.size() );
+                    print_buffer(message.data(), message.size() );
                 } 
                 // else
                 // {
@@ -279,5 +279,7 @@ float EcoNet::get_ecoster_home_temp_target()
 void EcoNet::set_huw_temp()
 {
     std::vector<uint8_t> buf = {0x68, 0x10, 0x00, 0x45, 0x56, 0x30, 0x05, 0x57, 0x01, 0x00, 0x04, 0x01, 0x05, 0x37, 0x3e, 0x16};
+    // std::vector<uint8_t> buf = {0x68 0x0d 0x00 0x45 0x56 0x30 0x05 0x56 0x04 0xff 0x00 0xee 0x16};
+    // std::vector<uint8_t> buf = {0x68 0x0d 0x00 0x45 0x56 0x30 0x05 0x56 0x04 0xff 0xd6 0x38 0x16};
     serial.serial_send(buf);
 }
