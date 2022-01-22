@@ -82,46 +82,6 @@ struct payload{
 
 };
 
-enum payload_addresses{
-    payload_type = 7,      
-    operating_status = 40,   
-    cwu_temp = 8,        
-    feader_temp = 85,     
-    co_temp = 89,        
-    weather_temp = 97,   
-    exhoust_temp = 101,    
-    mixer_temp = 113,      
-
-     pomp_states = 117,
-     pomp_sets = 121,
-     cwu_temp_set = 153, 
-     co_temp_set = 155,  
-
-     fuel_level = 196,  
-     transmission = 197,
-     fanPower = 201,    
-     boiler_power = 203,
-     boiler_power_kw = 204,    
-     fuel_stream = 208,  
-    //  thermostat = 205,
-     versionInfo = 211,    
-     moduleBSoftVer = 216,    
-     moduleCSoftVer = 219,    
-     moduleLambdaSoftVer = 222,    
-     moduleEcoSTERSoftVer = 225,    
-     modulePanelSoftVer = 228,    
-     lambdaStatus = 231,    
-     lambdaSet = 232,   
-     lambda_level = 233,   
-     oxygen = 237,   
-     power100_time = 242,   
-     power50_time = 244, 
-     power30_time = 246, 
-
-     feader_time =  248, 
-     ignisions = 251, 
-
-};
 
 struct packet_structure{
     uint8_t frame_type = 0;
