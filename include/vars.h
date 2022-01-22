@@ -39,7 +39,7 @@ struct Mqtt_config{
 
 
 
-struct payload{
+struct Ecomax920_payload{
     uint8_t payload_type = 0;      
     uint8_t operating_status = 0;   
     float  huw_temp = 0;        

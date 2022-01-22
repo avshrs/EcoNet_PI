@@ -19,8 +19,6 @@ void EcoNet::run()
     payload.reserve(400);
     std::vector<uint8_t> message;
     payload.reserve(400);
-    std::vector<uint8_t> tmp;
-    tmp.reserve(400);
     while (true)
     {
         header.clear();
@@ -28,10 +26,10 @@ void EcoNet::run()
         message.clear();
 
         serial.serial_read_bytes(header, 8); // read frame header
-        if(header.at(0)==0x68 && header.at(7)==0x08 && header.at(4)==0x45)
+        print_buffer(header.data(), header.size() );
+        if(header.at(0)==frame_begin && header.at(7)==header_end )
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-       
             for(int i =0 ; i< paylod_len - 8; i++)
                 serial.serial_read_byte(payload);
 
@@ -39,19 +37,24 @@ void EcoNet::run()
             message.insert(message.end(), payload.begin(), payload.end());
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
-                
-                {
-                
+            {
                 print_buffer(payload.data(), payload.size() );
-                analyze_frame(payload);
-                for(int i = 0 ; i< static_cast<int>(message.size()) ; i++)
-                {   if(tmp.size() != message.size())
-                        break;
-                    if(tmp.at(i) != message.at(i))
-                        std::cout << "dif at: " << std::dec<<i <<std::endl;
+                if(header.at(4)==ecomax_address)
+                {
+                    print_buffer(payload.data(), payload.size() );
+                    analyze_frame_ecomax_920P1(payload);
                 }
-                tmp = message; 
-                }
+                if(header.at(4)==econet_address)
+                {   
+                    std::cout <<date() << "econet: " ;
+                    print_buffer(payload.data(), payload.size() );
+                }               
+                if(header.at(4)==ecoster_address)
+                {
+                    std::cout <<date() << "ecoster: " ;
+                    print_buffer(payload.data(), payload.size() );
+                } 
+            }
         }
     }
 }
@@ -84,39 +87,44 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
         tmp = tmp^message.at(i);
     }
     uint8_t tmp2[1] = {tmp};
-    print_buffer(tmp2, 1);
     return tmp;
 }
 
 
-void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
+void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
 {   
-    eco_payload.operating_status = payload.at(29);
-    eco_payload.huw_temp = retrun_float(payload, 78);      
-    eco_payload.mixer_temp = retrun_float(payload, 82);                                             
-    eco_payload.weather_temp = retrun_float(payload, 86);  
-    eco_payload.boiler_return_temp = retrun_float(payload, 90);   
-    eco_payload.exhaust_temp = retrun_float(payload, 94); 
-    eco_payload.feader_temp = retrun_float(payload, 98);   
-    eco_payload.boiler_temp = retrun_float(payload, 102);      
-    eco_payload.flame_sensor = retrun_float(payload, 106);                                                   
-    eco_payload.upper_buffer_temp = retrun_float(payload, 110); 
-    eco_payload.lower_buffer_temp = retrun_float(payload, 114); 
+    ecomax920_payload.operating_status = payload.at(29);
+    ecomax920_payload.huw_temp = retrun_float(payload, 78);      
+    ecomax920_payload.mixer_temp = retrun_float(payload, 82);                                             
+    ecomax920_payload.weather_temp = retrun_float(payload, 86);  
+    ecomax920_payload.boiler_return_temp = retrun_float(payload, 90);   
+    ecomax920_payload.exhaust_temp = retrun_float(payload, 94); 
+    ecomax920_payload.feader_temp = retrun_float(payload, 98);   
+    ecomax920_payload.boiler_temp = retrun_float(payload, 102);      
+    ecomax920_payload.flame_sensor = retrun_float(payload, 106);                                                   
+    ecomax920_payload.upper_buffer_temp = retrun_float(payload, 110); 
+    ecomax920_payload.lower_buffer_temp = retrun_float(payload, 114); 
     
-    eco_payload.huw_temp_target = static_cast<int>(payload.at(166));
-    eco_payload.boiler_temp_target = static_cast<int>(payload.at(172));
-    eco_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
-    eco_payload.fuel_level = static_cast<int>(payload.at(217));
-    eco_payload.fan_out_power = static_cast<int>(payload.at(255));
-    eco_payload.fan_in_power = static_cast<int>(payload.at(254));
-    eco_payload.fuel_stream = retrun_float(payload, 260);
-    eco_payload.boiler_power_kw = retrun_float(payload, 256);
-    eco_payload.power_max_time = retrun_short(payload, 266); 
-    eco_payload.power_medium_time = retrun_short(payload, 268);
-    eco_payload.power_min_time = retrun_short(payload, 270);
-    eco_payload.feader_time = retrun_short(payload, 272);
-    eco_payload.ignisions = retrun_short(payload, 274);
-    eco_payload.ignisions_fails = retrun_short(payload, 276);
+    ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(166));
+    ecomax920_payload.boiler_temp_target = static_cast<int>(payload.at(172));
+    ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
+    ecomax920_payload.fuel_level = static_cast<int>(payload.at(217));
+    ecomax920_payload.fan_out_power = static_cast<int>(payload.at(255));
+    ecomax920_payload.fan_in_power = static_cast<int>(payload.at(254));
+    ecomax920_payload.fuel_stream = retrun_float(payload, 260);
+    ecomax920_payload.boiler_power_kw = retrun_float(payload, 256);
+    ecomax920_payload.power_max_time = retrun_short(payload, 266); 
+    ecomax920_payload.power_medium_time = retrun_short(payload, 268);
+    ecomax920_payload.power_min_time = retrun_short(payload, 270);
+    ecomax920_payload.feader_time = retrun_short(payload, 272);
+    ecomax920_payload.ignisions = retrun_short(payload, 274);
+    ecomax920_payload.ignisions_fails = retrun_short(payload, 276);
+    /* to investigate: 
+     float 219
+     float 220
+
+
+    */
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
@@ -142,101 +150,101 @@ short int EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
 
 std::string EcoNet::get_operating_status()
 {
-    return operating_status_sting.at(eco_payload.operating_status);
+    return operating_status_sting.at(ecomax920_payload.operating_status);
 }
 float EcoNet::get_huw_temp()
 {
-    return eco_payload.huw_temp;
+    return ecomax920_payload.huw_temp;
 }
 float EcoNet::get_feader_temp()
 {
-    return eco_payload.feader_temp;
+    return ecomax920_payload.feader_temp;
 }
 float EcoNet::get_boiler_temp()
 {
-    return eco_payload.boiler_temp;
+    return ecomax920_payload.boiler_temp;
 }
 float EcoNet::get_weather_temp()
 {
-    return eco_payload.weather_temp;
+    return ecomax920_payload.weather_temp;
 }
 float EcoNet::get_exhaust_temp()
 {
-    return eco_payload.exhaust_temp;
+    return ecomax920_payload.exhaust_temp;
 }
 float EcoNet::get_mixer_temp()
 {
-    return eco_payload.mixer_temp;
+    return ecomax920_payload.mixer_temp;
 }
 float EcoNet::get_boiler_return_temp()
 {
-    return eco_payload.boiler_return_temp;
+    return ecomax920_payload.boiler_return_temp;
 }
 float EcoNet::get_upper_buffer_temp()
 {
-    return eco_payload.upper_buffer_temp;
+    return ecomax920_payload.upper_buffer_temp;
 }
 float EcoNet::get_lower_buffer_temp()
 {
-    return eco_payload.lower_buffer_temp;
+    return ecomax920_payload.lower_buffer_temp;
 }
 float EcoNet::get_flame_sensor()
 {
-    return eco_payload.flame_sensor;
+    return ecomax920_payload.flame_sensor;
 }
 uint8_t EcoNet::get_huw_temp_target()
 {
-    return eco_payload.huw_temp_target;
+    return ecomax920_payload.huw_temp_target;
 }
 uint8_t EcoNet::get_boiler_temp_target()
 {
-    return eco_payload.boiler_temp_target;
+    return ecomax920_payload.boiler_temp_target;
 }
 uint8_t EcoNet::get_mixer_temp_target()
 {
-    return eco_payload.mixer_temp_target;
+    return ecomax920_payload.mixer_temp_target;
 }
 uint8_t EcoNet::get_fuel_level()
 {
-    return eco_payload.fuel_level;
+    return ecomax920_payload.fuel_level;
 }
 uint8_t EcoNet::get_fan_out_power()
 {
-    return eco_payload.fan_out_power;
+    return ecomax920_payload.fan_out_power;
 }
 uint8_t EcoNet::get_fan_in_power()
 {
-    return eco_payload.fan_in_power;
+    return ecomax920_payload.fan_in_power;
 }
 float EcoNet::get_fuel_stream()
 {
-    return eco_payload.fuel_stream;
+    return ecomax920_payload.fuel_stream;
 }
 float EcoNet::get_boiler_power_kw()
 {
-    return eco_payload.boiler_power_kw;
+    return ecomax920_payload.boiler_power_kw;
 }
 short EcoNet::get_power_max_time()
 {
-    return eco_payload.power_max_time;
+    return ecomax920_payload.power_max_time;
 }
 short EcoNet::get_power_medium_time()
 {
-    return eco_payload.power_medium_time;
+    return ecomax920_payload.power_medium_time;
 }
 short EcoNet::get_power_min_time()
 {
-    return eco_payload.power_min_time;
+    return ecomax920_payload.power_min_time;
 }
 short EcoNet::get_feader_time()
 {
-    return eco_payload.feader_time;
+    return ecomax920_payload.feader_time;
 }
 short EcoNet::get_ignisions()
 {
-    return eco_payload.ignisions;
+    return ecomax920_payload.ignisions;
 }
 short EcoNet::get_ignisions_fails()
 {
-    return eco_payload.ignisions_fails;
+    return ecomax920_payload.ignisions_fails;
 }

@@ -7,15 +7,22 @@ class EcoNet{
     public:
         TX_Buffer buf;
         RX_Buffer rx_buf;
-        payload eco_payload;
+        Ecomax920_payload ecomax920_payload;
         USB_serial serial;
-        
+        uint8_t frame_begin = 0x68;
+        uint8_t frame_end = 0x16;
+        uint8_t header_end = 0x08;
+
+        uint8_t econet_address = 0x56;
+        uint8_t ecomax_address = 0x45;
+        uint8_t ecoster_address = 0x51;
+
         void init(std::string serialName, int boudrate, int lead_zero);
         void run();
         std::map<uint8_t, std::string> operating_status_sting
         { 
             {0, "Turned Off"}, 
-            {1, "1"}, 
+            {1, "Fire Up"}, 
             {2, "Work"}, //
             {3, "3"}, //
             {4, "Burning_Off"}, 
@@ -30,7 +37,7 @@ class EcoNet{
     private:
         void print_buffer(uint8_t *buf, int len);
         std::string date();
-        void analyze_frame(std::vector<uint8_t> &payload);
+        void analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload);
         float retrun_float(std::vector<uint8_t> &payload, int position);
         short retrun_short(std::vector<uint8_t> &payload, int p);
         
@@ -68,3 +75,4 @@ class EcoNet{
 
 
 };
+
