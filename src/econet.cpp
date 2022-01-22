@@ -37,7 +37,7 @@ void EcoNet::run()
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
             
-            if(crc(message) == static_cast<uint8_t>(payload.at(message.size()-2)))
+            if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
                 
                 {
                 print_buffer(payload.data(), payload.size() );
