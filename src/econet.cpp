@@ -98,7 +98,7 @@ void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 
 void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
 {
-
+payload;
 }
 
 void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
