@@ -19,6 +19,9 @@ int main()
     econet.init(serial_file_name.c_str(), boudrate, rs_lead_zero);
     
     std::thread Hoermann_door_service(th1, &econet);
+
+    sleep(1);
+    econet.set_huw_temp();
     while (true)
     {
         // std::cout<< "--------------------------------"<< std::endl;

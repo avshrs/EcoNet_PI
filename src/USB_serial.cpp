@@ -96,10 +96,10 @@ void USB_serial::send_brake()
     usleep(100);
 }
 
-void USB_serial::serial_send(TX_Buffer &tx_buffer)
+void USB_serial::serial_send(std::vector<uint8_t> &buf)
 { 	
      send_brake();
-     write(fd, tx_buffer.buf.data(), tx_buffer.buf.size());
+     write(fd, buf.data(), buf.size());
 }
 
 void USB_serial::serial_read_buffer(RX_Buffer &rx_buffer)

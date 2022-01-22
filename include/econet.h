@@ -19,6 +19,9 @@ class EcoNet{
 
         uint8_t econet_address = 0x56;
         uint8_t econet_frame = 0xb0;
+        uint8_t econet_set_frame = 0x57;
+        uint8_t econet_set_write_frame = 0x56; //??
+
 
         uint8_t ecomax_address = 0x45;
         uint8_t ecomax_frame = 0x08;
@@ -86,6 +89,9 @@ class EcoNet{
         short get_feader_time();
         short get_ignisions();
         short get_ignisions_fails();
+
+    public:
+        void set_huw_temp();
 
 
 
