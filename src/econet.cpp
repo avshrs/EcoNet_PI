@@ -90,7 +90,10 @@ void EcoNet::analyze_frame(std::vector<uint8_t> &payload)
     eco_payload.exhoust_temp = retrun_float(payload, 94);  //94 Exhoust                                                
     eco_payload.return_temp = retrun_float(payload, 90);   //90 return 
     eco_payload.mixer_temp = retrun_float(payload, 82);    //82 mixer1                                              
-    eco_payload.outside_temp = retrun_float(payload, 106);                                                   
+    
+    eco_payload.outside_temp = retrun_float(payload, 110);
+
+        eco_payload.flame = retrun_float(payload, 106);                                                   
 
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
