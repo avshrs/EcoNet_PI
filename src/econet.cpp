@@ -79,8 +79,8 @@ float EcoNet::retrun_float(RX_Buffer &rx_buffer, int p)
         float f;
         uint32_t ui;
     } u;
-    u.ui = (rx_buffer.buf.at(p) << 24) | (rx_buffer.buf.at(p+1) << 16) | 
-           (rx_buffer.buf.at(p+2) << 8) |(rx_buffer.buf.at(p+3) );
+    u.ui = (rx_buffer.buf.at(p+3) << 24) | (rx_buffer.buf.at(p+2) << 16) | 
+           (rx_buffer.buf.at(p+1) << 8) |(rx_buffer.buf.at(p) );
     return u.f;
 }
 
