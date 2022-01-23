@@ -98,7 +98,7 @@ void USB_serial::send_brake()
 
 void USB_serial::serial_send(std::vector<uint8_t> &buf)
 { 	
-     send_brake();
+    //  send_brake();
      write(fd, buf.data(), buf.size());
 }
 
