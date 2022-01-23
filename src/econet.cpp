@@ -98,10 +98,10 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
 
 void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 {  
-    // ecoster_payload.home_temp = retrun_float(payload, 16); 
-    // ecoster_payload.home_temp_target = retrun_float(payload, 20); 
-        ecoster_payload.home_temp = retrun_float(payload, 24); 
-    ecoster_payload.home_temp_target = retrun_float(payload,28); 
+    ecoster_payload.home_temp = retrun_float(payload, 16); 
+    ecoster_payload.home_temp_target = retrun_float(payload, 20); 
+    //     ecoster_payload.home_temp = retrun_float(payload, 24); 
+    // ecoster_payload.home_temp_target = retrun_float(payload,28); 
 }
 
 void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
