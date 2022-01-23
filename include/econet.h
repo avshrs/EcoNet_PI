@@ -101,6 +101,12 @@ class EcoNet{
         
         void set_boiler_temp(uint8_t temp);
         void set_boiler_on_off(bool state);
+        void set_boiler_max_power_kw(uint8_t power_kw);
+        void set_boiler_mid_power_kw(uint8_t power_kw);
+        void set_boiler_min_power_kw(uint8_t power_kw);
+        void set_boiler_max_power_fan(uint8_t fun_max);
+        void set_boiler_mid_power_fan(uint8_t fun_max);
+        void set_boiler_min_power_fan(uint8_t fun_max);
         
         void set_mixer_temp(uint8_t temp);
         
@@ -108,6 +114,6 @@ class EcoNet{
         void set_room_thermostat_night_temp(short temp);
         void set_room_thermostat_day_temp(short temp);
         void set_room_thermostat_operating_mode(std::string state);
-
+        void set_room_thermostat_hysteresis(uint8_t hysteresis);
 };
 

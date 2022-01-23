@@ -47,15 +47,15 @@ void EcoNet::run()
             
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                   //print_buffer(message.data(), message.size());
+                    print_buffer(message.data(), message.size());
                     analyze_frame_ecomax_920P1(payload);
                 }
-                else if(header.at(4)==econet_address)
-                // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+                // else if(header.at(4)==econet_address) // debug
+                else if(header.at(4)==econet_address && header.at(7)==econet_frame)
 
                 {   
                 //    std::cout <<date() << "econet: " ;
-                    print_buffer(message.data(), message.size() );
+                    // print_buffer(message.data(), message.size() );
                 }               
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
@@ -387,6 +387,13 @@ void EcoNet::set_room_thermostat_summer_winter_mode(std::string state)
         buf.push_back(0x16);
         serial.serial_send(buf);    
     }
+    else if (state == "auto")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x02};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);    
+    }
 }
 
 void EcoNet::set_boiler_temp(uint8_t temp)
@@ -515,18 +522,111 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         serial.serial_send(buf); 
     }
 }
-// void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
-// {
-//     if(hysteresis <= 30 && hysteresis >= 1)
-//     {
-//         std::vector<uint8_t> buf = {};
-//         buf.push_back(hysteresis);
-//         buf.push_back(crc_set(buf));
-//         buf.push_back(0x16);
-//         serial.serial_send(buf);
-//     }
-//     else
-//     {
-//         std::cout<< date() << "room thermostat temp hysteresis out of range 1 - 30" <<std::endl;
-//     }
-// }
+void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
+{
+    if(hysteresis <= 50 && hysteresis >= 0) //0x05 0.5C //0x15 1.5C
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x09};
+        buf.push_back(hysteresis);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "room thermostat temp hysteresis out of range 1 - 30" <<std::endl;
+    }
+}
+
+void EcoNet::set_boiler_max_power_kw(uint8_t power_kw)
+{
+    if(power_kw <= 18 && power_kw >=9)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x00};
+        buf.push_back(power_kw);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler max power kw out of range 9 - 18" <<std::endl;
+    }
+}
+
+void EcoNet::set_boiler_mid_power_kw(uint8_t power_kw)
+{
+    if(power_kw <= 18 && power_kw >=9)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x01};
+        buf.push_back(power_kw);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler max power kw out of range 9 - 18" <<std::endl;
+    }
+}
+void EcoNet::set_boiler_min_power_kw(uint8_t power_kw)
+{
+    if(power_kw <= 18 && power_kw >=9)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x02};
+        buf.push_back(power_kw);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler max power kw out of range 9 - 18" <<std::endl;
+    }
+}
+void EcoNet::set_boiler_max_power_fan(uint8_t fun_max)
+{
+    if(fun_max <= 60 && fun_max >=28)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x03};
+        buf.push_back(fun_max);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler max fun out of range 9 - 18" <<std::endl;
+    }
+}
+
+void EcoNet::set_boiler_mid_power_fan(uint8_t fun_mid)
+{
+    if(fun_mid <= 30 && fun_mid >=25)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x04};
+        buf.push_back(fun_mid);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler max fun out of range 9 - 18" <<std::endl;
+    }
+}
+void EcoNet::set_boiler_min_power_fan(uint8_t fun_min)
+{
+    if(fun_min <= 30 && fun_min >=25)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x05};
+        buf.push_back(fun_min);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler max fun out of range 9 - 18" <<std::endl;
+    }
+}
