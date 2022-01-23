@@ -524,7 +524,7 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
 }
 void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
 {
-    if(hysteresis <= 50 && hysteresis >= 0) //0x05 0.5C //0x15 1.5C
+    if(hysteresis <= 50 ) //0x05 0.5C //0x15 1.5C
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x09};
         buf.push_back(hysteresis);
