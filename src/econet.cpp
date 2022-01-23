@@ -37,27 +37,27 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                // print_buffer(message.data(), message.size() );
+                // print_buffer(message.data(), message.size());
 
                 if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                    // print_buffer(message.data(), message.size() );
-                    // analyze_frame_ecomax_920P1(payload);
+                    print_buffer(message.data(), message.size());
+                    analyze_frame_ecomax_920P1(payload);
                 }
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
                 else if(header.at(4)==econet_address)
                 {   
                     // std::cout <<date() << "econet: " ;
-                    print_buffer(message.data(), message.size() );
+                   // print_buffer(message.data(), message.size() );
                 }               
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
-                    // print_buffer(message.data(), message.size() );
-                     //analyze_frame_ecoster(payload);
+                    //print_buffer(message.data(), message.size());
+                    analyze_frame_ecoster(payload);
                 } 
                 // else
                 // {
-                //     print_buffer(message.data(), message.size() );
+                //     print_buffer(message.data(), message.size());
                 // }
             }
         }
