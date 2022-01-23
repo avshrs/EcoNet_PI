@@ -98,7 +98,15 @@ class EcoNet{
         void set_huw_pump_mode(std::string pump_mode);
         void set_huw_temp_hysteresis(uint8_t hysteresis);
         void set_huw_container_disinfection(bool state);
+        
+        void set_boiler_temp(uint8_t temp);
+        void set_boiler_on_off(bool state);
+        
+        void set_mixer_temp(uint8_t temp);
+        
         void set_room_thermostat_mode(std::string state);
+        void set_room_thermostat_temp(uint8_t temp);
+
 
 };
 

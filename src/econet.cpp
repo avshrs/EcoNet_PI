@@ -41,31 +41,30 @@ void EcoNet::run()
 
                 if(header.at(4)==eco____address )
                 {
-                   print_buffer(message.data(), message.size());
+                  // print_buffer(message.data(), message.size());
                     // analyze_frame_ecomax_920P1(payload);
                 }
             
-                // if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
-                else if(header.at(4)==ecomax_address )
+                else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
                    //print_buffer(message.data(), message.size());
-                    // analyze_frame_ecomax_920P1(payload);
+                    analyze_frame_ecomax_920P1(payload);
                 }
-                // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
                 else if(header.at(4)==econet_address)
+                // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+
                 {   
                 //    std::cout <<date() << "econet: " ;
-                //    print_buffer(message.data(), message.size() );
+                    print_buffer(message.data(), message.size() );
                 }               
-                // else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
-                else if(header.at(4)==ecoster_address )
+                else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
                    // print_buffer(message.data(), message.size());
-                    // analyze_frame_ecoster(payload);
+                    analyze_frame_ecoster(payload);
                 } 
                 else
                 {
-                    print_buffer(message.data(), message.size());
+                   // print_buffer(message.data(), message.size());
                 }
             }
         }
@@ -387,5 +386,71 @@ void EcoNet::set_room_thermostat_mode(std::string state)
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);    
+    }
+}
+
+void EcoNet::set_boiler_temp(uint8_t temp)
+{
+    if(temp <= 80 && temp >=35)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x10, 0x00, 0x45, 0x56, 0x30, 0x05, 0x57, 0x01, 0x00, 0x04, 0x00, 0x05};
+        buf.push_back(temp);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "boiler temp out of range 35 - 80" <<std::endl;
+    }
+}
+
+void EcoNet::set_boiler_on_off(bool state)
+{
+    if(state)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0b, 0x00, 0x45, 0x56, 0x30, 0x05, 0x3b, 0x01 };
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0b, 0x00, 0x45, 0x56, 0x30, 0x05, 0x3b, 0x00 };
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);    }
+}
+
+void EcoNet::set_mixer_temp(uint8_t temp)
+{
+    if(temp <= 70 && temp >=20)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x10, 0x00, 0x45, 0x56, 0x30, 0x05, 0x57, 0x01, 0x00, 0x04, 0x07, 0x05};
+        buf.push_back(temp);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "mixer temp out of range 20 - 70" <<std::endl;
+    }
+}
+
+
+void EcoNet::set_room_thermostat_temp(uint8_t temp)
+{
+    if(temp <= 70 && temp >=20)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d,  0x0b, 0xc9, 0x00, 0xdc, 0x16};
+        buf.push_back(temp);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "mixer temp out of range 20 - 70" <<std::endl;
     }
 }
