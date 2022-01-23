@@ -29,7 +29,7 @@ int main()
     sleep(1);
 
     std::thread Mqtt_service(th2, &mqtt);
-    std::thread EcoNet(th1, &econet);
+    std::thread EcoNet_service(th1, &econet);
     
     std::string kmsg = cfg.get_mqtt_keepAliveMsg();
     std::string ktop = cfg.get_mqtt_keepAliveTopic();
