@@ -26,7 +26,7 @@ void EcoNet::run()
         message.clear();
 
         serial.serial_read_bytes(header, 8); 
-        if(header.at(0)!=frame_begin)
+        if(header.at(0)==frame_begin)
         {
             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
             for(int i =0 ; i< paylod_len - 8; i++)
@@ -57,15 +57,15 @@ void EcoNet::run()
                    // print_buffer(message.data(), message.size());
                     // analyze_frame_ecoster(payload);
                 } 
-                else
-                {
-                    print_buffer(message.data(), message.size());
-                }
+                // else
+                // {
+                //     // print_buffer(message.data(), message.size());
+                // }
             }
         }
         else
         {
-             short paylod_len = ((header.at(1)) | (header.at(2)<<8));
+            short paylod_len = ((header.at(1)) | (header.at(2)<<8));
             for(int i =0 ; i< paylod_len - 8; i++)
                 serial.serial_read_byte(payload);
 
