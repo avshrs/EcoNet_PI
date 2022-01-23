@@ -43,7 +43,7 @@ void EcoNet::run()
                 if(header.at(4)==ecomax_address )
                 {
                    //print_buffer(message.data(), message.size());
-                    analyze_frame_ecomax_920P1(payload);
+                    // analyze_frame_ecomax_920P1(payload);
                 }
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
                 else if(header.at(4)==econet_address)
@@ -55,7 +55,7 @@ void EcoNet::run()
                 else if(header.at(4)==ecoster_address )
                 {
                    // print_buffer(message.data(), message.size());
-                    analyze_frame_ecoster(payload);
+                    // analyze_frame_ecoster(payload);
                 } 
                 else
                 {
