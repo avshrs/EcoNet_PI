@@ -371,7 +371,7 @@ void EcoNet::set_huw_container_disinfection(bool state)
     }
 }
 
-void EcoNet::set_room_thermostat_mode(std::string state)
+void EcoNet::set_room_thermostat_summer_winter_mode(std::string state)
 {
     if(state == "winter")
     {
@@ -439,18 +439,79 @@ void EcoNet::set_mixer_temp(uint8_t temp)
 }
 
 
-void EcoNet::set_room_thermostat_temp(uint8_t temp)
+void EcoNet::set_room_thermostat_night_temp(short temp)
 {
-    if(temp <= 70 && temp >=20)
+     union {
+        short sh;
+        uint8_t ui[2];
+    } u;
+    u.sh = temp;
+    if(temp <= 35 && temp >=10)
     {
-        std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d,  0x0b, 0xc9, 0x00, 0xdc, 0x16};
-        buf.push_back(temp);
+        std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d,  0x0b};
+        buf.push_back(u.ui[0]);
+        buf.push_back(u.ui[1]);
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
     else
     {
-        std::cout<< date() << "mixer temp out of range 20 - 70" <<std::endl;
+        std::cout<< date() << "mixer temp out of range 10 - 35" <<std::endl;
+    }
+}
+
+void EcoNet::set_room_thermostat_day_temp(short temp)
+{
+     union {
+        short sh;
+        uint8_t ui[2];
+    } u;
+    u.sh = temp;
+    if(temp <= 35 && temp >=10)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d,  0x0a};
+        buf.push_back(u.ui[0]);
+        buf.push_back(u.ui[1]);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "mixer temp out of range 10 - 35" <<std::endl;
+    }
+}
+
+
+void EcoNet::set_room_thermostat_operating_mode(std::string state)
+{
+    if(state == "comfort")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x02};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else if (state == "economy")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x01};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf); 
+    }
+    else if (state == "schedule")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x00};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf); 
+    }
+    else if (state == "outside")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x03};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf); 
     }
 }
