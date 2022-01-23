@@ -42,7 +42,7 @@ void EcoNet::run()
                 if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
                     // print_buffer(message.data(), message.size() );
-                    analyze_frame_ecomax_920P1(payload);
+                    // analyze_frame_ecomax_920P1(payload);
                 }
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
                 else if(header.at(4)==econet_address)
@@ -52,8 +52,8 @@ void EcoNet::run()
                 }               
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
-                    // std::cout <<date() << "ecoster: " ;
-                    analyze_frame_ecoster(payload);
+                     print_buffer(message.data(), message.size() );
+                     analyze_frame_ecoster(payload);
                 } 
                 // else
                 // {
@@ -100,8 +100,8 @@ void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 {  
     ecoster_payload.home_temp = retrun_float(payload, 16); 
     ecoster_payload.home_temp_target = retrun_float(payload, 20); 
-    //     ecoster_payload.home_temp = retrun_float(payload, 24); 
-    // ecoster_payload.home_temp_target = retrun_float(payload,28); 
+    ecoster_payload.home_temp = retrun_float(payload, 24); 
+    ecoster_payload.home_temp_target = retrun_float(payload,28); 
 }
 
 void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
