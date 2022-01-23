@@ -41,7 +41,7 @@ void EcoNet::run()
 
                 if(header.at(4)==eco____address )
                 {
-                   //print_buffer(message.data(), message.size());
+                   print_buffer(message.data(), message.size());
                     // analyze_frame_ecomax_920P1(payload);
                 }
             
