@@ -21,7 +21,7 @@ int main()
     std::thread Hoermann_door_service(th1, &econet);
 
     sleep(1);
-    econet.set_huw_temp();
+    // econet.set_huw_temp();
     while (true)
     {
         // std::cout<< "--------------------------------"<< std::endl;
