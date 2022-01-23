@@ -40,6 +40,8 @@ struct Mqtt_config{
 struct Ecoster_payload{
     float home_temp_target = 0; 
     float home_temp = 0;
+    float ecoster_1_temp = 0;
+    float ecoster_2_temp = 0;
 };
 struct Econet_payload{
 };

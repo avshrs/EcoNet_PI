@@ -48,12 +48,12 @@ void EcoNet::run()
                 else if(header.at(4)==econet_address)
                 {   
                     // std::cout <<date() << "econet: " ;
-                    // print_buffer(message.data(), message.size() );
+                    print_buffer(message.data(), message.size() );
                 }               
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
-                     print_buffer(message.data(), message.size() );
-                     analyze_frame_ecoster(payload);
+                    // print_buffer(message.data(), message.size() );
+                     //analyze_frame_ecoster(payload);
                 } 
                 // else
                 // {
@@ -100,8 +100,8 @@ void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 {  
     ecoster_payload.home_temp = retrun_float(payload, 16); 
     ecoster_payload.home_temp_target = retrun_float(payload, 20); 
-    ecoster_payload.home_temp = retrun_float(payload, 24); 
-    ecoster_payload.home_temp_target = retrun_float(payload,28); 
+    ecoster_payload.ecoster_1_temp = retrun_float(payload, 24); 
+    ecoster_payload.ecoster_2_temp = retrun_float(payload,28); 
 }
 
 void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
