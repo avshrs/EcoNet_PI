@@ -22,7 +22,7 @@ class EcoNet{
         uint8_t econet_set_frame = 0x57;
         uint8_t econet_set_write_frame = 0x56; //??
 
-        uint8_t eco____address = 0x56; //??
+        uint8_t eco____address = 0x50; //??
 
 
         uint8_t ecomax_address = 0x45;
