@@ -103,6 +103,15 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
     }
     return tmp;
 }
+uint8_t EcoNet::crc_set(std::vector<uint8_t> &message)
+{   
+    uint8_t tmp = message.at(0);
+    for(int i = 1 ; i < static_cast<int>(message.size()) ; i++ )
+    {
+        tmp = tmp^message.at(i);
+    }
+    return tmp;
+}
 
 void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 {  
@@ -286,10 +295,97 @@ float EcoNet::get_ecoster_home_temp_target()
     return ecoster_payload.home_temp_target;
 } 
 
-void EcoNet::set_huw_temp()
+void EcoNet::set_huw_temp(uint8_t temp)
 {
-    std::vector<uint8_t> buf = {0x68, 0x10, 0x00, 0x45, 0x56, 0x30, 0x05, 0x57, 0x01, 0x00, 0x04, 0x01 ,0x05, 0x36, 0x3e, 0x16};
-    // std::vector<uint8_t> buf = {0x68 0x0d 0x00 0x45 0x56 0x30 0x05 0x56 0x04 0xff 0x00 0xee 0x16};
-    // std::vector<uint8_t> buf = {0x68 0x0d 0x00 0x45 0x56 0x30 0x05 0x56 0x04 0xff 0xd6 0x38 0x16};
-    serial.serial_send(buf);
+    if(temp <= 70 && temp >=20)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x10, 0x00, 0x45, 0x56, 0x30, 0x05, 0x57, 0x01, 0x00, 0x04, 0x01 ,0x05};
+        buf.push_back(temp);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "HUW temp out of range 20 - 70" <<std::endl;
+    }
+}
+void EcoNet::set_huw_pump_mode(std::string pump_mode)
+{
+    if(pump_mode == "priority")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x01};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else if(pump_mode == "no_priority")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x02, 0x39, 0x02};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else if(pump_mode == "off")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x02, 0x39, 0x00};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }    
+    else
+    {
+        std::cout<< date() << "<Pomp mode out of range: priority | no_priority | off" <<std::endl;
+    }
+}
+
+void EcoNet::set_huw_temp_hysteresis(uint8_t hysteresis)
+{
+    if(hysteresis <= 30 && hysteresis >= 1)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3a};
+        buf.push_back(hysteresis);
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::cout<< date() << "HUW temp hysteresis out of range 1 - 30" <<std::endl;
+    }
+}
+void EcoNet::set_huw_container_disinfection(bool state)
+{
+    if(state)
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3b, 0x01};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3b, 0x00};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);    
+    }
+}
+
+void EcoNet::set_room_thermostat_mode(std::string state)
+{
+    if(state == "winter")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x00};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);
+    }
+    else if (state == "summer")
+    {
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x01};
+        buf.push_back(crc_set(buf));
+        buf.push_back(0x16);
+        serial.serial_send(buf);    
+    }
 }

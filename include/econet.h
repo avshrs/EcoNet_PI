@@ -60,6 +60,7 @@ class EcoNet{
         short retrun_short(std::vector<uint8_t> &payload, int p);
         
         uint8_t crc(std::vector<uint8_t> &message);
+        uint8_t crc_set(std::vector<uint8_t> &message);
     public:
         std::string get_operating_status();
         
@@ -93,10 +94,11 @@ class EcoNet{
         short get_ignisions_fails();
 
     public:
-        void set_huw_temp();
-
-
-
+        void set_huw_temp(uint8_t temp);
+        void set_huw_pump_mode(std::string pump_mode);
+        void set_huw_temp_hysteresis(uint8_t hysteresis);
+        void set_huw_container_disinfection(bool state);
+        void set_room_thermostat_mode(std::string state);
 
 };
 
