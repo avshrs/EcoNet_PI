@@ -515,18 +515,18 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         serial.serial_send(buf); 
     }
 }
-void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
-{
-    if(hysteresis <= 30 && hysteresis >= 1)
-    {
-        std::vector<uint8_t> buf = {};
-        buf.push_back(hysteresis);
-        buf.push_back(crc_set(buf));
-        buf.push_back(0x16);
-        serial.serial_send(buf);
-    }
-    else
-    {
-        std::cout<< date() << "room thermostat temp hysteresis out of range 1 - 30" <<std::endl;
-    }
-}
+// void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
+// {
+//     if(hysteresis <= 30 && hysteresis >= 1)
+//     {
+//         std::vector<uint8_t> buf = {};
+//         buf.push_back(hysteresis);
+//         buf.push_back(crc_set(buf));
+//         buf.push_back(0x16);
+//         serial.serial_send(buf);
+//     }
+//     else
+//     {
+//         std::cout<< date() << "room thermostat temp hysteresis out of range 1 - 30" <<std::endl;
+//     }
+// }
