@@ -48,11 +48,11 @@ void EcoNet::run()
                 else if(header.at(4)==econet_address)
                 {   
                     // std::cout <<date() << "econet: " ;
-                   // print_buffer(message.data(), message.size() );
+                   print_buffer(message.data(), message.size() );
                 }               
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
-                    print_buffer(message.data(), message.size());
+                   // print_buffer(message.data(), message.size());
                     analyze_frame_ecoster(payload);
                 } 
                 // else
