@@ -48,7 +48,7 @@ struct Econet_payload{
 
 struct Econet_Mqtt
 {
-    std::string pub_huw_temp;
+ 
     std::string pub_huw_temp;
     std::string pub_huw_pump_mode;
     std::string pub_huw_temp_hysteresis;
