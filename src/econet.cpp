@@ -47,7 +47,7 @@ void EcoNet::run()
             
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                    print_buffer(message.data(), message.size());
+                    // print_buffer(message.data(), message.size());
                     analyze_frame_ecomax_920P1(payload);
                 }
                 // else if(header.at(4)==econet_address) // debug
@@ -144,6 +144,8 @@ void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
     ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(166));
     ecomax920_payload.boiler_temp_target = static_cast<int>(payload.at(172));
     ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
+    ecomax920_payload.huw_pomp_state = static_cast<int>(payload.at(194));
+    ecomax920_payload.boiler_pomp_state = static_cast<int>(payload.at(265));
     ecomax920_payload.fuel_level = static_cast<int>(payload.at(217));
     ecomax920_payload.fan_out_power = static_cast<int>(payload.at(255));
     ecomax920_payload.fan_in_power = static_cast<int>(payload.at(254));
@@ -284,7 +286,6 @@ short EcoNet::get_ignisions_fails()
 {
     return ecomax920_payload.ignisions_fails;
 }
-
 float EcoNet::get_ecoster_home_temp()
 {
     return ecoster_payload.home_temp;
@@ -293,6 +294,15 @@ float EcoNet::get_ecoster_home_temp_target()
 {
     return ecoster_payload.home_temp_target;
 } 
+uint8_t EcoNet::get_huw_pomp_state()
+{
+    return ecomax920_payload.huw_pomp_state;
+} 
+uint8_t EcoNet::get_boiler_pomp_state()
+{
+    return ecomax920_payload.boiler_pomp_state;
+} 
+
 
 void EcoNet::set_huw_temp(uint8_t temp)
 {

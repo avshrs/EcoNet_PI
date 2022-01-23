@@ -84,6 +84,8 @@ class EcoNet{
         uint8_t get_fuel_level();
         uint8_t get_fan_out_power();
         uint8_t get_fan_in_power();
+        uint8_t get_huw_pomp_state();
+        uint8_t get_boiler_pomp_state();
         float get_fuel_stream();
         float get_boiler_power_kw();
         short get_power_max_time();

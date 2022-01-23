@@ -1,16 +1,34 @@
+econet:
+    boudrate: 115200
+    serial_file: /dev/ttyUSB3
+    remove_lead_zero: 0
 mqtt:
-    ClientId: BramaGaraz
+    ClientId: EcoMax920p1
     ServerIp: 192.168.1.111
     serverPort: 1883
     username: mqttuser
     password: mqttuser
-    keepAliveTopic: brama_garaz_main
+    keepAliveTopic: ecomax_920_master
     keepAliveMsg: Online
-    Substring: brama_garaz_set
-    Pubstring: brama_garaz_get
+    Substring: ecomax_set
+    Pubstring: ecomax_get
 
-  
-econet:
-    boudrate: 19200
-    serial_file: /dev/ttyUSB2
-    remove_lead_zero: 0
+econet_set:
+   pub_huw_temp: EcoNet/set_huw_temp
+   pub_huw_pump_mode: EcoNet/set_huw_pump_mode
+   pub_huw_temp_hysteresis: EcoNet/set_huw_temp_hysteresis
+   pub_huw_container_disinfection: EcoNet/set_huw_container_disinfection
+   pub_boiler_temp: EcoNet/set_boiler_temp
+   pub_boiler_on_off: EcoNet/set_boiler_on_off
+   pub_boiler_max_power_kw: EcoNet/set_boiler_max_power_kw
+   pub_boiler_mid_power_kw: EcoNet/set_boiler_mid_power_kw
+   pub_boiler_min_power_kw: EcoNet/set_boiler_min_power_kw
+   pub_boiler_max_power_fan: EcoNet/set_boiler_max_power_fan
+   pub_boiler_mid_power_fan: EcoNet/set_boiler_mid_power_fan
+   pub_boiler_min_power_fan: EcoNet/set_boiler_min_power_fan
+   pub_mixer_temp: EcoNet/set_mixer_temp
+   pub_room_thermostat_summer_winter_mode: EcoNet/set_room_thermostat_summer_winter_mode
+   pub_room_thermostat_night_temp: EcoNet/set_room_thermostat_night_temp
+   pub_room_thermostat_day_temp: EcoNet/set_room_thermostat_day_temp
+   pub_room_thermostat_operating_mode: EcoNet/set_room_thermostat_operating_mode
+   pub_room_thermostat_hysteresis: EcoNet/set_room_thermostat_hysteresis

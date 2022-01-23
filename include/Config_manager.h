@@ -6,6 +6,7 @@ class Config_manager{
     private:
         Mqtt_config mqtt_config;
         EcoNet_cfg eco_config;
+        Econet_Mqtt econet_mqtt;
 
     public:
         void read_config();
@@ -23,6 +24,45 @@ class Config_manager{
         std::string get_eco_serial_file();
         int         get_eco_boudrate();
         int         get_eco_lead_zeros();
-        
-     
+    
+        std::string get_huw_temp();
+        std::string get_huw_pump_mode();
+        std::string get_huw_temp_hysteresis();
+        std::string get_huw_container_disinfection();
+        std::string get_boiler_temp();
+        std::string get_boiler_on_off();
+        std::string get_boiler_max_power_kw();
+        std::string get_boiler_mid_power_kw();
+        std::string get_boiler_min_power_kw();
+        std::string get_boiler_max_power_fan();
+        std::string get_boiler_mid_power_fan();
+        std::string get_boiler_min_power_fan();
+        std::string get_mixer_temp();
+        std::string get_room_thermostat_summer_winter_mode();
+        std::string get_room_thermostat_night_temp();
+        std::string get_room_thermostat_day_temp();
+        std::string get_room_thermostat_operating_mode();
+        std::string get_room_thermostat_hysteresis();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 };

@@ -46,6 +46,29 @@ struct Ecoster_payload{
 struct Econet_payload{
 };
 
+struct Econet_Mqtt
+{
+    std::string pub_huw_temp;
+    std::string pub_huw_temp;
+    std::string pub_huw_pump_mode;
+    std::string pub_huw_temp_hysteresis;
+    std::string pub_huw_container_disinfection;
+    std::string pub_boiler_temp;
+    std::string pub_boiler_on_off;
+    std::string pub_boiler_max_power_kw;
+    std::string pub_boiler_mid_power_kw;
+    std::string pub_boiler_min_power_kw;
+    std::string pub_boiler_max_power_fan;
+    std::string pub_boiler_mid_power_fan;
+    std::string pub_boiler_min_power_fan;
+    std::string pub_mixer_temp;
+    std::string pub_room_thermostat_summer_winter_mode;
+    std::string pub_room_thermostat_night_temp;
+    std::string pub_room_thermostat_day_temp;
+    std::string pub_room_thermostat_operating_mode;
+    std::string pub_room_thermostat_hysteresis;
+};
+
 
 struct Ecomax920_payload{
 
@@ -73,6 +96,8 @@ struct Ecomax920_payload{
     uint8_t fan_in_power = 0;    
     uint8_t fan_out_power = 0;    
     uint8_t boiler_power = 0;
+    uint8_t huw_pomp_state = 0;
+    uint8_t boiler_pomp_state = 0;
 
     short power_max_time = 0;   
     short power_medium_time = 0; 

@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <vector>
 #include "Config_manager.h"
-#include "hoermann.h"
+#include "econet.h"
 
 // #define DEBUG
 
@@ -18,12 +18,12 @@ class Mqtt_Client : public mosqpp::mosquittopp
 public:
     Mqtt_Client(const char *id, const char *host, int port, const char *username, const char *password);
 
-    Hoermann_pi *hoerpi;
+    EcoNet *econet;
     Config_manager *cfg;
     std::string date();
     void pub_door_state(std::string msg);
     void pub_in_state(int out, bool sate);
-    void register_horman(Hoermann_pi *hoerpi_);
+    void register_econet(EcoNet *econet_);
     void register_config(Config_manager* cfg_);
     void client_loop_forever();
     void register_subs();
