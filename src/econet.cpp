@@ -95,9 +95,11 @@ void EcoNet::run()
                    // print_buffer(message.data(), message.size());
                     analyze_frame_ecoster(payload);
                 }            
-                else if(header.at(4)==ecoster_address && header.at(7)==ecoster__settings_frame)
+                // else if(header.at(4)==ecoster_address && header.at(7)==ecoster__settings_frame)
+                else if(header.at(4)==ecoster_address)
                 {
-                    analyze_frame_ecoster_settings(message);
+                    //analyze_frame_ecoster_settings(message);
+                    print_buffer(message.data(), message.size());
                 //   for(int i =0; i<static_cast<int>(message.size()); i++)
                 //     {
                 //         if(message.at(i) != test.at(i))
