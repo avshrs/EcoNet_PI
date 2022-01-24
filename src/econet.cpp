@@ -316,7 +316,7 @@ void EcoNet::set_huw_temp(uint8_t temp)
     }
     else
     {
-        std::cout<< date() << "HUW temp out of range 20 - 70" <<std::endl;
+        std::cout<< date() << "set_huw_temp out of range 20 - 70" <<std::endl;
     }
 }
 void EcoNet::set_huw_pump_mode(std::string pump_mode)
@@ -344,7 +344,7 @@ void EcoNet::set_huw_pump_mode(std::string pump_mode)
     }    
     else
     {
-        std::cout<< date() << "<Pomp mode out of range: priority | no_priority | off" <<std::endl;
+        std::cout<< date() << "<set_huw_pump_mode out of range: priority | no_priority | off" <<std::endl;
     }
 }
 
@@ -360,7 +360,7 @@ void EcoNet::set_huw_temp_hysteresis(uint8_t hysteresis)
     }
     else
     {
-        std::cout<< date() << "HUW temp hysteresis out of range 1 - 30" <<std::endl;
+        std::cout<< date() << "set_huw_temp_hysteresis hysteresis out of range 1 - 30" <<std::endl;
     }
 }
 void EcoNet::set_huw_container_disinfection(bool state)
@@ -404,6 +404,10 @@ void EcoNet::set_room_thermostat_summer_winter_mode(std::string state)
         buf.push_back(0x16);
         serial.serial_send(buf);    
     }
+    else
+    {
+        std::cout<< date() << "set_room_thermostat_summer_winter_mode winter | summer | auto" <<std::endl;
+    }
 }
 
 void EcoNet::set_boiler_temp(uint8_t temp)
@@ -418,7 +422,7 @@ void EcoNet::set_boiler_temp(uint8_t temp)
     }
     else
     {
-        std::cout<< date() << "boiler temp out of range 35 - 80" <<std::endl;
+        std::cout<< date() << "set_boiler_temp out of range 35 - 80" <<std::endl;
     }
 }
 
@@ -451,7 +455,7 @@ void EcoNet::set_mixer_temp(uint8_t temp)
     }
     else
     {
-        std::cout<< date() << "mixer temp out of range 20 - 70" <<std::endl;
+        std::cout<< date() << "set_mixer_temp out of range 20 - 70" <<std::endl;
     }
 }
 
@@ -477,7 +481,7 @@ void EcoNet::set_room_thermostat_night_temp(float temp_)
     }
     else
     {
-        std::cout<< date() << "room_thermostat_night_temp temp out of range 10 - 35" <<std::endl;
+        std::cout<< date() << "set_room_thermostat_night_temp temp out of range 10 - 35" <<std::endl;
     }
 }
 
@@ -501,7 +505,7 @@ void EcoNet::set_room_thermostat_day_temp(float temp_)
     }
     else
     {
-        std::cout<< date() << "mixer temp out of range 10 - 35" <<std::endl;
+        std::cout<< date() << "set_room_thermostat_day_temp temp out of range 10 - 35" <<std::endl;
     }
 }
 
@@ -536,6 +540,10 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         buf.push_back(0x16);
         serial.serial_send(buf); 
     }
+    else
+    {
+        std::cout<< date() << "set_room_thermostat_operating_mode temp out of range comfort | economy | schedule | outside " <<std::endl;
+    }
 }
 void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
 {
@@ -549,7 +557,7 @@ void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
     }
     else
     {
-        std::cout<< date() << "room thermostat temp hysteresis out of range 1 - 30" <<std::endl;
+        std::cout<< date() << "set_room_thermostat_hysteresis out of range 1 - 30" <<std::endl;
     }
 }
 
@@ -565,7 +573,7 @@ void EcoNet::set_boiler_max_power_kw(uint8_t power_kw)
     }
     else
     {
-        std::cout<< date() << "boiler max power kw out of range 9 - 18" <<std::endl;
+        std::cout<< date() << "set_boiler_max_power_kw out of range 9 - 18" <<std::endl;
     }
 }
 
@@ -581,12 +589,12 @@ void EcoNet::set_boiler_mid_power_kw(uint8_t power_kw)
     }
     else
     {
-        std::cout<< date() << "boiler max power kw out of range 9 - 18" <<std::endl;
+        std::cout<< date() << "set_boiler_mid_power_kw out of range 9 - 18" <<std::endl;
     }
 }
 void EcoNet::set_boiler_min_power_kw(uint8_t power_kw)
 {
-    if(power_kw <= 18 && power_kw >=9)
+    if(power_kw <= 6 && power_kw >=2)
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x02};
         buf.push_back(power_kw);
@@ -596,7 +604,7 @@ void EcoNet::set_boiler_min_power_kw(uint8_t power_kw)
     }
     else
     {
-        std::cout<< date() << "boiler max power kw out of range 9 - 18" <<std::endl;
+        std::cout<< date() << "set_boiler_min_power_kw out of range 2 - 6" <<std::endl;
     }
 }
 void EcoNet::set_boiler_max_power_fan(uint8_t fun_max)
@@ -611,7 +619,7 @@ void EcoNet::set_boiler_max_power_fan(uint8_t fun_max)
     }
     else
     {
-        std::cout<< date() << "boiler max fun out of range 9 - 18" <<std::endl;
+        std::cout<< date() << "set_boiler_max_power_fan out of range 28 - 60" <<std::endl;
     }
 }
 
@@ -627,12 +635,12 @@ void EcoNet::set_boiler_mid_power_fan(uint8_t fun_mid)
     }
     else
     {
-        std::cout<< date() << "boiler max fun out of range 9 - 18" <<std::endl;
+        std::cout<< date() << "set_boiler_mid_power_fan out of range 25 - 30" <<std::endl;
     }
 }
 void EcoNet::set_boiler_min_power_fan(uint8_t fun_min)
 {
-    if(fun_min <= 30 && fun_min >=25)
+    if(fun_min <= 25 && fun_min >=17)
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x05};
         buf.push_back(fun_min);
@@ -642,6 +650,6 @@ void EcoNet::set_boiler_min_power_fan(uint8_t fun_min)
     }
     else
     {
-        std::cout<< date() << "boiler max fun out of range 9 - 18" <<std::endl;
+        std::cout<< date() << "set_boiler_min_power_fan out of range 17 - 25" <<std::endl;
     }
 }
