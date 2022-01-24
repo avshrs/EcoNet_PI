@@ -59,7 +59,7 @@ void EcoNet::run()
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame4)
                 {   
-                    for(int i =0; i<message.size(); i++)
+                    for(int i =0; i<static_cast<int>(message.size()); i++)
                     {
                         if(message.at(i) != test.at(i))
                         {
