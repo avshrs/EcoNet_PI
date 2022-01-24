@@ -20,9 +20,6 @@ void EcoNet::run()
     std::vector<uint8_t> message;
     message.reserve(400);
 
-    std::vector<uint8_t> test(700);
-    std::vector<uint8_t> test_old(700);
-    std::vector<uint8_t> test_old_2(700);
     auto start = timer.now();
     while (true)
     {
@@ -31,7 +28,6 @@ void EcoNet::run()
         message.clear();
         
         serial.serial_read_bytes(header, 8); 
-        print_buffer(header.data(), header.size());
         
         if(header.at(0)==frame_begin)
         {
