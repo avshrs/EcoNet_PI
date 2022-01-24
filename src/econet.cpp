@@ -66,7 +66,7 @@ void EcoNet::run()
                     //ecoster touch live frame 
                     analyze_frame_ecoster(payload);
                 }            
-                else if(header.at(4)==ecoster_address)
+                else if(header.at(4)==ecoster_address && header.at(7)==ecoster_settings_frame)
                 {
                     //ecoster touch stored settings
                     analyze_frame_ecoster_settings(message);
