@@ -21,68 +21,63 @@ void EcoNet::run()
     payload.reserve(400);
     while (true)
     {
-        header.clear();
+        // header.clear();
         payload.clear();
-        message.clear();
+        // message.clear();
 
-        serial.serial_read_bytes(header, 8); 
-        if(header.at(0)==frame_begin)
-        {
-            short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            for(int i =0 ; i< paylod_len - 8; i++)
-                serial.serial_read_byte(payload);
+//        serial.serial_read_bytes(header, 8); 
 
-            message.insert(message.end(), header.begin(), header.end());
-            message.insert(message.end(), payload.begin(), payload.end());
+        serial.serial_read_buffer(payload);
+        print_buffer(message.data(), message.size());
+
+        // if(header.at(0)==frame_begin)
+        // {
+        //     short paylod_len = ((header.at(1)) | (header.at(2)<<8));
+        //     for(int i =0 ; i< paylod_len - 8; i++)
+        //         serial.serial_read_byte(payload);
+
+        //     message.insert(message.end(), header.begin(), header.end());
+        //     message.insert(message.end(), payload.begin(), payload.end());
             
-            if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
-            {
-                // print_buffer(message.data(), message.size());
+        //     if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
+        //     {
+        //         // print_buffer(message.data(), message.size());
 
-                if(header.at(4)==eco____address )
-                {
-                  // print_buffer(message.data(), message.size());
-                    // analyze_frame_ecomax_920P1(payload);
-                }
+        //         if(header.at(4)==eco____address )
+        //         {
+        //           // print_buffer(message.data(), message.size());
+        //             // analyze_frame_ecomax_920P1(payload);
+        //         }
             
-                else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
-                {
-                    // print_buffer(message.data(), message.size());
-                    analyze_frame_ecomax_920P1(payload);
-                }
-                else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame2)
-                {   
-                    //print_buffer(message.data(), message.size());
+        //         else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
+        //         {
+        //             // print_buffer(message.data(), message.size());
+        //             analyze_frame_ecomax_920P1(payload);
+        //         }
+        //         else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame2)
+        //         {   
+        //             //print_buffer(message.data(), message.size());
                     
-                }
-                // else if(header.at(4)==econet_address) // debug
-                else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+        //         }
+        //         // else if(header.at(4)==econet_address) // debug
+        //         else if(header.at(4)==econet_address && header.at(7)==econet_frame)
 
-                {   
-                //    std::cout <<date() << "econet: " ;
-                    // print_buffer(message.data(), message.size() );
-                }               
-                else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
-                {
-                   // print_buffer(message.data(), message.size());
-                    analyze_frame_ecoster(payload);
-                } 
-                else
-                {
-                  //print_buffer(message.data(), message.size());
-                }
-            }
-        }
-        else
-                {
-                    short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            for(int i =0 ; i< paylod_len - 8; i++)
-                serial.serial_read_byte(payload);
+        //         {   
+        //         //    std::cout <<date() << "econet: " ;
+        //             // print_buffer(message.data(), message.size() );
+        //         }               
+        //         else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
+        //         {
+        //            // print_buffer(message.data(), message.size());
+        //             analyze_frame_ecoster(payload);
+        //         } 
+        //         else
+        //         {
+        //           //print_buffer(message.data(), message.size());
+        //         }
+        //     }
+        // }
 
-            message.insert(message.end(), header.begin(), header.end());
-            message.insert(message.end(), payload.begin(), payload.end());
-                  print_buffer(message.data(), message.size());
-                }
        
 
     }
