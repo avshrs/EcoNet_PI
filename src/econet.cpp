@@ -123,6 +123,10 @@ void EcoNet::run()
                 //     test_old = test; 
                 //     test = message; 
                 } 
+                else if(header.at(3)==0x45)
+                {
+                  print_buffer(message.data(), message.size());
+                }
                 else
                 {
                   print_buffer(message.data(), message.size());
