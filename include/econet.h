@@ -35,7 +35,7 @@ class EcoNet{
         
         uint8_t ecoster_address = 0x51;
         uint8_t ecoster_frame = 0x89;
-        uint8_t ecoster__settings_frame = 0xa7;
+        uint8_t ecoster_settings_frame = 0xa7;
 
         std::map<uint8_t, std::string> operating_status_sting
         { 
