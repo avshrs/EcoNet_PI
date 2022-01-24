@@ -545,12 +545,13 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         std::cout<< date() << "set_room_thermostat_operating_mode temp out of range comfort | economy | schedule | outside " <<std::endl;
     }
 }
-void EcoNet::set_room_thermostat_hysteresis(uint8_t hysteresis)
+void EcoNet::set_room_thermostat_hysteresis(float hysteresis)
 {
-    if(hysteresis <= 50 ) //0x05 0.5C //0x15 1.5C
+
+    if(hysteresis <= 5 ) //0x05 0.5C //0x15 1.5C
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x09};
-        buf.push_back(hysteresis);
+        buf.push_back(static_cast<uint8_t>(hysteresis*10));
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);

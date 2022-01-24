@@ -116,6 +116,6 @@ class EcoNet{
         void set_room_thermostat_night_temp(float temp);
         void set_room_thermostat_day_temp(float temp);
         void set_room_thermostat_operating_mode(std::string state);
-        void set_room_thermostat_hysteresis(uint8_t hysteresis);
+        void set_room_thermostat_hysteresis(float hysteresis);
 };
 

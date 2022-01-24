@@ -208,7 +208,7 @@ void Mqtt_Client::on_message(const struct mosquitto_message *message){
     }
     if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_hysteresis())
     {   
-        econet->set_room_thermostat_hysteresis(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        econet->set_room_thermostat_hysteresis(std::stof(message_payload.data()));
     }
 
          
