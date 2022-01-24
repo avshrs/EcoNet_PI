@@ -129,7 +129,7 @@ void EcoNet::run()
                 }
                 else
                 {
-                  print_buffer(message.data(), message.size());
+                //   print_buffer(message.data(), message.size());
                 }
                 auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
                 if( deltaTime > 60000000)
