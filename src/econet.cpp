@@ -145,7 +145,12 @@ void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 
 void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
 {
-    // not needed to get any data from econet device
+    if(payload.at(0))
+    {
+        // only for complicator 
+        // not needed to get any data from econet device
+    }
+    
 }
 void EcoNet::analyze_frame_ecoster_settings(std::vector<uint8_t> &payload)
 {
