@@ -133,8 +133,8 @@ uint8_t EcoNet::crc_set(std::vector<uint8_t> &message)
 
 void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 {  
-    ecoster_payload.home_temp = retrun_float(payload, 16); 
-    ecoster_payload.home_temp_target = retrun_float(payload, 20); 
+    ecoster_payload.home_temp = retrun_float(payload, 20); 
+    ecoster_payload.home_temp_target = retrun_float(payload, 16); 
     ecoster_payload.ecoster_1_temp = retrun_float(payload, 24); 
     ecoster_payload.ecoster_2_temp = retrun_float(payload,28); 
 }
@@ -152,6 +152,7 @@ void EcoNet::analyze_frame_ecoster_settings(std::vector<uint8_t> &payload)
 {
      std::string value;
      value = std::to_string(static_cast<int>(payload.at(44)));
+     value += ".";
      value += std::to_string(static_cast<int>(payload.at(47)));
      econet_set_values.pub_room_thermostat_day_temp = value;
 
@@ -159,20 +160,28 @@ void EcoNet::analyze_frame_ecoster_settings(std::vector<uint8_t> &payload)
      econet_set_values.pub_room_thermostat_hysteresis = value;
      
      value = std::to_string(static_cast<int>(payload.at(50)));
+     value += ".";
      value += std::to_string(static_cast<int>(payload.at(53)));
      econet_set_values.pub_room_thermostat_night_temp = value;
      if(payload.at(11) == 0x00)
-        value = "Schedule";  
-     else if(payload.at(11) == 0x01)
-        value = "Economy";
+        value = "auto";  
      else if(payload.at(11) == 0x02)
-        value = "Comfort";
+        value = "heat";
      else if(payload.at(11) == 0x03)
-        value = "Outside";        
-     else
-        value = "value error";
+        value = "off";        
+    //  else
+    //     value = "value error";
+    //  if(payload.at(11) == 0x00)
+    //     value = "Schedule";  
+    //  else if(payload.at(11) == 0x01)
+    //     value = "Economy";
+    //  else if(payload.at(11) == 0x02)
+    //     value = "Comfort";
+    //  else if(payload.at(11) == 0x03)
+    //     value = "Outside";        
+    //  else
+    //     value = "value error";
      econet_set_values.pub_room_thermostat_operating_mode = value;
-     
 }
 void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
 {
@@ -181,13 +190,18 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
      econet_set_values.pub_huw_temp = value;
 
      if(payload.at(184) == 0x01)
-        value = "Priority";
-     else if(payload.at(184) == 0x02)
-        value = "Po Priority";
+        value = "heat";
      else if(payload.at(184) == 0x00)
         value = "Off";        
-     else
-        value = "value error";
+
+    // if(payload.at(184) == 0x01)
+    //     value = "Priority";
+    //  else if(payload.at(184) == 0x02)
+    //     value = "Po Priority";
+    //  else if(payload.at(184) == 0x00)
+    //     value = "Off";        
+    //  else
+    //     value = "value error";        
      econet_set_values.pub_huw_pump_mode = value;
      
      value = std::to_string(static_cast<int>(payload.at(187)));
@@ -223,13 +237,21 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
      econet_set_values.pub_mixer_temp = value;
      
      if(payload.at(196) == 0x01)
-        value = "Winter";
+        value = "heat";
      else if(payload.at(196) == 0x02)
-        value = "Summer";
+        value = "off";
      else if(payload.at(196) == 0x00)
-        value = "Auto";        
-     else
-        value = "Value error";
+        value = "auto";        
+    //  else
+    //     value = "Value error";
+    //  if(payload.at(196) == 0x01)
+    //     value = "Winter";
+    //  else if(payload.at(196) == 0x02)
+    //     value = "Summer";
+    //  else if(payload.at(196) == 0x00)
+    //     value = "Auto";        
+    //  else
+    //     value = "Value error";
      econet_set_values.pub_room_thermostat_summer_winter_mode = value;
 }
 void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
@@ -420,7 +442,7 @@ void EcoNet::set_huw_temp(uint8_t temp)
 }
 void EcoNet::set_huw_pump_mode(std::string pump_mode)
 {
-    if(pump_mode == "priority")
+    if(pump_mode == "heat")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x01};
         buf.push_back(crc_set(buf));
@@ -482,14 +504,14 @@ void EcoNet::set_huw_container_disinfection(bool state)
 
 void EcoNet::set_room_thermostat_summer_winter_mode(std::string state)
 {
-    if(state == "winter")
+    if(state == "heat")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x00};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
-    else if (state == "summer")
+    else if (state == "off")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x01};
         buf.push_back(crc_set(buf));
@@ -611,7 +633,7 @@ void EcoNet::set_room_thermostat_day_temp(float temp_)
 
 void EcoNet::set_room_thermostat_operating_mode(std::string state)
 {
-    if(state == "comfort")
+    if(state == "heat")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x02};
         buf.push_back(crc_set(buf));
@@ -625,14 +647,14 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         buf.push_back(0x16);
         serial.serial_send(buf); 
     }
-    else if (state == "schedule")
+    else if (state == "auto")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x00};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf); 
     }
-    else if (state == "outside")
+    else if (state == "off")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x03};
         buf.push_back(crc_set(buf));

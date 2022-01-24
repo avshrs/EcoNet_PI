@@ -397,7 +397,7 @@ sensor:
 
   - platform: mqtt
     unique_id: ecoNet_get_boiler_min_power_fan
-    name: "Palnik Mid Moc Wiatrak"
+    name: "Palnik Min Moc Wiatrak"
     state_topic: "EcoNet/get_boiler_mid_power_fan"
     availability_mode: all
     availability_topic: "ecomax_920_master"
@@ -462,17 +462,15 @@ sensor:
 
 climate:
   - platform: mqtt
-    modes:
-      - "comfort"
-      - "economy"
-      - "schedule"
-      - "schedule"
-      - "outside"
+    presets:
+      - "heat"
+      - "auto"
+      - "off"
     name: "Regulator temperatury dom"
     unique_id: ecoNet_regulator_temperatury_dom
     current_temperature_topic: "EcoNet/get_ecoster_home_temp"
-    mode_command_topic: "EcoNet/set_room_thermostat_operating_mode"
-    mode_state_topic: "EcoNet/get_room_thermostat_operating_mode"
+    preset_command_topic: "EcoNet/set_room_thermostat_operating_mode"
+    preset_state_topic: "EcoNet/get_room_thermostat_operating_mode"
     temperature_low_command_topic: "EcoNet/set_room_thermostat_night_temp"
     temperature_high_command_topic: "EcoNet/set_room_thermostat_day_temp"
     temperature_state_topic: "EcoNet/get_ecoster_home_temp_target"
@@ -484,8 +482,7 @@ climate:
 
   - platform: mqtt
     modes:
-      - "priority"
-      - "no_priority"
+      - "heat"
       - "off"
     name: "Ciepła woda"
     unique_id: ecoNet_regulator_ciepla_woda
@@ -499,17 +496,12 @@ climate:
     value_template: "{{ value }}"
     temp_step: 1
 
-
   - platform: mqtt
-    modes:
-      - "winter"
-      - "summer"
-      - "auto"
+
     name: "Piec"
     unique_id: ecoNet_regulator_piec
     current_temperature_topic: "EcoNet/get_boiler_temp"
-    mode_command_topic: "EcoNet/get_room_thermostat_summer_winter_mode"
-    mode_state_topic: "EcoNet/get_room_thermostat_summer_winter_mode"
+
     temperature_command_topic: "EcoNet/set_boiler_temp"
     temperature_state_topic: "EcoNet/get_boiler_temp_target"
     min_temp: 35
@@ -520,11 +512,17 @@ climate:
     
 
   - platform: mqtt
+    modes:
+    - "heat"
+    - "off"
+    - "auto"
     name: "Grzejniki zasilanie"
     unique_id: ecoNet_regulator_grzejniki
+    mode_command_topic: "EcoNet/set_room_thermostat_summer_winter_mode"
+    mode_state_topic: "EcoNet/get_room_thermostat_summer_winter_mode"
     current_temperature_topic: "EcoNet/get_mixer_temp"
-    temperature_command_topic: "EcoNet/get_mixer_temp_target"
-    temperature_state_topic: "EcoNet/set_mixer_temp"
+    temperature_command_topic: "EcoNet/set_mixer_temp"
+    temperature_state_topic: "EcoNet/get_mixer_temp_target"
     min_temp: 20
     max_temp: 70
     value_template: "{{ value }}"
