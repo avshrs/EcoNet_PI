@@ -44,92 +44,47 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                
-
                 if(header.at(4)==eco____address )
                 {
-                  // print_buffer(message.data(), message.size());
-                    // analyze_frame_ecomax_920P1(payload);
+                    // not known frame
                 }
             
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                    // print_buffer(message.data(), message.size());
+                    //ecomax live data
                     analyze_frame_ecomax_920P1(payload);
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
                 {   
+                    //ecomax stored settings 
                     analyze_frame_ecomax_920P1_settings(message);
-                    // print_buffer(message.data(), message.size());
-                    // for(int i =0; i<static_cast<int>(message.size()); i++)
-                    // {
-                    //     if(message.at(i) != test.at(i))
-                    //     {
-                    //     std::cout << std::dec<<i <<": 0x" << std::setw(2);
-                    //     std::cout << std::setfill('0') << std::hex;
-                    //     std::cout << static_cast<int>(message.at(i));
-                    //     std::cout <<": 0x" << std::setw(2);
-                    //     std::cout << std::setfill('0') << std::hex;
-                    //     std::cout << static_cast<int>(test.at(i));
-                    //     std::cout <<": 0x" << std::setw(2);
-                    //     std::cout << std::setfill('0') << std::hex;
-                    //     std::cout << static_cast<int>(test_old.at(i));
-                    //     std::cout <<": 0x" << std::setw(2);
-                    //     std::cout << std::setfill('0') << std::hex;
-                    //     std::cout << static_cast<int>(test_old_2.at(i));
-                    //     std::cout<<std::endl;
-                    //     }
-                    // }
-                    // test_old_2 = test_old;
-                    // test_old = test; 
-                    // test = message; 
-                   
+                       
                 }
                 else if(header.at(4)==econet_address) // debug
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
-                {   
-                    // print_buffer(message.data(), message.size() );
+                {  
+                    //econet frames used to get set addresses  
                 }   
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
-                   // print_buffer(message.data(), message.size());
+                    //ecoster touch live frame 
                     analyze_frame_ecoster(payload);
                 }            
-                // else if(header.at(4)==ecoster_address && header.at(7)==ecoster__settings_frame)
                 else if(header.at(4)==ecoster_address)
                 {
+                    //ecoster touch stored settings
                     analyze_frame_ecoster_settings(message);
-                    //print_buffer(message.data(), message.size());
-                //   for(int i =0; i<static_cast<int>(message.size()); i++)
-                //     {
-                //         if(message.at(i) != test.at(i))
-                //         {
-                //         std::cout << std::dec<<i <<": 0x" << std::setw(2);
-                //         std::cout << std::setfill('0') << std::hex;
-                //         std::cout << static_cast<int>(message.at(i));
-                //         std::cout <<": 0x" << std::setw(2);
-                //         std::cout << std::setfill('0') << std::hex;
-                //         std::cout << static_cast<int>(test.at(i));
-                //         std::cout <<": 0x" << std::setw(2);
-                //         std::cout << std::setfill('0') << std::hex;
-                //         std::cout << static_cast<int>(test_old.at(i));
-                //         std::cout <<": 0x" << std::setw(2);
-                //         std::cout << std::setfill('0') << std::hex;
-                //         std::cout << static_cast<int>(test_old_2.at(i));
-                //         std::cout<<std::endl;
-                //         }
-                //     }
-                //     test_old_2 = test_old;
-                //     test_old = test; 
-                //     test = message; 
                 } 
                 else
                 {
-                //   print_buffer(message.data(), message.size());
+                    //  for debug 
+                    //  print_buffer(message.data(), message.size());
                 }
                 auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
                 if( deltaTime > 60000000)
-                {
+                {   
+                    // set the same value to force master broadcsat with all settings 
+                    // only transmitted on change
                     uint8_t temp = get_huw_temp_target();
                     set_huw_temp(temp);
                     start = timer.now();
@@ -141,7 +96,7 @@ void EcoNet::run()
 }
 
 void EcoNet::print_buffer(uint8_t *buf, int len)
-{   
+{   //debug tool
     std::cout << date()<< "Len: "<< std::dec <<len << "|";
     for(int i = 0; i < len  ; i++)
         {
@@ -152,7 +107,8 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
     std::cout <<" | \n";
 }
 
-std::string EcoNet::date(){
+std::string EcoNet::date()
+{   //for debug 
     auto t = std::time(nullptr);
     auto tm = *std::localtime(&t);      
     std::stringstream ss; 
@@ -161,7 +117,7 @@ std::string EcoNet::date(){
 }
 
 uint8_t EcoNet::crc(std::vector<uint8_t> &message)
-{   
+{   //crc for whole frame
     uint8_t tmp = message.at(0);
     for(int i = 1 ; i < static_cast<int>(message.size()-2) ; i++ )
     {
@@ -170,7 +126,7 @@ uint8_t EcoNet::crc(std::vector<uint8_t> &message)
     return tmp;
 }
 uint8_t EcoNet::crc_set(std::vector<uint8_t> &message)
-{   
+{   // crc for frame only with data
     uint8_t tmp = message.at(0);
     for(int i = 1 ; i < static_cast<int>(message.size()) ; i++ )
     {
@@ -189,9 +145,7 @@ void EcoNet::analyze_frame_ecoster(std::vector<uint8_t> &payload)
 
 void EcoNet::analyze_frame_econet(std::vector<uint8_t> &payload)
 {
-if(payload.at(1))
-    std::cout<<1;
-
+    // not needed to get any data from econet device
 }
 void EcoNet::analyze_frame_ecoster_settings(std::vector<uint8_t> &payload)
 {
@@ -812,7 +766,6 @@ std::string EcoNet::get_huw_container_disinfection()
 {
     return econet_set_values.pub_huw_container_disinfection;
 }
-
 std::string EcoNet::get_boiler_on_off()
 {
     return econet_set_values.pub_boiler_on_off;

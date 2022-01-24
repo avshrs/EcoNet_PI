@@ -6,9 +6,7 @@
 class EcoNet{
     private:
         USB_serial serial;
-
-        TX_Buffer buf;
-        RX_Buffer rx_buf;
+      
         Econet_Mqtt econet_set_values;
         
         std::chrono::high_resolution_clock timer;
@@ -30,10 +28,10 @@ class EcoNet{
 
 
         uint8_t ecomax_address = 0x45;
-        uint8_t ecomax_frame = 0x08;
-        uint8_t ecomax_frame2 = 0x35;
-        uint8_t ecomax_frame3 = 0x0a;
-        uint8_t ecomax_settings_frame = 0xe1;
+        uint8_t ecomax_frame = 0x08; // broadcast with live data 
+        uint8_t ecomax_frame2 = 0x35; // some kind of broadcast 
+        uint8_t ecomax_frame3 = 0x0a; // ask slaves for data / hartbeet  
+        uint8_t ecomax_settings_frame = 0xe1; 
         
         uint8_t ecoster_address = 0x51;
         uint8_t ecoster_frame = 0x89;
@@ -43,10 +41,10 @@ class EcoNet{
         { 
             {0, "Turned Off"}, 
             {1, "Fire Up"}, 
-            {2, "Work"}, //
-            {3, "3"}, //
+            {2, "Work"},
+            {3, "3"},
             {4, "Burning_Off"}, 
-            {5, "Halted"}, //
+            {5, "Halted"}, 
             {6, "6"}, 
             {7, "7"}, 
             {8, "Cleaning"}, 
@@ -105,7 +103,7 @@ class EcoNet{
         short get_feader_time();
         short get_ignisions();
         short get_ignisions_fails();
-        
+
     public:
         std::string get_huw_pump_mode();
         std::string get_huw_temp_hysteresis();
