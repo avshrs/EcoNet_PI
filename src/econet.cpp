@@ -140,6 +140,10 @@ void EcoNet::run()
                 }
             }
         }
+             else 
+                {
+                  print_buffer(message.data(), message.size());
+                }
     }
 }
 
