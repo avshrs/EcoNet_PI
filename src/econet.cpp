@@ -142,7 +142,9 @@ void EcoNet::run()
         }
              else 
                 {
-                  print_buffer(message.data(), message.size());
+                     serial.serial_read_bytes(header, 32); 
+
+                  print_buffer(header.data(), header.size());
                 }
     }
 }
