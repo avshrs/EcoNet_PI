@@ -31,7 +31,7 @@ void EcoNet::run()
         message.clear();
         
         serial.serial_read_bytes(header, 8); 
-
+        print_buffer(header.data(), header.size());
         
         if(header.at(0)==frame_begin)
         {
@@ -123,10 +123,6 @@ void EcoNet::run()
                 //     test_old = test; 
                 //     test = message; 
                 } 
-                else if(header.at(3)==0x45)
-                {
-                  print_buffer(message.data(), message.size());
-                }
                 else
                 {
                 //   print_buffer(message.data(), message.size());
@@ -140,12 +136,7 @@ void EcoNet::run()
                 }
             }
         }
-             else 
-                {
-                     serial.serial_read_bytes(header, 32); 
 
-                  print_buffer(header.data(), header.size());
-                }
     }
 }
 
