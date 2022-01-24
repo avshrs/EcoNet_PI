@@ -88,7 +88,7 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
     std::cout << date()<< "Len: "<< std::dec <<len << "|";
     for(int i = 0; i < len  ; i++)
         {
-        std::cout << " 0x" << std::setw(2);
+        // std::cout << " 0x" << std::setw(2);
         std::cout << std::setfill('0') << std::hex;
         std::cout << static_cast<int>(buf[i]);
         }
