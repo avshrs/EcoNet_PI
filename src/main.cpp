@@ -42,7 +42,7 @@ int main()
         val = econet.get_operating_status();
         mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
         
-        pub = "EcoNet/EcoNet/get_huw_temp";    
+        pub = "EcoNet/get_huw_temp";    
         val = std::to_string(econet.get_huw_temp());
         mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
         
