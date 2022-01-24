@@ -113,8 +113,8 @@ class EcoNet{
         void set_mixer_temp(uint8_t temp);
         
         void set_room_thermostat_summer_winter_mode(std::string state);
-        void set_room_thermostat_night_temp(short temp);
-        void set_room_thermostat_day_temp(short temp);
+        void set_room_thermostat_night_temp(float temp);
+        void set_room_thermostat_day_temp(float temp);
         void set_room_thermostat_operating_mode(std::string state);
         void set_room_thermostat_hysteresis(uint8_t hysteresis);
 };

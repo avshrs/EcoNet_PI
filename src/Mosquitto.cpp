@@ -196,11 +196,11 @@ void Mqtt_Client::on_message(const struct mosquitto_message *message){
     }
     if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_night_temp())
     {   
-        econet->set_room_thermostat_night_temp(static_cast<short>(std::stoi(message_payload.data())));
+        econet->set_room_thermostat_night_temp(std::stof(message_payload.data()));
     }
     if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_day_temp())
     {   
-        econet->set_room_thermostat_day_temp(static_cast<short>(std::stoi(message_payload.data())));
+        econet->set_room_thermostat_day_temp(std::stof(message_payload.data()));
     }
     if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_operating_mode())
     {   
