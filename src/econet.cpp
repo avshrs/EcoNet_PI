@@ -28,7 +28,7 @@ void EcoNet::run()
 //        serial.serial_read_bytes(header, 8); 
 
         serial.serial_read_buffer(payload);
-        print_buffer(message.data(), message.size());
+        print_buffer(payload.data(), payload.size());
 
         // if(header.at(0)==frame_begin)
         // {
