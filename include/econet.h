@@ -2,7 +2,7 @@
 #include <string>
 #include "vars.h"
 #include "USB_serial.h"
-
+#include <chrono>
 class EcoNet{
     private:
         USB_serial serial;
@@ -10,7 +10,10 @@ class EcoNet{
         TX_Buffer buf;
         RX_Buffer rx_buf;
         Econet_Mqtt econet_set_values;
-
+        
+        std::chrono::high_resolution_clock timer;
+        using mi = std::chrono::duration<float, std::micro>;
+        
         Ecomax920_payload ecomax920_payload;
         Ecoster_payload ecoster_payload;
         Econet_payload  econet_payload;

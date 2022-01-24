@@ -154,6 +154,66 @@ int main()
         val = std::to_string(econet.get_ignisions_fails());
         mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
 
+        pub = "EcoNet/get_huw_pump_mode";    
+       val = econet.get_huw_pump_mode();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_huw_temp_hysteresis";    
+        val = econet.get_huw_temp_hysteresis();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_huw_container_disinfection";    
+        val = econet.get_huw_container_disinfection();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_boiler_on_off";    
+        val = econet.get_boiler_on_off();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_boiler_max_power_kw";    
+        val = econet.get_boiler_max_power_kw();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_boiler_mid_power_kw";    
+        val = econet.get_boiler_mid_power_kw();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_boiler_min_power_kw";    
+        val = econet.get_boiler_min_power_kw();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_boiler_max_power_fan";    
+        val = econet.get_boiler_max_power_fan();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+
+        pub = "EcoNet/get_boiler_mid_power_fan";    
+        val = econet.get_boiler_mid_power_fan();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_boiler_min_power_fan";    
+        val = econet.get_boiler_min_power_fan();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_room_thermostat_summer_winter_mode";    
+        val = econet.get_room_thermostat_summer_winter_mode();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_room_thermostat_night_temp";    
+        val = econet.get_room_thermostat_night_temp();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_room_thermostat_day_temp";    
+        val = econet.get_room_thermostat_day_temp();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_room_thermostat_operating_mode";    
+        val = econet.get_room_thermostat_operating_mode();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
+        pub = "EcoNet/get_room_thermostat_hysteresis";    
+        val = econet.get_room_thermostat_hysteresis();
+        mqtt.publish(NULL, pub.c_str(), val.length(), val.c_str());
+        
         mqtt.publish(NULL, ktop.c_str(), kmsg.length(), kmsg.c_str());
         sleep(60);   
     }

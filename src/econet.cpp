@@ -23,13 +23,13 @@ void EcoNet::run()
     std::vector<uint8_t> test(700);
     std::vector<uint8_t> test_old(700);
     std::vector<uint8_t> test_old_2(700);
-    
+    auto start = timer.now();
     while (true)
     {
         header.clear();
         payload.clear();
         message.clear();
-
+        
         serial.serial_read_bytes(header, 8); 
 
         
@@ -60,7 +60,7 @@ void EcoNet::run()
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
                 {   
                     analyze_frame_ecomax_920P1_settings(message);
-                    print_buffer(message.data(), message.size());
+                    // print_buffer(message.data(), message.size());
                     // for(int i =0; i<static_cast<int>(message.size()); i++)
                     // {
                     //     if(message.at(i) != test.at(i))
@@ -97,7 +97,6 @@ void EcoNet::run()
                 }            
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster__settings_frame)
                 {
-
                     analyze_frame_ecoster_settings(message);
                 //   for(int i =0; i<static_cast<int>(message.size()); i++)
                 //     {
@@ -126,13 +125,15 @@ void EcoNet::run()
                 {
                   //print_buffer(message.data(), message.size());
                 }
+                auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
+                if( deltaTime > 60000000)
+                {
+                    uint8_t temp = get_huw_temp_target();
+                    set_huw_temp(temp);
+                    start = timer.now();
+                }
             }
-
-
         }
-
-       
-
     }
 }
 
@@ -303,12 +304,6 @@ void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
     ecomax920_payload.feader_time = retrun_short(payload, 272);
     ecomax920_payload.ignisions = retrun_short(payload, 274);
     ecomax920_payload.ignisions_fails = retrun_short(payload, 276);
-    /* to investigate: 
-     float 219
-     float 220
-
-
-    */
 }
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
