@@ -29,6 +29,7 @@ class EcoNet{
         uint8_t ecomax_frame = 0x08;
         uint8_t ecomax_frame2 = 0x35;
         uint8_t ecomax_frame3 = 0x0a;
+        uint8_t ecomax_frame4 = 0xe1;
         
         uint8_t ecoster_address = 0x51;
         uint8_t ecoster_frame = 0x89;
