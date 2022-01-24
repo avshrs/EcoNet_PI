@@ -88,7 +88,7 @@ void EcoNet::run()
                 else if(header.at(4)==econet_address) // debug
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
                 {   
-                    print_buffer(message.data(), message.size() );
+                    // print_buffer(message.data(), message.size() );
                 }   
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {

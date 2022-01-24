@@ -321,7 +321,7 @@ climate:
     name: "Regulator temperatury"
     current_temperature_topic: "EcoNet/get_ecoster_home_temp"
     mode_command_topic: "EcoNet/set_room_thermostat_operating_mode"
-    # mode_state_topic: "EcoNet/get_operating_status"
+    mode_state_topic: "EcoNet/get_room_thermostat_operating_mode"
     temperature_low_command_topic: "EcoNet/set_room_thermostat_night_temp"
     temperature_high_command_topic: "EcoNet/set_room_thermostat_day_temp"
     temperature_state_topic: "EcoNet/get_ecoster_home_temp_target"

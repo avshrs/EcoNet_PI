@@ -105,6 +105,25 @@ class EcoNet{
         short get_feader_time();
         short get_ignisions();
         short get_ignisions_fails();
+        
+    public:
+        std::string get_huw_pump_mode();
+        std::string get_huw_temp_hysteresis();
+        std::string get_huw_container_disinfection();
+        
+        std::string get_boiler_on_off();
+        std::string get_boiler_max_power_kw();
+        std::string get_boiler_mid_power_kw();
+        std::string get_boiler_min_power_kw();
+        std::string get_boiler_max_power_fan();
+        std::string get_boiler_mid_power_fan();
+        std::string get_boiler_min_power_fan();
+        
+        std::string get_room_thermostat_summer_winter_mode();
+        std::string get_room_thermostat_night_temp();
+        std::string get_room_thermostat_day_temp();
+        std::string get_room_thermostat_operating_mode();
+        std::string get_room_thermostat_hysteresis();
 
     public:
         void set_huw_temp(uint8_t temp);
@@ -128,23 +147,6 @@ class EcoNet{
         void set_room_thermostat_day_temp(float temp);
         void set_room_thermostat_operating_mode(std::string state);
         void set_room_thermostat_hysteresis(float hysteresis);
-        
-        std::string get_huw_pump_mode();
-        std::string get_huw_temp_hysteresis();
-        std::string get_huw_container_disinfection();
-        
-        std::string get_boiler_on_off();
-        std::string get_boiler_max_power_kw();
-        std::string get_boiler_mid_power_kw();
-        std::string get_boiler_min_power_kw();
-        std::string get_boiler_max_power_fan();
-        std::string get_boiler_mid_power_fan();
-        std::string get_boiler_min_power_fan();
-        
-        std::string get_room_thermostat_summer_winter_mode();
-        std::string get_room_thermostat_night_temp();
-        std::string get_room_thermostat_day_temp();
-        std::string get_room_thermostat_operating_mode();
-        std::string get_room_thermostat_hysteresis();
+    
 };
 
