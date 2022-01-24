@@ -6,7 +6,7 @@ EcoNet/set_huw_temp_hysteresis - 187 8 value
 EcoNet/set_huw_container_disinfection - 190 8 //0x00 0x001bool
 
 EcoNet/set_boiler_temp - 166 8 value 
-EcoNet/set_boiler_on_off - ?
+EcoNet/set_boiler_on_off - get_operating_status
 EcoNet/set_boiler_max_power_kw - 10 0x0c, 0x0d
 EcoNet/set_boiler_mid_power_kw - 13 0x08, 0x07
 EcoNet/set_boiler_min_power_kw - 16 0x03
@@ -15,10 +15,17 @@ EcoNet/set_boiler_max_power_fan - 19
 EcoNet/set_boiler_mid_power_fan - 22
 EcoNet/set_boiler_min_power_fan - 25
 
-EcoNet/set_mixer_temp - 226 8 value -
+EcoNet/set_mixer_temp - 226 8 value 
+
 
 EcoNet/set_room_thermostat_summer_winter_mode - 196 
+
+ecoster settings frame: 
 EcoNet/set_room_thermostat_night_temp -
+    50 0x13 0x14
+    53 0x05 0x00
 EcoNet/set_room_thermostat_day_temp - 
-EcoNet/set_room_thermostat_operating_mode - 
-EcoNet/set_room_thermostat_hysteresis - 
+    44 - 0x16 0x22 0x23 0x16
+    47 - 0x02 0x09 0x00 0x00
+EcoNet/set_room_thermostat_operating_mode - 11 
+EcoNet/set_room_thermostat_hysteresis - 41 8 value 

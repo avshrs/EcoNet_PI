@@ -70,6 +70,7 @@ struct Econet_Mqtt
 };
 
 
+
 struct Ecomax920_payload{
 
     uint8_t payload_type = 0;      
@@ -107,6 +108,7 @@ struct Ecomax920_payload{
     short ignisions_fails = 0; 
 
 };
+
 
 
 struct packet_structure{

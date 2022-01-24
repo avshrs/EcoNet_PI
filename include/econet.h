@@ -9,6 +9,7 @@ class EcoNet{
 
         TX_Buffer buf;
         RX_Buffer rx_buf;
+        Econet_Mqtt econet_set_values;
 
         Ecomax920_payload ecomax920_payload;
         Ecoster_payload ecoster_payload;
@@ -58,6 +59,9 @@ class EcoNet{
         void print_buffer(uint8_t *buf, int len);
         std::string date();
         void analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload);
+        void analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload);
+        void analyze_frame_ecoster_settings(std::vector<uint8_t> &payload);
+
         void analyze_frame_econet(std::vector<uint8_t> &payload);
         void analyze_frame_ecoster(std::vector<uint8_t> &payload);
         float retrun_float(std::vector<uint8_t> &payload, int position);
@@ -121,5 +125,23 @@ class EcoNet{
         void set_room_thermostat_day_temp(float temp);
         void set_room_thermostat_operating_mode(std::string state);
         void set_room_thermostat_hysteresis(float hysteresis);
+        
+        std::string get_huw_pump_mode();
+        std::string get_huw_temp_hysteresis();
+        std::string get_huw_container_disinfection();
+        
+        std::string get_boiler_on_off();
+        std::string get_boiler_max_power_kw();
+        std::string get_boiler_mid_power_kw();
+        std::string get_boiler_min_power_kw();
+        std::string get_boiler_max_power_fan();
+        std::string get_boiler_mid_power_fan();
+        std::string get_boiler_min_power_fan();
+        
+        std::string get_room_thermostat_summer_winter_mode();
+        std::string get_room_thermostat_night_temp();
+        std::string get_room_thermostat_day_temp();
+        std::string get_room_thermostat_operating_mode();
+        std::string get_room_thermostat_hysteresis();
 };
 

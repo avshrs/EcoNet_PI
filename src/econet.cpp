@@ -44,7 +44,7 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                // print_buffer(message.data(), message.size());
+                
 
                 if(header.at(4)==eco____address )
                 {
@@ -59,6 +59,8 @@ void EcoNet::run()
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
                 {   
+                    analyze_frame_ecomax_920P1_settings(message);
+                    print_buffer(message.data(), message.size());
                     // for(int i =0; i<static_cast<int>(message.size()); i++)
                     // {
                     //     if(message.at(i) != test.at(i))
@@ -83,12 +85,10 @@ void EcoNet::run()
                     // test = message; 
                    
                 }
-                // else if(header.at(4)==econet_address) // debug
-                else if(header.at(4)==econet_address && header.at(7)==econet_frame)
-
+                else if(header.at(4)==econet_address) // debug
+                // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
                 {   
-                //    std::cout <<date() << "econet: " ;
-                    // print_buffer(message.data(), message.size() );
+                    print_buffer(message.data(), message.size() );
                 }   
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
                 {
@@ -97,34 +97,38 @@ void EcoNet::run()
                 }            
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster__settings_frame)
                 {
-                  for(int i =0; i<static_cast<int>(message.size()); i++)
-                    {
-                        if(message.at(i) != test.at(i))
-                        {
-                        std::cout << std::dec<<i <<": 0x" << std::setw(2);
-                        std::cout << std::setfill('0') << std::hex;
-                        std::cout << static_cast<int>(message.at(i));
-                        std::cout <<": 0x" << std::setw(2);
-                        std::cout << std::setfill('0') << std::hex;
-                        std::cout << static_cast<int>(test.at(i));
-                        std::cout <<": 0x" << std::setw(2);
-                        std::cout << std::setfill('0') << std::hex;
-                        std::cout << static_cast<int>(test_old.at(i));
-                        std::cout <<": 0x" << std::setw(2);
-                        std::cout << std::setfill('0') << std::hex;
-                        std::cout << static_cast<int>(test_old_2.at(i));
-                        std::cout<<std::endl;
-                        }
-                    }
-                    test_old_2 = test_old;
-                    test_old = test; 
-                    test = message; 
+
+                    analyze_frame_ecoster_settings(message);
+                //   for(int i =0; i<static_cast<int>(message.size()); i++)
+                //     {
+                //         if(message.at(i) != test.at(i))
+                //         {
+                //         std::cout << std::dec<<i <<": 0x" << std::setw(2);
+                //         std::cout << std::setfill('0') << std::hex;
+                //         std::cout << static_cast<int>(message.at(i));
+                //         std::cout <<": 0x" << std::setw(2);
+                //         std::cout << std::setfill('0') << std::hex;
+                //         std::cout << static_cast<int>(test.at(i));
+                //         std::cout <<": 0x" << std::setw(2);
+                //         std::cout << std::setfill('0') << std::hex;
+                //         std::cout << static_cast<int>(test_old.at(i));
+                //         std::cout <<": 0x" << std::setw(2);
+                //         std::cout << std::setfill('0') << std::hex;
+                //         std::cout << static_cast<int>(test_old_2.at(i));
+                //         std::cout<<std::endl;
+                //         }
+                //     }
+                //     test_old_2 = test_old;
+                //     test_old = test; 
+                //     test = message; 
                 } 
                 else
                 {
                   //print_buffer(message.data(), message.size());
                 }
             }
+
+
         }
 
        
@@ -185,7 +189,90 @@ if(payload.at(1))
     std::cout<<1;
 
 }
+void EcoNet::analyze_frame_ecoster_settings(std::vector<uint8_t> &payload)
+{
+     std::string value;
+     value = std::to_string(static_cast<int>(payload.at(44)));
+     value += std::to_string(static_cast<int>(payload.at(47)));
+     econet_set_values.pub_room_thermostat_day_temp = value;
 
+     value = std::to_string(static_cast<int>(payload.at(41)));
+     econet_set_values.pub_room_thermostat_hysteresis = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(50)));
+     value += std::to_string(static_cast<int>(payload.at(53)));
+     econet_set_values.pub_room_thermostat_night_temp = value;
+     if(payload.at(11) == 0x00)
+        value = "Schedule";  
+     else if(payload.at(11) == 0x01)
+        value = "Economy";
+     else if(payload.at(11) == 0x02)
+        value = "Comfort";
+     else if(payload.at(11) == 0x03)
+        value = "Outside";        
+     else
+        value = "value error";
+     econet_set_values.pub_room_thermostat_operating_mode = value;
+     
+}
+void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
+{
+     std::string value;
+     value = std::to_string(static_cast<int>(payload.at(175)));
+     econet_set_values.pub_huw_temp = value;
+
+     if(payload.at(184) == 0x01)
+        value = "Priority";
+     else if(payload.at(184) == 0x02)
+        value = "Po Priority";
+     else if(payload.at(184) == 0x00)
+        value = "Off";        
+     else
+        value = "value error";
+     econet_set_values.pub_huw_pump_mode = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(187)));
+     econet_set_values.pub_huw_temp_hysteresis = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(190)));
+     econet_set_values.pub_huw_container_disinfection = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(166)));
+     econet_set_values.pub_boiler_temp = value;
+     
+     econet_set_values.pub_boiler_temp = get_operating_status();
+     
+     value = std::to_string(static_cast<int>(payload.at(10)));
+     econet_set_values.pub_boiler_max_power_kw = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(13)));
+     econet_set_values.pub_boiler_mid_power_kw = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(16)));
+     econet_set_values.pub_boiler_min_power_kw = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(19)));
+     econet_set_values.pub_boiler_max_power_fan = value;
+     
+     value = std::to_string(static_cast<int>(payload.at(22)));
+     econet_set_values.pub_boiler_mid_power_fan = value;
+
+     value = std::to_string(static_cast<int>(payload.at(25)));
+     econet_set_values.pub_boiler_min_power_fan = value;
+
+     value = std::to_string(static_cast<int>(payload.at(226)));
+     econet_set_values.pub_mixer_temp = value;
+     
+     if(payload.at(196) == 0x01)
+        value = "Winter";
+     else if(payload.at(196) == 0x02)
+        value = "Summer";
+     else if(payload.at(196) == 0x00)
+        value = "Auto";        
+     else
+        value = "Value error";
+     econet_set_values.pub_room_thermostat_summer_winter_mode = value;
+}
 void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
 {   
     ecomax920_payload.operating_status = payload.at(29);
@@ -389,14 +476,14 @@ void EcoNet::set_huw_pump_mode(std::string pump_mode)
     }
     else if(pump_mode == "no_priority")
     {
-        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x02, 0x39, 0x02};
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x02};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
     else if(pump_mode == "off")
     {
-        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x02, 0x39, 0x00};
+        std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x00};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
@@ -712,4 +799,68 @@ void EcoNet::set_boiler_min_power_fan(uint8_t fun_min)
     {
         std::cout<< date() << "set_boiler_min_power_fan out of range 17 - 25" <<std::endl;
     }
+}
+
+
+std::string EcoNet::get_huw_pump_mode()
+{
+    return econet_set_values.pub_huw_pump_mode;
+}
+std::string EcoNet::get_huw_temp_hysteresis()
+{
+    return econet_set_values.pub_huw_temp_hysteresis ;
+}
+std::string EcoNet::get_huw_container_disinfection()
+{
+    return econet_set_values.pub_huw_container_disinfection;
+}
+
+std::string EcoNet::get_boiler_on_off()
+{
+    return econet_set_values.pub_boiler_on_off;
+}
+std::string EcoNet::get_boiler_max_power_kw()
+{
+    return econet_set_values.pub_boiler_max_power_kw;
+}
+std::string EcoNet::get_boiler_mid_power_kw()
+{
+    return econet_set_values.pub_boiler_mid_power_kw;
+}
+std::string EcoNet::get_boiler_min_power_kw()
+{
+    return econet_set_values.pub_boiler_min_power_kw;
+}
+std::string EcoNet::get_boiler_max_power_fan()
+{
+    return econet_set_values.pub_boiler_max_power_fan;
+}
+std::string EcoNet::get_boiler_mid_power_fan()
+{
+    return econet_set_values.pub_boiler_mid_power_fan;
+}
+std::string EcoNet::get_boiler_min_power_fan()
+{
+    return econet_set_values.pub_boiler_min_power_fan;
+}
+
+std::string EcoNet::get_room_thermostat_summer_winter_mode()
+{    
+    return econet_set_values.pub_room_thermostat_summer_winter_mode;
+}
+std::string EcoNet::get_room_thermostat_night_temp()
+{
+    return econet_set_values.pub_room_thermostat_night_temp;
+}
+std::string EcoNet::get_room_thermostat_day_temp()
+{
+    return econet_set_values.pub_room_thermostat_day_temp;
+}
+std::string EcoNet::get_room_thermostat_operating_mode()
+{
+    return econet_set_values.pub_room_thermostat_operating_mode;
+}
+std::string EcoNet::get_room_thermostat_hysteresis()
+{
+    return econet_set_values.pub_room_thermostat_hysteresis;
 }
