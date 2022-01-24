@@ -69,10 +69,14 @@ void EcoNet::run()
                 } 
                 else
                 {
-                  print_buffer(message.data(), message.size());
+                  //print_buffer(message.data(), message.size());
                 }
             }
         }
+        else
+                {
+                  print_buffer(message.data(), message.size());
+                }
        
 
     }
