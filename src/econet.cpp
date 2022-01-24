@@ -18,7 +18,12 @@ void EcoNet::run()
     std::vector<uint8_t> payload;
     payload.reserve(400);
     std::vector<uint8_t> message;
-    payload.reserve(400);
+    message.reserve(400);
+
+    std::vector<uint8_t> test(700);
+    std::vector<uint8_t> test_old(700);
+    std::vector<uint8_t> test_old_2(700);
+    
     while (true)
     {
         header.clear();
@@ -54,7 +59,29 @@ void EcoNet::run()
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame4)
                 {   
-                    print_buffer(message.data(), message.size());
+                    for(int i =0; i<message.size(); i++)
+                    {
+                        if(message.at(i) != test.at(i))
+                        {
+                        std::cout << i <<": 0x" << std::setw(2);
+                        std::cout << std::setfill('0') << std::hex;
+                        std::cout << static_cast<int>(message.at(i));
+                        std::cout <<": 0x" << std::setw(2);
+                        std::cout << std::setfill('0') << std::hex;
+                        std::cout << static_cast<int>(test.at(i));
+                        std::cout <<": 0x" << std::setw(2);
+                        std::cout << std::setfill('0') << std::hex;
+                        std::cout << static_cast<int>(test_old.at(i));
+                        std::cout <<": 0x" << std::setw(2);
+                        std::cout << std::setfill('0') << std::hex;
+                        std::cout << static_cast<int>(test_old_2.at(i));
+                        std::cout<<std::endl;
+                        }
+                    }
+                    test = message; 
+                    test_old = test; 
+                    test_old_2 = test_old;
+                    
                     
                 }
                 // else if(header.at(4)==econet_address) // debug
