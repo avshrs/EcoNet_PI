@@ -33,9 +33,42 @@ void Mqtt_Client::client_loop_forever(){
 
 void Mqtt_Client::register_subs()
 {
-    std::cout<< date() <<"register_subs1"<<std::endl;
-    std::string sub = cfg->get_mqtt_Substring();
-    std::cout<< date() <<"register_subs2"<<std::endl;
+    std::string sub;
+    sub = cfg->get_huw_temp();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_huw_pump_mode();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_huw_temp_hysteresis();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_huw_container_disinfection();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_temp();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_on_off();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_max_power_kw();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_mid_power_kw();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_min_power_kw();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_max_power_fan();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_mid_power_fan();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_boiler_min_power_fan();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_mixer_temp();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_room_thermostat_summer_winter_mode();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_room_thermostat_night_temp();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_room_thermostat_day_temp();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_room_thermostat_operating_mode();
+    subscribe(NULL, sub.c_str());
+    sub = cfg->get_room_thermostat_hysteresis();
     subscribe(NULL, sub.c_str());
 }
 
