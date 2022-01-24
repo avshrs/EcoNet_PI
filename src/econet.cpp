@@ -78,9 +78,11 @@ void EcoNet::run()
                         std::cout<<std::endl;
                         }
                     }
-                    test = message; 
-                    test_old = test; 
                     test_old_2 = test_old;
+                    test_old = test; 
+                    test = message; 
+                    
+                    
                     
                     
                 }
