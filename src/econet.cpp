@@ -50,11 +50,13 @@ void EcoNet::run()
                 {
                     //ecomax live data
                     analyze_frame_ecomax_920P1(payload);
+                    update_statuses();
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
                 {   
                     //ecomax stored settings 
                     analyze_frame_ecomax_920P1_settings(message);
+                    update_statuses();
                        
                 }
                 else if(header.at(4)==econet_address) // debug
@@ -66,11 +68,13 @@ void EcoNet::run()
                 {
                     //ecoster touch live frame 
                     analyze_frame_ecoster(payload);
+                    update_statuses();
                 }            
                 else if(header.at(4)==ecoster_address && header.at(7)==ecoster_settings_frame)
                 {
                     //ecoster touch stored settings
                     analyze_frame_ecoster_settings(message);
+                    update_statuses();
                 } 
                 else
                 {
@@ -87,6 +91,7 @@ void EcoNet::run()
                     set_huw_temp(temp);
                     start = timer.now();
                 }
+                
             }
         }
 
@@ -203,7 +208,9 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
     //  else if(payload.at(184) == 0x00)
     //     value = "Off";        
     //  else
-    //     value = "value error";        
+    //     value = "value error";  
+
+
      econet_set_values.pub_huw_pump_mode = value;
      
      value = std::to_string(static_cast<int>(payload.at(187)));
