@@ -309,7 +309,7 @@ short EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
     } u;
     u.ui = ((payload.at(p)) | (payload.at(p+1) << 8)) ;
            
-    u.sh;
+    return u.sh;
 }
 
 std::string EcoNet::get_operating_status()
