@@ -10,8 +10,8 @@ mqtt:
     password: mqttuser
     keepAliveTopic: ecomax_920_master
     keepAliveMsg: Online
-    Substring: ecomax_set
-    Pubstring: ecomax_get
+    Substring: ecomax_set # not used
+    Pubstring: ecomax_get # not used 
 
 econet_set:
     pub_huw_temp: EcoNet/set_huw_temp
