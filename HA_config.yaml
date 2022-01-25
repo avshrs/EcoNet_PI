@@ -497,7 +497,9 @@ climate:
     temp_step: 1
 
   - platform: mqtt
-
+    modes:
+      - "heat"
+      - "off"
     name: "Piec"
     unique_id: ecoNet_regulator_piec
     current_temperature_topic: "EcoNet/get_boiler_temp"

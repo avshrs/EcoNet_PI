@@ -100,6 +100,7 @@ void Config_manager::read_config(){
     econet_mqtt.sub_get_room_thermostat_day_temp = config["econet_get"]["sub_get_room_thermostat_day_temp"].as<std::string>();
     econet_mqtt.sub_get_room_thermostat_operating_mode = config["econet_get"]["sub_get_room_thermostat_operating_mode"].as<std::string>();
     econet_mqtt.sub_get_room_thermostat_hysteresis = config["econet_get"]["sub_get_room_thermostat_hysteresis"].as<std::string>();
+    econet_mqtt.sub_get_operating_status = config["econet_get"]["sub_get_operating_status"].as<std::string>();
     std::cout << date() << "Settings Loaded" << std::endl;
 
 }
