@@ -302,9 +302,7 @@ float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
     u.ui = (payload.at(p)) | (payload.at(p+1) << 8) | 
            (payload.at(p+2) << 16) | (payload.at(p+3) << 24);
     
-    int temp = u.f*100;
-    float temp2 = temp / 100; 
-    return temp2;
+    return u.f;
 }
 
 short EcoNet::retrun_short(std::vector<uint8_t> &payload, int p)
