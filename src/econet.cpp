@@ -213,8 +213,9 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
 
 
      econet_set_values.pub_huw_pump_mode = value;
-     
-     value = std::to_string(static_cast<int>(payload.at(187)));
+
+     float tmp = static_cast<int>(payload.at(187))/10;
+     value = std::to_string(tmp);
      econet_set_values.pub_huw_temp_hysteresis = value;
      
      value = std::to_string(static_cast<int>(payload.at(190)));
