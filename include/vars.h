@@ -347,7 +347,7 @@ struct Ecomax_920_Frame{
     uint8_t nn_247 = 0;
     uint8_t nn_248 = 0;
     uint8_t nn_249 = 0;
-    uint8_t nn_240 = 0;
+    uint8_t nn_250 = 0;
     uint8_t nn_251 = 0;
     uint8_t nn_252 = 0;
     uint8_t nn_253 = 0;
