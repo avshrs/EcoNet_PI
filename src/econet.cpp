@@ -49,15 +49,12 @@ void EcoNet::run()
             
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                    print_buffer(header.data(), header.size());
-                    print_buffer(payload.data(), payload.size());
                     //ecomax live data
                     analyze_frame_ecomax_920P1(payload);
                     update_statuses();
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
                 {   
-                    
                     //ecomax stored settings 
                     analyze_frame_ecomax_920P1_settings(message);
                     update_statuses();
@@ -104,14 +101,14 @@ void EcoNet::run()
 
 void EcoNet::print_buffer(uint8_t *buf, int len)
 {   //debug tool
-    // std::cout << date()<< "Len: "<< std::dec <<len << "|";
+    std::cout << date()<< "Len: "<< std::dec <<len << "|";
     for(int i = 0; i < len  ; i++)
         {
         std::cout << " 0x" << std::setw(2);
         std::cout << std::setfill('0') << std::hex;
         std::cout << static_cast<int>(buf[i]);
         }
-    std::cout.flush();
+    std::cout <<" | \n";
 }
 
 std::string EcoNet::date()
