@@ -66,9 +66,8 @@ struct Econet_Mqtt
     std::string pub_room_thermostat_day_temp;
     std::string pub_room_thermostat_operating_mode;
     std::string pub_room_thermostat_hysteresis;
-    
     std::string sub_get_operating_status;
-    std::string sub_get_huw_temp;
+
     std::string sub_get_huw_temp;
     std::string sub_get_feeder_temp;
     std::string sub_get_boiler_temp;
@@ -97,7 +96,7 @@ struct Econet_Mqtt
     std::string sub_get_feeder_time;
     std::string sub_get_ignitions;
     std::string sub_get_ignitions_fails;
-
+    
     std::string sub_get_huw_pump_mode;
     std::string sub_get_huw_temp_hysteresis;
     std::string sub_get_huw_container_disinfection;
