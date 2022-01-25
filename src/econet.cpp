@@ -21,7 +21,8 @@ void EcoNet::run()
     payload.reserve(400);
     std::vector<uint8_t> message;
     message.reserve(400);
-
+    uint8_t temp = std::stoi(get_huw_temp_target());
+    float temp2 = std::stof("0.5");
     auto start = timer.now();
     while (true)
     {
@@ -88,8 +89,7 @@ void EcoNet::run()
                 {   
                     // set the same value to force master broadcsat with all ecomax settings 
                     // only transmitted on change
-                    uint8_t temp = std::stoi(get_huw_temp_target());
-                    float temp2 = std::stof(get_room_thermostat_hysteresis());
+                    
                     set_room_thermostat_hysteresis(temp2);
                     set_huw_temp(temp);
                     start = timer.now();
