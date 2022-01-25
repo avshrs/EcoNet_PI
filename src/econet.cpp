@@ -276,16 +276,16 @@ void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
     ecomax920_payload.upper_buffer_temp = retrun_float(payload, 110); 
     ecomax920_payload.lower_buffer_temp = retrun_float(payload, 114); 
     
-    ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(166)); ///?????
+    ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(165)); 
+    ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
     ecomax920_payload.boiler_temp_target = static_cast<int>(payload.at(172));
-    ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));//????
     ecomax920_payload.huw_pomp_state = static_cast<int>(payload.at(194));
     ecomax920_payload.boiler_pomp_state = static_cast<int>(payload.at(265));
     ecomax920_payload.fuel_level = static_cast<int>(payload.at(217));
     ecomax920_payload.fan_out_power = static_cast<int>(payload.at(255));
     ecomax920_payload.fan_in_power = static_cast<int>(payload.at(254));
-    ecomax920_payload.fuel_stream = retrun_float(payload, 260);
     ecomax920_payload.boiler_power_kw = retrun_float(payload, 256);
+    ecomax920_payload.fuel_stream = retrun_float(payload, 260);
     ecomax920_payload.power_max_time = retrun_short(payload, 266); 
     ecomax920_payload.power_medium_time = retrun_short(payload, 268);
     ecomax920_payload.power_min_time = retrun_short(payload, 270);

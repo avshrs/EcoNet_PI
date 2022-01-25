@@ -5,16 +5,6 @@
 #include <string>
 #include <vector>
 #include <map>
-struct TX_Buffer
-{
-    std::vector<uint8_t> buf;
-    TX_Buffer(){buf.reserve(1024);}
-};
-struct RX_Buffer
-{
-    RX_Buffer(){buf.reserve(1024);}
-    std::vector<uint8_t> buf;
-};
 
 struct Econet_Mqtt
 {
@@ -88,9 +78,28 @@ struct Econet_Mqtt
 
 
 
-struct Ecomax_Frame_Header{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct Ecomax_920_Frame{
     uint8_t frame_begine = 0; 
-   uint16_t frame_size = 0;
+    uint16_t frame_size = 0;
+
     uint8_t message_dst = 0;
     uint8_t message_src = 0;
     uint8_t nn_5 = 0;
@@ -127,7 +136,6 @@ struct Ecomax_Frame_Header{
     uint8_t nn_36 = 0;
     uint8_t nn_37 = 0;
     uint8_t operating_status = 0; //29
-    uint8_t nn_38 = 0;
     uint8_t nn_39 = 0;
     uint8_t nn_40 = 0;
     uint8_t nn_41 = 0;
@@ -153,7 +161,6 @@ struct Ecomax_Frame_Header{
     uint8_t nn_61 = 0;
     uint8_t nn_62 = 0;
     uint8_t nn_63 = 0;
-    uint8_t nn_63 = 0;
     uint8_t nn_64 = 0;
     uint8_t nn_65 = 0;
     uint8_t nn_66 = 0;
@@ -176,23 +183,50 @@ struct Ecomax_Frame_Header{
     uint8_t nn_83 = 0;
     uint8_t nn_84 = 0;
     uint8_t nn_85 = 0;
-      float huw_temp = 0; //78
-      float mixer_temp = 0; //82
-      float weather_temp = 0; //86
-      float boiler_return_temp = 0; //90
-      float exhaust_temp = 0; //94
-      float feeder_temp = 0; //98 
-      float boiler_temp = 0; //102
-      float flame_sensor = 0; //106 
-      float upper_buffer_temp = 0; //110
-      float lower_buffer_temp = 0; //114
-    uint8_t nn_123 = 0;
-    uint8_t nn_124 = 0;
-    uint8_t nn_125 = 0;
+    float huw_temp = 0; 
+
+
+
+    float mixer_temp = 0; 
+
+
+
+    float weather_temp = 0; 
+
+
+
+    float boiler_return_temp = 0; 
+
+
+
+    float exhaust_temp = 0; 
+
+
+
+    float feeder_temp = 0;
+
+
+
+    float boiler_temp = 0; 
+
+
+
+    float flame_sensor = 0; 
+
+
+
+    float upper_buffer_temp = 0; 
+
+
+
+    float lower_buffer_temp = 0; 
+
+
+
     uint8_t nn_126 = 0;
     uint8_t nn_127 = 0;
     uint8_t nn_128 = 0;
-    uint8_t nn_129 = 0; //29
+    uint8_t nn_129 = 0; 
     uint8_t nn_130 = 0;
     uint8_t nn_131 = 0;
     uint8_t nn_132 = 0;
@@ -227,24 +261,22 @@ struct Ecomax_Frame_Header{
     uint8_t nn_161 = 0;
     uint8_t nn_162 = 0;
     uint8_t nn_163 = 0;
-    uint8_t nn_163 = 0;
     uint8_t nn_164 = 0;
     uint8_t nn_165 = 0;
     uint8_t nn_166 = 0;
-    uint8_t huw_temp_target = 0; //166
+    uint8_t nn_167 = 0;
     uint8_t nn_168 = 0;
     uint8_t nn_169 = 0;
     uint8_t nn_170 = 0;
     uint8_t nn_171 = 0;
-    uint8_t boiler_temp_target = 0; // 172
+    uint8_t nn_172 = 0;
     uint8_t nn_173 = 0;
-    uint8_t nn_123 = 0;
     uint8_t nn_174 = 0;
-    uint8_t nn_175 = 0;
+    uint8_t huw_temp_target = 0; 
     uint8_t nn_176 = 0;
     uint8_t nn_177 = 0;
     uint8_t nn_178 = 0;
-    uint8_t nn_179 = 0; 
+    uint8_t boiler_temp_target = 0;
     uint8_t nn_180 = 0;
     uint8_t nn_181 = 0;
     uint8_t nn_182 = 0;
@@ -259,7 +291,7 @@ struct Ecomax_Frame_Header{
     uint8_t nn_191 = 0;
     uint8_t nn_192 = 0;
     uint8_t nn_193 = 0;
-    uint8_t huw_pomp_state = 0;
+    uint8_t nn_194 = 0;
     uint8_t nn_195 = 0;
     uint8_t nn_196 = 0;
     uint8_t nn_197 = 0;
@@ -267,7 +299,7 @@ struct Ecomax_Frame_Header{
     uint8_t nn_199 = 0;
     uint8_t nn_200 = 0;
     uint8_t nn_201 = 0;
-    uint8_t nn_202 = 0;
+    uint8_t huw_pomp_state = 0;
     uint8_t nn_203 = 0;
     uint8_t nn_204 = 0;
     uint8_t nn_205 = 0;
@@ -282,7 +314,7 @@ struct Ecomax_Frame_Header{
     uint8_t nn_214 = 0;
     uint8_t nn_215 = 0;
     uint8_t nn_216 = 0;
-    uint8_t fuel_level = 0;
+    uint8_t nn_217 = 0;
     uint8_t nn_218 = 0;
     uint8_t nn_219 = 0;
     uint8_t nn_220 = 0;
@@ -290,7 +322,7 @@ struct Ecomax_Frame_Header{
     uint8_t nn_222 = 0;
     uint8_t nn_223 = 0;
     uint8_t nn_224 = 0;
-    uint8_t nn_225 = 0;
+    uint8_t fuel_level = 0;
     uint8_t nn_226 = 0;
     uint8_t nn_227 = 0;
     uint8_t nn_228 = 0;
@@ -311,35 +343,47 @@ struct Ecomax_Frame_Header{
     uint8_t nn_243 = 0;
     uint8_t nn_244 = 0;
     uint8_t nn_245 = 0;
-    uint8_t fan_in_power = 0; // 254
-    uint8_t fan_out_power = 0; // 255 
-      float boiler_power_kw= 0; // 256 - 259
-      float fuel_stream = 0;  // 260 - 263
+    uint8_t nn_246 = 0;
+    uint8_t nn_247 = 0;
+    uint8_t nn_248 = 0;
+    uint8_t nn_249 = 0;
+    uint8_t nn_240 = 0;
+    uint8_t nn_251 = 0;
+    uint8_t nn_252 = 0;
+    uint8_t nn_253 = 0;
+    uint8_t nn_254 = 0;
     uint8_t nn_255 = 0;
-    uint8_t boiler_pomp_state = 0; //265
-   uint16_t power_max_time = 0; //266
-   uint16_t power_medium_time = 0;
-   uint16_t power_min_time = 0;
-   uint16_t feeder_time = 0;
-   uint16_t ignitions = 0;
-   uint16_t ignitions_fails = 0;
-    uint8_t nn_270 = 0;
-    uint8_t nn_271 = 0;
+    uint8_t nn_256 = 0;
+    uint8_t nn_257 = 0;
+    uint8_t nn_258 = 0;
+    uint8_t nn_259 = 0;
+    uint8_t nn_260 = 0;
+    uint8_t nn_261 = 0;
+    uint8_t fan_in_power = 0;
+    uint8_t fan_out_power = 0;  
+    float boiler_power_kw= 0;
+
+
+
+    float fuel_stream = 0;  
+
+
+
     uint8_t nn_272 = 0;
     uint8_t nn_273 = 0;
-    uint8_t nn_274 = 0;
-    uint8_t nn_275 = 0;
-    uint8_t nn_276 = 0;
-    uint8_t nn_277 = 0;
-    uint8_t nn_278 = 0;
-    uint8_t nn_279 = 0;
-    uint8_t nn_280 = 0;
-    uint8_t nn_281 = 0;
-    uint8_t nn_282 = 0;
-    uint8_t nn_283 = 0;
-    uint8_t nn_284 = 0;
-    uint8_t nn_285 = 0;
-    uint8_t nn_286 = 0;
+    uint8_t boiler_pomp_state = 0; 
+    uint16_t power_max_time = 0; 
+
+    uint16_t power_medium_time = 0;
+
+    uint16_t power_min_time = 0;
+
+    uint16_t feeder_time = 0;
+
+    uint16_t ignitions = 0;
+
+    uint16_t ignitions_fails = 0;
+
     uint8_t nn_287 = 0;
     uint8_t nn_288 = 0;
     uint8_t nn_289 = 0;
@@ -382,10 +426,8 @@ struct Ecomax_Frame_Header{
     uint8_t nn_326 = 0;
     uint8_t nn_327 = 0;
     uint8_t nn_328 = 0;
-    uint8_t nn_329 = 0;
     uint8_t frame_crc = 0;
     uint8_t frame_end_signature = 0;
-    
 };
 struct EcoNet_cfg
 {
@@ -432,35 +474,19 @@ struct Ecomax920_payload{
     uint8_t huw_temp_target = 0; 
     uint8_t boiler_temp_target = 0;  
     uint8_t mixer_temp_target = 0;  
-
     uint8_t fuel_level = 0;  
     uint8_t transmission = 0;
-
     uint8_t fan_in_power = 0;    
     uint8_t fan_out_power = 0;    
     uint8_t boiler_power = 0;
     uint8_t huw_pomp_state = 0;
     uint8_t boiler_pomp_state = 0;
-
     short power_max_time = 0;   
     short power_medium_time = 0; 
     short power_min_time = 0; 
     short feeder_time = 0; 
     short ignitions = 0; 
     short ignitions_fails = 0; 
-
 };
 
-
-
-struct packet_structure{
-    uint8_t frame_type = 0;
-    uint16_t frame_size = 0;
-    uint8_t dst_address = 0;
-    uint8_t src_address = 0;
-    uint8_t sender_type = 0;
-    uint8_t econet_version = 0;
-    uint8_t crc = 0;
-
-};
 
