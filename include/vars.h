@@ -15,21 +15,7 @@ struct RX_Buffer
     RX_Buffer(){buf.reserve(1024);}
     std::vector<uint8_t> buf;
 };
-struct EcoNet_cfg
-{
-    std::string serial_file;
-    int boudrate;
-    int remove_lead_zero;
-};
-struct Ecoster_payload
-{struct Econet_payload{
-};
 
-    float home_temp_target = 0; 
-    float home_temp = 0;
-    float ecoster_1_temp = 0;
-    float ecoster_2_temp = 0;
-};
 struct Econet_Mqtt
 {
     std::string pub_huw_temp;
@@ -101,6 +87,7 @@ struct Econet_Mqtt
 
 
 
+
 struct Ecomax_Frame_Header{
     uint8_t frame_begine = 0; 
    uint16_t frame_size = 0;
@@ -138,6 +125,7 @@ struct Ecomax_Frame_Header{
     uint8_t nn_34 = 0;
     uint8_t nn_35 = 0;
     uint8_t nn_36 = 0;
+    uint8_t nn_37 = 0;
     uint8_t operating_status = 0; //29
     uint8_t nn_38 = 0;
     uint8_t nn_39 = 0;
@@ -399,7 +387,19 @@ struct Ecomax_Frame_Header{
     uint8_t frame_end_signature = 0;
     
 };
-
+struct EcoNet_cfg
+{
+    std::string serial_file;
+    int boudrate;
+    int remove_lead_zero;
+};
+struct Ecoster_payload
+{
+    float home_temp_target = 0; 
+    float home_temp = 0;
+    float ecoster_1_temp = 0;
+    float ecoster_2_temp = 0;
+};
 struct Mqtt_config
 {
     std::string ClientId;

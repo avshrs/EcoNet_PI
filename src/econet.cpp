@@ -55,6 +55,8 @@ void EcoNet::run()
                 }
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
                 {   
+                    print_buffer(header.data(), header.size());
+                    print_buffer(payload.data(), payload.size());
                     //ecomax stored settings 
                     analyze_frame_ecomax_920P1_settings(message);
                     update_statuses();
