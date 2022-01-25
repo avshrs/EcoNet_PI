@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <algorithm>
 #include "Mosquitto.h"
+#include <sstream> //for std::stringstream
 
 
 void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
@@ -222,8 +223,6 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
      value = std::to_string(static_cast<int>(payload.at(166)));
      econet_set_values.pub_boiler_temp = value;
      
-     econet_set_values.pub_boiler_temp = get_operating_status();
-     
      value = std::to_string(static_cast<int>(payload.at(10)));
      econet_set_values.pub_boiler_max_power_kw = value;
      
@@ -325,43 +324,64 @@ std::string EcoNet::get_operating_status()
 }
 std::string EcoNet::get_huw_temp()
 {
-    return std::to_string(ecomax920_payload.huw_temp);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.huw_temp;
+    return out.str();
 }
 std::string EcoNet::get_feeder_temp()
 {
-    return std::to_string(ecomax920_payload.feeder_temp);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.feeder_temp;
+    return out.str();
 }
 std::string EcoNet::get_boiler_temp()
 {
-    return std::to_string(ecomax920_payload.boiler_temp);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.boiler_temp;
+    return out.str();    
 }
 std::string EcoNet::get_weather_temp()
 {
-    return std::to_string(ecomax920_payload.weather_temp);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.weather_temp;
+    return out.str();   
 }
 std::string EcoNet::get_exhaust_temp()
 {
-    return std::to_string(ecomax920_payload.exhaust_temp);    
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.exhaust_temp;
+    return out.str();   
 }
 std::string EcoNet::get_mixer_temp()
 {
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.boiler_temp;
+    return out.str();   
     return std::to_string(ecomax920_payload.mixer_temp);   
 }
 std::string EcoNet::get_boiler_return_temp()
 {
-    return std::to_string(ecomax920_payload.boiler_return_temp);  
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.boiler_return_temp;
+    return out.str();   
 }
 std::string EcoNet::get_upper_buffer_temp()
 {
-    return std::to_string(ecomax920_payload.upper_buffer_temp);  
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.upper_buffer_temp;
+    return out.str();   
 }
 std::string EcoNet::get_lower_buffer_temp()
 {
-    return std::to_string(ecomax920_payload.lower_buffer_temp);  
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.lower_buffer_temp;
+    return out.str();   
 }
 std::string EcoNet::get_flame_sensor()
 {
-    return std::to_string(ecomax920_payload.flame_sensor);  
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.flame_sensor;
+    return out.str();   
 }
 std::string  EcoNet::get_huw_temp_target()
 {
@@ -389,11 +409,15 @@ std::string  EcoNet::get_fan_in_power()
 }
 std::string EcoNet::get_fuel_stream()
 {
-    return std::to_string(ecomax920_payload.fuel_stream);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.fuel_stream;
+    return out.str();   
 }
 std::string EcoNet::get_boiler_power_kw()
 {
-    return std::to_string(ecomax920_payload.boiler_power_kw);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecomax920_payload.boiler_power_kw;
+    return out.str();   
 }
 std::string EcoNet::get_power_max_time()
 {
@@ -421,11 +445,15 @@ std::string EcoNet::get_ignitions_fails()
 }
 std::string EcoNet::get_ecoster_home_temp()
 {
-    return std::to_string(ecoster_payload.home_temp);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecoster_payload.home_temp;
+    return out.str();   
 }
 std::string EcoNet::get_ecoster_home_temp_target()
 {
-    return std::to_string(ecoster_payload.home_temp_target);
+    std::stringstream out;
+    out << std::fixed << std::setprecision(2) << ecoster_payload.home_temp_target;
+    return out.str();   
 } 
 std::string EcoNet::get_huw_pomp_state()
 {
