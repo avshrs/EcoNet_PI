@@ -4,7 +4,7 @@
 #include "USB_serial.h"
 #include <chrono>
 #include "Config_manager.h"
-class Mqtt_Client;
+class Mqtt_Client{};
 class EcoNet{
     private:
         USB_serial serial;
