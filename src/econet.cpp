@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <algorithm>
 #include "Mosquitto.h"
-#include <sstream> //for std::stringstream
 
 
 void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
