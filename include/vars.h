@@ -48,7 +48,6 @@ struct Econet_payload{
 
 struct Econet_Mqtt
 {
- 
     std::string pub_huw_temp;
     std::string pub_huw_pump_mode;
     std::string pub_huw_temp_hysteresis;
@@ -67,6 +66,53 @@ struct Econet_Mqtt
     std::string pub_room_thermostat_day_temp;
     std::string pub_room_thermostat_operating_mode;
     std::string pub_room_thermostat_hysteresis;
+    
+    std::string sub_get_operating_status;
+    std::string sub_get_huw_temp;
+    std::string sub_get_huw_temp;
+    std::string sub_get_feeder_temp;
+    std::string sub_get_boiler_temp;
+    std::string sub_get_weather_temp;
+    std::string sub_get_exhaust_temp;
+    std::string sub_get_mixer_temp;
+    std::string sub_get_boiler_return_temp;
+    std::string sub_get_upper_buffer_temp;
+    std::string sub_get_lower_buffer_temp;
+    std::string sub_get_flame_sensor;
+    std::string sub_get_ecoster_home_temp;
+    std::string sub_get_ecoster_home_temp_target;
+    std::string sub_get_huw_temp_target;
+    std::string sub_get_boiler_temp_target;
+    std::string sub_get_mixer_temp_target;
+    std::string sub_get_fuel_level;
+    std::string sub_get_fan_out_power;
+    std::string sub_get_fan_in_power;
+    std::string sub_get_huw_pomp_state;
+    std::string sub_get_boiler_pomp_state;
+    std::string sub_get_fuel_stream;
+    std::string sub_get_boiler_power_kw;
+    std::string sub_get_power_max_time;
+    std::string sub_get_power_medium_time;
+    std::string sub_get_power_min_time;
+    std::string sub_get_feeder_time;
+    std::string sub_get_ignitions;
+    std::string sub_get_ignitions_fails;
+
+    std::string sub_get_huw_pump_mode;
+    std::string sub_get_huw_temp_hysteresis;
+    std::string sub_get_huw_container_disinfection;
+    std::string sub_get_boiler_on_off;
+    std::string sub_get_boiler_max_power_kw;
+    std::string sub_get_boiler_mid_power_kw;
+    std::string sub_get_boiler_min_power_kw;
+    std::string sub_get_boiler_max_power_fan;
+    std::string sub_get_boiler_mid_power_fan;
+    std::string sub_get_boiler_min_power_fan;
+    std::string sub_get_room_thermostat_summer_winter_mode;
+    std::string sub_get_room_thermostat_night_temp;
+    std::string sub_get_room_thermostat_day_temp;
+    std::string sub_get_room_thermostat_operating_mode;
+    std::string sub_get_room_thermostat_hysteresis;
 };
 
 
@@ -76,7 +122,7 @@ struct Ecomax920_payload{
     uint8_t payload_type = 0;      
     uint8_t operating_status = 0;   
     float  huw_temp = 0;        
-    float  feader_temp = 0;     
+    float  feeder_temp = 0;     
     float  boiler_temp = 0;        
     float  boiler_return_temp = 0;
     float  flame_sensor = 0;
@@ -103,9 +149,9 @@ struct Ecomax920_payload{
     short power_max_time = 0;   
     short power_medium_time = 0; 
     short power_min_time = 0; 
-    short feader_time = 0; 
-    short ignisions = 0; 
-    short ignisions_fails = 0; 
+    short feeder_time = 0; 
+    short ignitions = 0; 
+    short ignitions_fails = 0; 
 
 };
 

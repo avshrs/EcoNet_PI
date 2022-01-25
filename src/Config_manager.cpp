@@ -56,7 +56,50 @@ void Config_manager::read_config(){
     econet_mqtt.pub_room_thermostat_day_temp = config["econet_set"]["pub_room_thermostat_day_temp"].as<std::string>();
     econet_mqtt.pub_room_thermostat_operating_mode = config["econet_set"]["pub_room_thermostat_operating_mode"].as<std::string>();
     econet_mqtt.pub_room_thermostat_hysteresis = config["econet_set"]["pub_room_thermostat_hysteresis"].as<std::string>();
-
+    econet_mqtt.sub_get_huw_temp = config["econet_get"]["sub_get_huw_temp"].as<std::string>();
+    econet_mqtt.sub_get_huw_temp = config["econet_get"]["sub_get_huw_temp"].as<std::string>();
+    econet_mqtt.sub_get_feeder_temp = config["econet_get"]["sub_get_feeder_temp"].as<std::string>();
+    econet_mqtt.sub_get_boiler_temp = config["econet_get"]["sub_get_boiler_temp"].as<std::string>();
+    econet_mqtt.sub_get_weather_temp = config["econet_get"]["sub_get_weather_temp"].as<std::string>();
+    econet_mqtt.sub_get_exhaust_temp = config["econet_get"]["sub_get_exhaust_temp"].as<std::string>();
+    econet_mqtt.sub_get_mixer_temp = config["econet_get"]["sub_get_mixer_temp"].as<std::string>();
+    econet_mqtt.sub_get_boiler_return_temp = config["econet_get"]["sub_get_boiler_return_temp"].as<std::string>();
+    econet_mqtt.sub_get_upper_buffer_temp = config["econet_get"]["sub_get_upper_buffer_temp"].as<std::string>();
+    econet_mqtt.sub_get_lower_buffer_temp = config["econet_get"]["sub_get_lower_buffer_temp"].as<std::string>();
+    econet_mqtt.sub_get_flame_sensor = config["econet_get"]["sub_get_flame_sensor"].as<std::string>();
+    econet_mqtt.sub_get_ecoster_home_temp = config["econet_get"]["sub_get_ecoster_home_temp"].as<std::string>();
+    econet_mqtt.sub_get_ecoster_home_temp_target = config["econet_get"]["sub_get_ecoster_home_temp_target"].as<std::string>();
+    econet_mqtt.sub_get_huw_temp_target = config["econet_get"]["sub_get_huw_temp_target"].as<std::string>();
+    econet_mqtt.sub_get_boiler_temp_target = config["econet_get"]["sub_get_boiler_temp_target"].as<std::string>();
+    econet_mqtt.sub_get_mixer_temp_target = config["econet_get"]["sub_get_mixer_temp_target"].as<std::string>();
+    econet_mqtt.sub_get_fuel_level = config["econet_get"]["sub_get_fuel_level"].as<std::string>();
+    econet_mqtt.sub_get_fan_out_power = config["econet_get"]["sub_get_fan_out_power"].as<std::string>();
+    econet_mqtt.sub_get_fan_in_power = config["econet_get"]["sub_get_fan_in_power"].as<std::string>();
+    econet_mqtt.sub_get_huw_pomp_state = config["econet_get"]["sub_get_huw_pomp_state"].as<std::string>();
+    econet_mqtt.sub_get_boiler_pomp_state = config["econet_get"]["sub_get_boiler_pomp_state"].as<std::string>();
+    econet_mqtt.sub_get_fuel_stream = config["econet_get"]["sub_get_fuel_stream"].as<std::string>();
+    econet_mqtt.sub_get_boiler_power_kw = config["econet_get"]["sub_get_boiler_power_kw"].as<std::string>();
+    econet_mqtt.sub_get_power_max_time = config["econet_get"]["sub_get_power_max_time"].as<std::string>();
+    econet_mqtt.sub_get_power_medium_time = config["econet_get"]["sub_get_power_medium_time"].as<std::string>();
+    econet_mqtt.sub_get_power_min_time = config["econet_get"]["sub_get_power_min_time"].as<std::string>();
+    econet_mqtt.sub_get_feeder_time = config["econet_get"]["sub_get_feeder_time"].as<std::string>();
+    econet_mqtt.sub_get_ignitions = config["econet_get"]["sub_get_ignitions"].as<std::string>();
+    econet_mqtt.sub_get_ignitions_fails = config["econet_get"]["sub_get_ignitions_fails"].as<std::string>();
+    econet_mqtt.sub_get_huw_pump_mode = config["econet_get"]["sub_get_huw_pump_mode"].as<std::string>();
+    econet_mqtt.sub_get_huw_temp_hysteresis = config["econet_get"]["sub_get_huw_temp_hysteresis"].as<std::string>();
+    econet_mqtt.sub_get_huw_container_disinfection = config["econet_get"]["sub_get_huw_container_disinfection"].as<std::string>();
+    econet_mqtt.sub_get_boiler_on_off = config["econet_get"]["sub_get_boiler_on_off"].as<std::string>();
+    econet_mqtt.sub_get_boiler_max_power_kw = config["econet_get"]["sub_get_boiler_max_power_kw"].as<std::string>();
+    econet_mqtt.sub_get_boiler_mid_power_kw = config["econet_get"]["sub_get_boiler_mid_power_kw"].as<std::string>();
+    econet_mqtt.sub_get_boiler_min_power_kw = config["econet_get"]["sub_get_boiler_min_power_kw"].as<std::string>();
+    econet_mqtt.sub_get_boiler_max_power_fan = config["econet_get"]["sub_get_boiler_max_power_fan"].as<std::string>();
+    econet_mqtt.sub_get_boiler_mid_power_fan = config["econet_get"]["sub_get_boiler_mid_power_fan"].as<std::string>();
+    econet_mqtt.sub_get_boiler_min_power_fan = config["econet_get"]["sub_get_boiler_min_power_fan"].as<std::string>();
+    econet_mqtt.sub_get_room_thermostat_summer_winter_mode = config["econet_get"]["sub_get_room_thermostat_summer_winter_mode"].as<std::string>();
+    econet_mqtt.sub_get_room_thermostat_night_temp = config["econet_get"]["sub_get_room_thermostat_night_temp"].as<std::string>();
+    econet_mqtt.sub_get_room_thermostat_day_temp = config["econet_get"]["sub_get_room_thermostat_day_temp"].as<std::string>();
+    econet_mqtt.sub_get_room_thermostat_operating_mode = config["econet_get"]["sub_get_room_thermostat_operating_mode"].as<std::string>();
+    econet_mqtt.sub_get_room_thermostat_hysteresis = config["econet_get"]["sub_get_room_thermostat_hysteresis"].as<std::string>();
     std::cout << date() << "Settings Loaded" << std::endl;
 
 }
@@ -195,4 +238,182 @@ std::string Config_manager::get_room_thermostat_operating_mode()
 std::string Config_manager::get_room_thermostat_hysteresis()
 {
     return  econet_mqtt.pub_room_thermostat_hysteresis;
+}
+
+
+std::string Config_manager::sub_get_operating_status()
+{
+    return  econet_mqtt.sub_get_operating_status;
+}
+std::string Config_manager::sub_get_huw_temp()
+{
+    return  econet_mqtt.sub_get_huw_temp;
+}
+std::string Config_manager::sub_get_feeder_temp()
+{
+    return  econet_mqtt.sub_get_feeder_temp;
+}
+std::string Config_manager::sub_get_boiler_temp()
+{
+    return  econet_mqtt.sub_get_boiler_temp;
+}
+std::string Config_manager::sub_get_weather_temp()
+{
+    return  econet_mqtt.sub_get_weather_temp;
+}
+std::string Config_manager::sub_get_exhaust_temp()
+{
+    return  econet_mqtt.sub_get_exhaust_temp;
+}
+std::string Config_manager::sub_get_mixer_temp()
+{
+    return  econet_mqtt.sub_get_mixer_temp;
+}
+std::string Config_manager::sub_get_boiler_return_temp()
+{
+    return  econet_mqtt.sub_get_boiler_return_temp;
+}
+std::string Config_manager::sub_get_upper_buffer_temp()
+{
+    return  econet_mqtt.sub_get_upper_buffer_temp;
+}
+std::string Config_manager::sub_get_lower_buffer_temp()
+{
+    return  econet_mqtt.sub_get_lower_buffer_temp;
+}
+std::string Config_manager::sub_get_flame_sensor()
+{
+    return  econet_mqtt.sub_get_flame_sensor;
+}
+std::string Config_manager::sub_get_ecoster_home_temp()
+{
+    return  econet_mqtt.sub_get_ecoster_home_temp;
+}
+std::string Config_manager::sub_get_ecoster_home_temp_target()
+{
+    return  econet_mqtt.sub_get_ecoster_home_temp_target;
+}
+std::string Config_manager::sub_get_huw_temp_target()
+{
+    return  econet_mqtt.sub_get_huw_temp_target;
+}
+std::string Config_manager::sub_get_boiler_temp_target()
+{
+    return  econet_mqtt.sub_get_boiler_temp_target;
+}
+std::string Config_manager::sub_get_mixer_temp_target()
+{
+    return  econet_mqtt.sub_get_mixer_temp_target;
+}
+std::string Config_manager::sub_get_fuel_level()
+{
+    return  econet_mqtt.sub_get_fuel_level;
+}
+std::string Config_manager::sub_get_fan_out_power()
+{
+    return  econet_mqtt.sub_get_fan_out_power;
+}
+std::string Config_manager::sub_get_fan_in_power()
+{
+    return  econet_mqtt.sub_get_fan_in_power;
+}
+std::string Config_manager::sub_get_huw_pomp_state()
+{
+    return  econet_mqtt.sub_get_huw_pomp_state;
+}
+std::string Config_manager::sub_get_boiler_pomp_state()
+{
+    return  econet_mqtt.sub_get_boiler_pomp_state;
+}
+std::string Config_manager::sub_get_fuel_stream()
+{
+    return  econet_mqtt.sub_get_fuel_stream;
+}
+std::string Config_manager::sub_get_boiler_power_kw()
+{
+    return  econet_mqtt.sub_get_boiler_power_kw;
+}
+std::string Config_manager::sub_get_power_max_time()
+{
+    return  econet_mqtt.sub_get_power_max_time;
+}
+std::string Config_manager::sub_get_power_medium_time()
+{
+    return  econet_mqtt.sub_get_power_medium_time;
+}
+std::string Config_manager::sub_get_power_min_time()
+{
+    return  econet_mqtt.sub_get_power_min_time;
+}
+std::string Config_manager::sub_get_feeder_time()
+{
+    return  econet_mqtt.sub_get_feeder_time;
+}
+std::string Config_manager::sub_get_ignitions()
+{
+    return  econet_mqtt.sub_get_ignitions;
+}
+std::string Config_manager::sub_get_ignitions_fails()
+{
+    return  econet_mqtt.sub_get_ignitions_fails;
+}
+std::string Config_manager::sub_get_huw_pump_mode()
+{
+    return  econet_mqtt.sub_get_huw_pump_mode;
+}
+std::string Config_manager::sub_get_huw_temp_hysteresis()
+{
+    return  econet_mqtt.sub_get_huw_temp_hysteresis;
+}
+std::string Config_manager::sub_get_huw_container_disinfection()
+{
+    return  econet_mqtt.sub_get_huw_container_disinfection;
+}
+std::string Config_manager::sub_get_boiler_on_off()
+{
+    return  econet_mqtt.sub_get_boiler_on_off;
+}
+std::string Config_manager::sub_get_boiler_max_power_kw()
+{
+    return  econet_mqtt.sub_get_boiler_max_power_kw;
+}
+std::string Config_manager::sub_get_boiler_mid_power_kw()
+{
+    return  econet_mqtt.sub_get_boiler_mid_power_kw;
+}
+std::string Config_manager::sub_get_boiler_min_power_kw()
+{
+    return  econet_mqtt.sub_get_boiler_min_power_kw;
+}
+std::string Config_manager::sub_get_boiler_max_power_fan()
+{
+    return  econet_mqtt.sub_get_boiler_max_power_fan;
+}
+std::string Config_manager::sub_get_boiler_mid_power_fan()
+{
+    return  econet_mqtt.sub_get_boiler_mid_power_fan;
+}
+std::string Config_manager::sub_get_boiler_min_power_fan()
+{
+    return  econet_mqtt.sub_get_boiler_min_power_fan;
+}
+std::string Config_manager::sub_get_room_thermostat_summer_winter_mode()
+{
+    return  econet_mqtt.sub_get_room_thermostat_summer_winter_mode;
+}
+std::string Config_manager::sub_get_room_thermostat_night_temp()
+{
+    return  econet_mqtt.sub_get_room_thermostat_night_temp;
+}
+std::string Config_manager::sub_get_room_thermostat_day_temp()
+{
+    return  econet_mqtt.sub_get_room_thermostat_day_temp;
+}
+std::string Config_manager::sub_get_room_thermostat_operating_mode()
+{
+    return  econet_mqtt.sub_get_room_thermostat_operating_mode;
+}
+std::string Config_manager::sub_get_room_thermostat_hysteresis()
+{
+    return  econet_mqtt.sub_get_room_thermostat_hysteresis;
 }

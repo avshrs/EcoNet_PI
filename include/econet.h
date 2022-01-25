@@ -3,10 +3,13 @@
 #include "vars.h"
 #include "USB_serial.h"
 #include <chrono>
+#include "Config_manager.h"
+class Mqtt_Client;
 class EcoNet{
     private:
         USB_serial serial;
-      
+        Mqtt_Client mqtt;
+        Config_manager *cfg;
         Econet_Mqtt econet_set_values;
         
         std::chrono::high_resolution_clock timer;
@@ -15,6 +18,10 @@ class EcoNet{
         Ecomax920_payload ecomax920_payload;
         Ecoster_payload ecoster_payload;
         Econet_payload  econet_payload;
+
+        Ecomax920_payload ecomax920_buffer;
+        Ecoster_payload ecoster_buffer;
+        Econet_payload  econet_buffer;
 
         uint8_t frame_begin = 0x68;
         uint8_t frame_end = 0x16;
@@ -55,7 +62,8 @@ class EcoNet{
     public:
         void init(std::string serialName, int boudrate, int lead_zero);
         void run();
-       
+        void register_mqtt(Mqtt_Client *mqtt_);
+        void register_cfg(Config_manager *cfg_);
     private:
         void print_buffer(uint8_t *buf, int len);
         std::string date();
@@ -70,39 +78,40 @@ class EcoNet{
         
         uint8_t crc(std::vector<uint8_t> &message);
         uint8_t crc_set(std::vector<uint8_t> &message);
+        void update_statuses();
     public:
         std::string get_operating_status();
         
-        float get_huw_temp();
-        float get_feader_temp();
-        float get_boiler_temp();
-        float get_weather_temp();
-        float get_exhaust_temp();
-        float get_mixer_temp();
-        float get_boiler_return_temp();
-        float get_upper_buffer_temp();
-        float get_lower_buffer_temp();
-        float get_flame_sensor();
+        std::string get_huw_temp();
+        std::string get_feeder_temp();
+        std::string get_boiler_temp();
+        std::string get_weather_temp();
+        std::string get_exhaust_temp();
+        std::string get_mixer_temp();
+        std::string get_boiler_return_temp();
+        std::string get_upper_buffer_temp();
+        std::string get_lower_buffer_temp();
+        std::string get_flame_sensor();
 
-        float get_ecoster_home_temp();
-        float get_ecoster_home_temp_target();
+        std::string get_ecoster_home_temp();
+        std::string get_ecoster_home_temp_target();
 
-        uint8_t get_huw_temp_target();
-        uint8_t get_boiler_temp_target();
-        uint8_t get_mixer_temp_target();
-        uint8_t get_fuel_level();
-        uint8_t get_fan_out_power();
-        uint8_t get_fan_in_power();
-        uint8_t get_huw_pomp_state();
-        uint8_t get_boiler_pomp_state();
-        float get_fuel_stream();
-        float get_boiler_power_kw();
-        short get_power_max_time();
-        short get_power_medium_time();
-        short get_power_min_time();
-        short get_feader_time();
-        short get_ignisions();
-        short get_ignisions_fails();
+        std::string get_huw_temp_target();
+        std::string get_boiler_temp_target();
+        std::string get_mixer_temp_target();
+        std::string get_fuel_level();
+        std::string get_fan_out_power();
+        std::string get_fan_in_power();
+        std::string get_huw_pomp_state();
+        std::string get_boiler_pomp_state();
+        std::string get_fuel_stream();
+        std::string get_boiler_power_kw();
+        std::string get_power_max_time();
+        std::string get_power_medium_time();
+        std::string get_power_min_time();
+        std::string get_feeder_time();
+        std::string get_ignitions();
+        std::string get_ignitions_fails();
 
     public:
         std::string get_huw_pump_mode();

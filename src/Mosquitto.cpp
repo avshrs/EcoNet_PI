@@ -123,8 +123,7 @@ void Mqtt_Client::register_econet(EcoNet *econet_){
     econet = econet_;
 }
 
-void Mqtt_Client::pub_door_state(std::string msg){
-    std::string pub = cfg->get_mqtt_Pubstring();
+void Mqtt_Client::pub_state(std::string msg, std::string pub){
     publish(NULL, pub.c_str(), msg.length(), msg.c_str());
 }
 

@@ -21,7 +21,7 @@ public:
     EcoNet *econet;
     Config_manager *cfg;
     std::string date();
-    void pub_door_state(std::string msg);
+    void pub_state(std::string msg, std::string pub);
     void pub_in_state(int out, bool sate);
     void register_econet(EcoNet *econet_);
     void register_config(Config_manager* cfg_);
