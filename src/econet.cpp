@@ -51,7 +51,7 @@ void EcoNet::run()
             
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
-                    
+                    std::cout<<"dupa"<<std::endl;
                     print_buffer(header.data(), header.size());
                     print_buffer(payload.data(), payload.size());
                     //ecomax live data
