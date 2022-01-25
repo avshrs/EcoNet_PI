@@ -4,7 +4,9 @@
 #include "USB_serial.h"
 #include <chrono>
 #include "Config_manager.h"
+
 class Mqtt_Client{};
+
 class EcoNet{
     private:
         USB_serial serial;
@@ -34,7 +36,6 @@ class EcoNet{
         uint8_t econet_set_write_frame = 0x56; //??
 
         uint8_t eco____address = 0x50; //??
-
 
         uint8_t ecomax_address = 0x45;
         uint8_t ecomax_frame = 0x08; // broadcast with live data 

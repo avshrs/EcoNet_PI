@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Mosquitto.h"
 
+
 void EcoNet::init(std::string serialName, int boudrate, int lead_zero)
 {
         serial.serial_open(serialName.c_str(), boudrate, lead_zero);
@@ -1025,7 +1026,6 @@ void EcoNet::update_statuses()
         ecoster_buffer.home_temp_target = ecoster_payload.home_temp_target;
     }
 
-
     if (ecoster_buffer.home_temp != ecoster_payload.home_temp)
     {
         mqtt.pub_state(get_ecoster_home_temp(), cfg->sub_get_ecoster_home_temp());
@@ -1037,7 +1037,6 @@ void EcoNet::update_statuses()
         mqtt.pub_state(get_huw_pump_mode(), cfg->sub_get_huw_pump_mode());
         econet_set_values.sub_get_huw_pump_mode = econet_set_buffer.sub_get_huw_pump_mode;
     }    
-
        
     if (econet_set_values.sub_get_huw_temp_hysteresis != econet_set_values.sub_get_huw_temp_hysteresis)
     {
@@ -1045,13 +1044,11 @@ void EcoNet::update_statuses()
         econet_set_values.sub_get_huw_temp_hysteresis = econet_set_buffer.sub_get_huw_temp_hysteresis;
     }    
 
-
     if (econet_set_values.sub_get_huw_container_disinfection != econet_set_values.sub_get_huw_container_disinfection)
     {
         mqtt.pub_state(get_huw_container_disinfection(), cfg->sub_get_huw_container_disinfection());
         econet_set_values.sub_get_huw_container_disinfection = econet_set_buffer.sub_get_huw_container_disinfection;
     }    
-
 
     if (econet_set_values.sub_get_boiler_on_off != econet_set_values.sub_get_boiler_on_off)
     {
@@ -1059,13 +1056,11 @@ void EcoNet::update_statuses()
         econet_set_values.sub_get_boiler_on_off = econet_set_buffer.sub_get_boiler_on_off;
     }    
 
-
     if (econet_set_values.sub_get_boiler_max_power_kw != econet_set_values.sub_get_boiler_max_power_kw)
     {
         mqtt.pub_state(get_boiler_max_power_kw(), cfg->sub_get_boiler_max_power_kw());
         econet_set_values.sub_get_boiler_max_power_kw = econet_set_buffer.sub_get_boiler_max_power_kw;
     }    
-
 
     if (econet_set_values.sub_get_boiler_mid_power_kw != econet_set_values.sub_get_boiler_mid_power_kw)
     {
@@ -1073,13 +1068,11 @@ void EcoNet::update_statuses()
         econet_set_values.sub_get_boiler_mid_power_kw = econet_set_buffer.sub_get_boiler_mid_power_kw;
     }    
 
-
     if (econet_set_values.sub_get_boiler_min_power_kw != econet_set_values.sub_get_boiler_min_power_kw)
     {
         mqtt.pub_state(get_boiler_min_power_kw(), cfg->sub_get_boiler_min_power_kw());
         econet_set_values.sub_get_boiler_min_power_kw = econet_set_buffer.sub_get_boiler_min_power_kw;
     }    
-
 
     if (econet_set_values.sub_get_boiler_max_power_fan != econet_set_values.sub_get_boiler_max_power_fan)
     {
@@ -1087,13 +1080,11 @@ void EcoNet::update_statuses()
         econet_set_values.sub_get_boiler_max_power_fan = econet_set_buffer.sub_get_boiler_max_power_fan;
     }    
 
-
     if (econet_set_values.sub_get_boiler_mid_power_fan != econet_set_values.sub_get_boiler_mid_power_fan)
     {
         mqtt.pub_state(get_boiler_mid_power_fan(), cfg->sub_get_boiler_mid_power_fan());
         econet_set_values.sub_get_boiler_mid_power_fan = econet_set_buffer.sub_get_boiler_mid_power_fan;
     }    
-
 
     if (econet_set_values.sub_get_boiler_min_power_fan != econet_set_values.sub_get_boiler_min_power_fan)
     {
@@ -1101,13 +1092,11 @@ void EcoNet::update_statuses()
         econet_set_values.sub_get_boiler_min_power_fan = econet_set_buffer.sub_get_boiler_min_power_fan;
     }    
 
-
     if (econet_set_values.sub_get_room_thermostat_summer_winter_mode != econet_set_values.sub_get_room_thermostat_summer_winter_mode)
     {
         mqtt.pub_state(get_room_thermostat_summer_winter_mode(), cfg->sub_get_room_thermostat_summer_winter_mode());
         econet_set_values.sub_get_room_thermostat_summer_winter_mode = econet_set_buffer.sub_get_room_thermostat_summer_winter_mode;
     }    
-
 
     if (econet_set_values.sub_get_room_thermostat_night_temp != econet_set_values.sub_get_room_thermostat_night_temp)
     {
@@ -1115,13 +1104,11 @@ void EcoNet::update_statuses()
         econet_set_values.sub_get_room_thermostat_night_temp = econet_set_buffer.sub_get_room_thermostat_night_temp;
     }    
 
-
     if (econet_set_values.sub_get_room_thermostat_day_temp != econet_set_values.sub_get_room_thermostat_day_temp)
     {
         mqtt.pub_state(get_room_thermostat_day_temp(), cfg->sub_get_room_thermostat_day_temp());
         econet_set_values.sub_get_room_thermostat_day_temp = econet_set_buffer.sub_get_room_thermostat_day_temp;
     }    
-
 
     if (econet_set_values.sub_get_room_thermostat_operating_mode != econet_set_values.sub_get_room_thermostat_operating_mode)
     {
@@ -1134,7 +1121,4 @@ void EcoNet::update_statuses()
         mqtt.pub_state(get_room_thermostat_hysteresis(), cfg->sub_get_room_thermostat_hysteresis());
         econet_set_values.sub_get_room_thermostat_hysteresis = econet_set_buffer.sub_get_room_thermostat_hysteresis;
     }    
-
-
-
 }
