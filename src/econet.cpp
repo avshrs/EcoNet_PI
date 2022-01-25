@@ -115,7 +115,7 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
         std::cout << std::setfill('0') << std::hex;
         std::cout << static_cast<int>(buf[i]);
         }
-    std::cout <<" | \n";
+    std::cout <<" | \n"<<std::endl;
 }
 
 std::string EcoNet::date()
