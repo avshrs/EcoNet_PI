@@ -18,10 +18,12 @@ class EcoNet{
         Ecomax920_payload ecomax920_payload;
         Ecoster_payload ecoster_payload;
         Econet_payload  econet_payload;
+        
 
         Ecomax920_payload ecomax920_buffer;
         Ecoster_payload ecoster_buffer;
         Econet_payload  econet_buffer;
+        Econet_Mqtt econet_set_buffer;
 
         uint8_t frame_begin = 0x68;
         uint8_t frame_end = 0x16;

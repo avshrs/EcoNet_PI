@@ -1034,100 +1034,107 @@ void EcoNet::update_statuses()
 
     if (econet_set_values.sub_get_huw_pump_mode != econet_set_values.sub_get_huw_pump_mode)
     {
-        mqtt.pub_state(sub_get_huw_pump_mode(), cfg->sub_());
-        econet_set_values.sub_get_huw_pump_mode = ecoster_payload.sub_get_huw_pump_mode;
+        mqtt.pub_state(get_huw_pump_mode(), cfg->sub_get_huw_pump_mode());
+        econet_set_values.sub_get_huw_pump_mode = econet_set_buffer.sub_get_huw_pump_mode;
     }    
 
        
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_huw_temp_hysteresis != econet_set_values.sub_get_huw_temp_hysteresis)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_huw_temp_hysteresis(), cfg->sub_get_huw_temp_hysteresis());
+        econet_set_values.sub_get_huw_temp_hysteresis = econet_set_buffer.sub_get_huw_temp_hysteresis;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_huw_container_disinfection != econet_set_values.sub_get_huw_container_disinfection)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_huw_container_disinfection(), cfg->sub_get_huw_container_disinfection());
+        econet_set_values.sub_get_huw_container_disinfection = econet_set_buffer.sub_get_huw_container_disinfection;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_on_off != econet_set_values.sub_get_boiler_on_off)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_on_off(), cfg->sub_get_boiler_on_off());
+        econet_set_values.sub_get_boiler_on_off = econet_set_buffer.sub_get_boiler_on_off;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_max_power_kw != econet_set_values.sub_get_boiler_max_power_kw)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_max_power_kw(), cfg->sub_get_boiler_max_power_kw());
+        econet_set_values.sub_get_boiler_max_power_kw = econet_set_buffer.sub_get_boiler_max_power_kw;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_mid_power_kw != econet_set_values.sub_get_boiler_mid_power_kw)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_mid_power_kw(), cfg->sub_get_boiler_mid_power_kw());
+        econet_set_values.sub_get_boiler_mid_power_kw = econet_set_buffer.sub_get_boiler_mid_power_kw;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_min_power_kw != econet_set_values.sub_get_boiler_min_power_kw)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_min_power_kw(), cfg->sub_get_boiler_min_power_kw());
+        econet_set_values.sub_get_boiler_min_power_kw = econet_set_buffer.sub_get_boiler_min_power_kw;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_max_power_fan != econet_set_values.sub_get_boiler_max_power_fan)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_max_power_fan(), cfg->sub_get_boiler_max_power_fan());
+        econet_set_values.sub_get_boiler_max_power_fan = econet_set_buffer.sub_get_boiler_max_power_fan;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_mid_power_fan != econet_set_values.sub_get_boiler_mid_power_fan)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_mid_power_fan(), cfg->sub_get_boiler_mid_power_fan());
+        econet_set_values.sub_get_boiler_mid_power_fan = econet_set_buffer.sub_get_boiler_mid_power_fan;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_boiler_min_power_fan != econet_set_values.sub_get_boiler_min_power_fan)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_boiler_min_power_fan(), cfg->sub_get_boiler_min_power_fan());
+        econet_set_values.sub_get_boiler_min_power_fan = econet_set_buffer.sub_get_boiler_min_power_fan;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_room_thermostat_summer_winter_mode != econet_set_values.sub_get_room_thermostat_summer_winter_mode)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_room_thermostat_summer_winter_mode(), cfg->sub_get_room_thermostat_summer_winter_mode());
+        econet_set_values.sub_get_room_thermostat_summer_winter_mode = econet_set_buffer.sub_get_room_thermostat_summer_winter_mode;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_room_thermostat_night_temp != econet_set_values.sub_get_room_thermostat_night_temp)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_room_thermostat_night_temp(), cfg->sub_get_room_thermostat_night_temp());
+        econet_set_values.sub_get_room_thermostat_night_temp = econet_set_buffer.sub_get_room_thermostat_night_temp;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_room_thermostat_day_temp != econet_set_values.sub_get_room_thermostat_day_temp)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_room_thermostat_day_temp(), cfg->sub_get_room_thermostat_day_temp());
+        econet_set_values.sub_get_room_thermostat_day_temp = econet_set_buffer.sub_get_room_thermostat_day_temp;
     }    
 
 
-    if (econet_set_values._________ != econet_set_values.____________)
+    if (econet_set_values.sub_get_room_thermostat_operating_mode != econet_set_values.sub_get_room_thermostat_operating_mode)
     {
-        mqtt.pub_state(___________(), cfg->sub_());
-        econet_set_values.__________ = ecoster_payload._____________;
+        mqtt.pub_state(get_room_thermostat_operating_mode(), cfg->sub_get_room_thermostat_operating_mode());
+        econet_set_values.sub_get_room_thermostat_operating_mode = econet_set_buffer.sub_get_room_thermostat_operating_mode;
+    }
+       
+    if (econet_set_values.sub_get_room_thermostat_hysteresis != econet_set_values.sub_get_room_thermostat_hysteresis)
+    {
+        mqtt.pub_state(get_room_thermostat_hysteresis(), cfg->sub_get_room_thermostat_hysteresis());
+        econet_set_values.sub_get_room_thermostat_hysteresis = econet_set_buffer.sub_get_room_thermostat_hysteresis;
     }    
+
 
 
 }
