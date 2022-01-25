@@ -845,7 +845,7 @@ std::string EcoNet::get_room_thermostat_hysteresis()
 }
 void EcoNet::register_mqtt(Mqtt_Client *mqtt_)
 {
-    mqtt = mqtt;
+    mqtt = mqtt_;
 }
 void EcoNet::register_cfg(Config_manager *cfg_)
 {
