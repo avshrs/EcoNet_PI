@@ -264,7 +264,7 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
 }
 void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
 {   
-    ecomax920_payload.operating_status = payload.at(29);
+    ecomax920_payload.operating_status = payload.at(29); 
     ecomax920_payload.huw_temp = retrun_float(payload, 78);      
     ecomax920_payload.mixer_temp = retrun_float(payload, 82);                                             
     ecomax920_payload.weather_temp = retrun_float(payload, 86);  
@@ -276,9 +276,9 @@ void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
     ecomax920_payload.upper_buffer_temp = retrun_float(payload, 110); 
     ecomax920_payload.lower_buffer_temp = retrun_float(payload, 114); 
     
-    ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(166));
+    ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(166)); ///?????
     ecomax920_payload.boiler_temp_target = static_cast<int>(payload.at(172));
-    ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
+    ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));//????
     ecomax920_payload.huw_pomp_state = static_cast<int>(payload.at(194));
     ecomax920_payload.boiler_pomp_state = static_cast<int>(payload.at(265));
     ecomax920_payload.fuel_level = static_cast<int>(payload.at(217));
