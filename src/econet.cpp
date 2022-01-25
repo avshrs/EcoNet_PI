@@ -96,7 +96,7 @@ void EcoNet::run()
                 if (trigger == true )
                 {
                     set_room_thermostat_hysteresis(0.5);
-                    trigger = false
+                    trigger = false;
                 }
                 
             }
