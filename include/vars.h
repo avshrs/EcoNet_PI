@@ -69,7 +69,7 @@ struct Econet_Mqtt
     std::string sub_get_room_thermostat_night_temp;
     std::string sub_get_room_thermostat_day_temp;
     std::string sub_get_room_thermostat_operating_mode;
-    std::string sub_get_room_thermostat_hysteresis;
+    std::string sub_get_room_thermostat_hysteresis="0.5";
 };
 
 
