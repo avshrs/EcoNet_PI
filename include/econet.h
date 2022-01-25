@@ -5,12 +5,12 @@
 #include <chrono>
 #include "Config_manager.h"
 
-class Mqtt_Client{};
+class Mqtt_Client;
 
 class EcoNet{
     private:
         USB_serial serial;
-        Mqtt_Client mqtt;
+        Mqtt_Client *mqtt;
         Config_manager *cfg;
         Econet_Mqtt econet_set_values;
         
