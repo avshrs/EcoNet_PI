@@ -104,7 +104,7 @@ void EcoNet::run()
 
 void EcoNet::print_buffer(uint8_t *buf, int len)
 {   //debug tool
-    std::cout << date()<< "Len: "<< std::dec <<len << "|";
+    std::cerr  << date()<< "Len: "<< std::dec <<len << "|";
     for(int i = 0; i < len  ; i++)
         {
         std::cout << " 0x" << std::setw(2);
