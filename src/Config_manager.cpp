@@ -30,9 +30,6 @@ void Config_manager::read_config(){
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
     
-    mqtt_config.Substring = config["mqtt"]["Substring"].as<std::string>();
-    mqtt_config.Pubstring = config["mqtt"]["Pubstring"].as<std::string>();
-
     eco_config.serial_file = config["econet"]["serial_file"].as<std::string>();
     eco_config.boudrate = config["econet"]["boudrate"].as<int>();
     eco_config.remove_lead_zero = config["econet"]["remove_lead_zero"].as<int>();

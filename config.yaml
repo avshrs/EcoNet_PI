@@ -2,80 +2,80 @@ econet:
     boudrate: 115200
     serial_file: /dev/ttyUSB3
     remove_lead_zero: 0
+
 mqtt:
     ClientId: EcoMax920p1
     ServerIp: 192.168.1.111
     serverPort: 1883
     username: mqttuser
     password: mqttuser
-    keepAliveTopic: ecomax_920_master
+    keepAliveTopic: EcoNet/Status
     keepAliveMsg: Online
-    Substring: ecomax_set # not used
-    Pubstring: ecomax_get # not used 
-
+ 
 econet_set:
-    pub_huw_temp: EcoNet/set_huw_temp
-    pub_huw_pump_mode: EcoNet/set_huw_pump_mode
-    pub_huw_temp_hysteresis: EcoNet/set_huw_temp_hysteresis
-    pub_huw_container_disinfection: EcoNet/set_huw_container_disinfection
-    pub_boiler_temp: EcoNet/set_boiler_temp
-    pub_boiler_on_off: EcoNet/set_boiler_on_off
-    pub_boiler_max_power_kw: EcoNet/set_boiler_max_power_kw
-    pub_boiler_mid_power_kw: EcoNet/set_boiler_mid_power_kw
-    pub_boiler_min_power_kw: EcoNet/set_boiler_min_power_kw
-    pub_boiler_max_power_fan: EcoNet/set_boiler_max_power_fan
-    pub_boiler_mid_power_fan: EcoNet/set_boiler_mid_power_fan
-    pub_boiler_min_power_fan: EcoNet/set_boiler_min_power_fan
-    pub_mixer_temp: EcoNet/set_mixer_temp
-    pub_room_thermostat_summer_winter_mode: EcoNet/set_room_thermostat_summer_winter_mode
-    pub_room_thermostat_night_temp: EcoNet/set_room_thermostat_night_temp
-    pub_room_thermostat_day_temp: EcoNet/set_room_thermostat_day_temp
-    pub_room_thermostat_operating_mode: EcoNet/set_room_thermostat_operating_mode
-    pub_room_thermostat_hysteresis: EcoNet/set_room_thermostat_hysteresis
+    pub_huw_temp: EcoNet/set/huw/temp
+    pub_huw_pump_mode: EcoNet/set/huw/pump_mode
+    pub_huw_temp_hysteresis: EcoNet/set/huw/temp_hysteresis
+    pub_huw_container_disinfection: EcoNet/set/huw/container_disinfection
+    pub_boiler_temp: EcoNet/set/boiler/temp
+    pub_boiler_on_off: EcoNet/set/boiler/on_off
+    pub_boiler_max_power_kw: EcoNet/set/boiler/max_power_kw
+    pub_boiler_mid_power_kw: EcoNet/set/boiler/mid_power_kw
+    pub_boiler_min_power_kw: EcoNet/set/boiler/min_power_kw
+    pub_boiler_max_power_fan: EcoNet/set/boiler/max_power_fan
+    pub_boiler_mid_power_fan: EcoNet/set/boiler/mid_power_fan
+    pub_boiler_min_power_fan: EcoNet/set/boiler/min_power_fan
+    pub_mixer_temp: EcoNet/set/mixer/temp
+    pub_room_thermostat_summer_winter_mode: EcoNet/set/room_thermostat/summer_winter_mode
+    pub_room_thermostat_night_temp: EcoNet/set/room_thermostat/night_temp
+    pub_room_thermostat_day_temp: EcoNet/set/room_thermostat/day_temp
+    pub_room_thermostat_operating_mode: EcoNet/set/room_thermostat/operating_mode
+    pub_room_thermostat_hysteresis: EcoNet/set/room_thermostat/hysteresis
+
 econet_get:
-    sub_get_operating_status: EcoNet/get_operating_status
-    sub_get_huw_temp: EcoNet/get_huw_temp
-    sub_get_feeder_temp: EcoNet/get_feeder_temp
-    sub_get_boiler_temp: EcoNet/get_boiler_temp
-    sub_get_weather_temp: EcoNet/get_weather_temp
-    sub_get_exhaust_temp: EcoNet/get_exhaust_temp
-    sub_get_mixer_temp: EcoNet/get_mixer_temp
-    sub_get_boiler_return_temp: EcoNet/get_boiler_return_temp
-    sub_get_upper_buffer_temp: EcoNet/get_upper_buffer_temp
-    sub_get_lower_buffer_temp: EcoNet/get_lower_buffer_temp
-    sub_get_flame_sensor: EcoNet/get_flame_sensor
-    sub_get_ecoster_home_temp: EcoNet/get_ecoster_home_temp
-    sub_get_ecoster_home_temp_target: EcoNet/get_ecoster_home_temp_target
-    sub_get_huw_temp_target: EcoNet/get_huw_temp_target
-    sub_get_boiler_temp_target: EcoNet/get_boiler_temp_target
-    sub_get_mixer_temp_target: EcoNet/get_mixer_temp_target
-    sub_get_fuel_level: EcoNet/get_fuel_level
-    sub_get_fan_out_power: EcoNet/get_fan_out_power
-    sub_get_fan_in_power: EcoNet/get_fan_in_power
-    sub_get_huw_pomp_state: EcoNet/get_huw_pomp_state
-    sub_get_boiler_pomp_state: EcoNet/get_boiler_pomp_state
-    sub_get_fuel_stream: EcoNet/get_fuel_stream
-    sub_get_boiler_power_kw: EcoNet/get_boiler_power_kw
-    sub_get_power_max_time: EcoNet/get_power_max_time
-    sub_get_power_medium_time: EcoNet/get_power_medium_time
-    sub_get_power_min_time: EcoNet/get_power_min_time
-    sub_get_feeder_time: EcoNet/get_feeder_time
-    sub_get_ignitions: EcoNet/get_ignitions
-    sub_get_ignitions_fails: EcoNet/get_ignitions_fails
-    sub_get_huw_pump_mode: EcoNet/get_huw_pump_mode
-    sub_get_huw_temp_hysteresis: EcoNet/get_huw_temp_hysteresis
-    sub_get_huw_container_disinfection: EcoNet/get_huw_container_disinfection
-    sub_get_boiler_on_off: EcoNet/get_boiler_on_off
-    sub_get_boiler_max_power_kw: EcoNet/get_boiler_max_power_kw
-    sub_get_boiler_mid_power_kw: EcoNet/get_boiler_mid_power_kw
-    sub_get_boiler_min_power_kw: EcoNet/get_boiler_min_power_kw
-    sub_get_boiler_max_power_fan: EcoNet/get_boiler_max_power_fan
-    sub_get_boiler_mid_power_fan: EcoNet/get_boiler_mid_power_fan
-    sub_get_boiler_min_power_fan: EcoNet/get_boiler_min_power_fan
-    sub_get_room_thermostat_summer_winter_mode: EcoNet/get_room_thermostat_summer_winter_mode
-    sub_get_room_thermostat_night_temp: EcoNet/get_room_thermostat_night_temp
-    sub_get_room_thermostat_day_temp: EcoNet/get_room_thermostat_day_temp
-    sub_get_room_thermostat_operating_mode: EcoNet/get_room_thermostat_operating_mode
-    sub_get_room_thermostat_hysteresis: EcoNet/get_room_thermostat_hysteresis
+    sub_get/operating_status: EcoNet/get/boiler/operating_status
+    sub_get/huw_temp: EcoNet/get/huw/temp
+    sub_get/feeder_temp: EcoNet/get/boiler/feeder_temp
+    sub_get/boiler_temp: EcoNet/get/boiler/boiler_temp
+    sub_get/weather_temp: EcoNet/get/huw/weather_temp
+    sub_get/exhaust_temp: EcoNet/get/boiler/exhaust_temp
+    sub_get/mixer_temp: EcoNet/get/mixer/temp
+    sub_get/boiler_return_temp: EcoNet/get/boiler/return_temp
+    sub_get/upper_buffer_temp: EcoNet/get/huw/upper_buffer_temp
+    sub_get/lower_buffer_temp: EcoNet/get/huw/lower_buffer_temp
+    sub_get/flame_sensor: EcoNet/get/boiler/flame_sensor
+    sub_get/ecoster_home_temp: EcoNet/get/room_thermostat/ecoster_home_temp
+    sub_get/ecoster_home_temp_target: EcoNet/get/room_thermostat/ecoster_home_temp_target
+    sub_get/huw_temp_target: EcoNet/get/huw/temp_target
+    sub_get/boiler_temp_target: EcoNet/get/boiler/temp_target
+    sub_get/mixer_temp_target: EcoNet/get/mixer/temp_target
+    sub_get/fuel_level: EcoNet/get/boiler/fuel_level
+    sub_get/fan_out_power: EcoNet/get/boiler/fan_out_power
+    sub_get/fan_in_power: EcoNet/get/boiler/fan_in_power
+    sub_get/huw_pomp_state: EcoNet/get/huw/pomp_state
+    sub_get/boiler_pomp_state: EcoNet/get/boiler/pomp_state
+    sub_get/fuel_stream: EcoNet/get/boiler/fuel_stream
+    sub_get/boiler_power_kw: EcoNet/get/boiler/boiler_power_kw
+    sub_get/power_max_time: EcoNet/get/boiler/power_max_time
+    sub_get/power_medium_time: EcoNet/get/boiler/power_medium_time
+    sub_get/power_min_time: EcoNet/get/boiler/power_min_time
+    sub_get/feeder_time: EcoNet/get/boiler/feeder_time
+    sub_get/ignitions: EcoNet/get/boiler/ignitions
+    sub_get/ignitions_fails: EcoNet/get/boiler/ignitions_fails
+    sub_get/huw_pump_mode: EcoNet/get/huw/pump_mode
+    sub_get/huw_temp_hysteresis: EcoNet/get/huw/temp_hysteresis
+    sub_get/huw_container_disinfection: EcoNet/get/huw/container_disinfection
+    sub_get/boiler_on_off: EcoNet/get/boiler/on_off
+    sub_get/boiler_max_power_kw: EcoNet/get/boiler/max_power_kw
+    sub_get/boiler_mid_power_kw: EcoNet/get/boiler/mid_power_kw
+    sub_get/boiler_min_power_kw: EcoNet/get/boiler/min_power_kw
+    sub_get/boiler_max_power_fan: EcoNet/get/boiler/max_power_fan
+    sub_get/boiler_mid_power_fan: EcoNet/get/boiler/mid_power_fan
+    sub_get/boiler_min_power_fan: EcoNet/get/boiler/min_power_fan
+    sub_get/room_thermostat_summer_winter_mode: EcoNet/get/room_thermostat/summer_winter_mode
+    sub_get/room_thermostat_night_temp: EcoNet/get/room_thermostat/night_temp
+    sub_get/room_thermostat_day_temp: EcoNet/get/room_thermostat/day_temp
+    sub_get/room_thermostat_operating_mode: EcoNet/get/room_thermostat/operating_mode
+    sub_get/room_thermostat_hysteresis: EcoNet/get/room_thermostat/hysteresis
 
 

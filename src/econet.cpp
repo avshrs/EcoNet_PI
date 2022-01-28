@@ -50,6 +50,8 @@ void EcoNet::run()
                 else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
                 {
                     //ecomax live data
+                    memcpy(&ecomax_920_frame, message.data(), message.size()*sizeof(uint8_t));
+                    
                     analyze_frame_ecomax_920P1(payload);
                     update_statuses();
                 }
@@ -58,7 +60,6 @@ void EcoNet::run()
                     //ecomax stored settings 
                     analyze_frame_ecomax_920P1_settings(message);
                     update_statuses();
-                       
                 }
                 else if(header.at(4)==econet_address) // debug
                 // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
@@ -220,7 +221,7 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
 
      econet_set_values.pub_huw_pump_mode = value;
 
-     float tmp = static_cast<int>(payload.at(187))/10;
+     float tmp = (static_cast<int>(payload.at(187)))/10;
      value = std::to_string(tmp);
      econet_set_values.pub_huw_temp_hysteresis = value;
      
@@ -724,7 +725,7 @@ void EcoNet::set_room_thermostat_hysteresis(float hysteresis)
     }
     else
     {
-        std::cout<< date() << "set_room_thermostat_hysteresis out of range 1 - 30" <<std::endl;
+        std::cout<< date() << "set_room_thermostat_hysteresis out of range 0 - 5" <<std::endl;
     }
 }
 
