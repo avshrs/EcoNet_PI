@@ -35,10 +35,22 @@ void EcoNet::run()
         memcpy(&ecomax_header, header.data(), header.size());
 
         print_buffer(header.data(), header.size());
+        std::cout << " 0x" << std::setw(2);
+        std::cout << std::setfill('0') << std::hex;
+        std::cout << static_cast<int>(ecomax_header.frame_begine);
+        std::cout<<std::endl;
         std::cout << std::dec;
         std::cout << static_cast<short>(ecomax_header.frame_size);
         std::cout<<std::endl;
-
+        std::cout << " 0x" << std::setw(2);
+        std::cout << std::setfill('0') << std::hex;
+        std::cout << static_cast<int>(ecomax_header.dst_address);
+        std::cout<<std::endl;
+        std::cout << " 0x" << std::setw(2);
+        std::cout << std::setfill('0') << std::hex;
+        std::cout << static_cast<int>(ecomax_header.src_address);
+        std::cout<<std::endl;
+        
         if(ecomax_header.frame_begine == frame_begin)
         {
             for(int i =0 ; i< ecomax_header.frame_size - 8; i++)
