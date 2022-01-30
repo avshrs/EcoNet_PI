@@ -127,7 +127,7 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
   
     for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
     {
-        if(payload.at(i) =! deb1.at(i))
+        if(payload.at(i) != deb1.at(i))
         {
             std::cout << " 0x" << std::setw(2);
             std::cout << std::setfill('0') << std::hex;
