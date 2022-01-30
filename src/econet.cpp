@@ -340,10 +340,10 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
 //     ecomax920_payload.ignitions_fails = retrun_short(payload, 276);
 // }
 
-void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
-{   
+// void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
+// {   
 
-}
+// }
 
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
