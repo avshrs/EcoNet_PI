@@ -125,7 +125,7 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
 void EcoNet::show_diff(std::vector<uint8_t> payload)
 {   //debug tool
   
-    for(int i = 0; i <  payload.size() ; i++)
+    for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
     {
         if(payload.at(i) =! deb1.at(i))
         {
