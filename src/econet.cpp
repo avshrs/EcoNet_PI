@@ -21,7 +21,9 @@ void EcoNet::run()
     payload.reserve(400);
     std::vector<uint8_t> message;
     message.reserve(400);
-    bool trigger = true;
+
+
+
     auto start = timer.now();
     while (true)
     {
@@ -30,50 +32,55 @@ void EcoNet::run()
         message.clear();
         
         serial.serial_read_bytes(header, 8); 
-        
-        if(header.at(0)==frame_begin)
+        memcpy(&ecomax_header, header.data(), header.size()*sizeof(uint8_t));
+        if(ecomax_header.frame_begine == frame_begin)
         {
-            short paylod_len = ((header.at(1)) | (header.at(2)<<8));
-            for(int i =0 ; i< paylod_len - 8; i++)
+            for(int i =0 ; i< ecomax_header.frame_size - 8; i++)
                 serial.serial_read_byte(payload);
 
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
+            
             print_buffer(header.data(), header.size());
             print_buffer(payload.data(), payload.size());
+
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                if(header.at(4)==eco____address )
+                if(ecomax_header.src_address == eco____address )
                 {
                     // not known frame
                 }
             
-                else if(header.at(4)==ecomax_address && header.at(7)==ecomax_frame)
+                else if(ecomax_header.src_address == ecomax_address 
+                    && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
                     //ecomax live data
-                    memcpy(&ecomax_920_frame, message.data(), message.size()*sizeof(uint8_t));
-
+                    memcpy(&ecomax_920_frame, payload.data(), payload.size()*sizeof(uint8_t));
+                    show_diff(payload);
                     analyze_frame_ecomax_920P1(payload);
                     update_statuses();
                 }
-                else if(header.at(4)==ecomax_address && header.at(7)==ecomax_settings_frame)
+                else if(ecomax_header.src_address == ecomax_address 
+                    && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
                     //ecomax stored settings 
+                   
                     analyze_frame_ecomax_920P1_settings(message);
                     update_statuses();
                 }
-                else if(header.at(4)==econet_address) // debug
-                // else if(header.at(4)==econet_address && header.at(7)==econet_frame)
+                else if(ecomax_header.src_address == econet_address) // debug
                 {  
                     //econet frames used to get set addresses  
                 }   
-                else if(header.at(4)==ecoster_address && header.at(7)==ecoster_frame)
+                else if(ecomax_header.src_address == ecoster_address
+                    && ecomax_header.payload_type == ecoster_frame)
                 {
                     //ecoster touch live frame 
                     analyze_frame_ecoster(payload);
                     update_statuses();
                 }            
-                else if(header.at(4)==ecoster_address && header.at(7)==ecoster_settings_frame)
+                else if(ecomax_header.src_address == ecoster_address 
+                    && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     //ecoster touch stored settings
                     analyze_frame_ecoster_settings(message);
@@ -95,11 +102,6 @@ void EcoNet::run()
                     set_huw_temp(temp);
                     start = timer.now();
                 }
-                if (trigger == true )
-                {
-                    set_room_thermostat_hysteresis(0.5);
-                    trigger = false;
-                }
                 
             }
         }
@@ -118,6 +120,42 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
         }
     std::cout <<" | \n";
 }
+
+
+void EcoNet::show_diff(std::vector<uint8_t> payload)
+{   //debug tool
+  
+    for(int i = 0; i <  payload.size() ; i++)
+    {
+        if(payload.at(i) =! deb1.at(i))
+        {
+            std::cout << " 0x" << std::setw(2);
+            std::cout << std::setfill('0') << std::hex;
+            std::cout << static_cast<int>(payload.at(i));
+            
+            std::cout << " 0x" << std::setw(2);
+            std::cout << std::setfill('0') << std::hex;
+            std::cout << static_cast<int>(deb1.at(i));
+            
+            std::cout << " 0x" << std::setw(2);
+            std::cout << std::setfill('0') << std::hex;
+            std::cout << static_cast<int>(deb2.at(i));
+            
+            std::cout << " 0x" << std::setw(2);
+            std::cout << std::setfill('0') << std::hex;
+            std::cout << static_cast<int>(deb3.at(i));
+            std::cout <<"\n";
+
+        }
+       
+    }
+    deb3=deb2;
+    deb2=deb1;
+    deb1=payload;
+    
+}
+
+
 
 std::string EcoNet::date()
 {   //for debug 

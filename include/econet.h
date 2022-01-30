@@ -14,11 +14,19 @@ class EcoNet{
         Config_manager *cfg;
         Econet_Mqtt econet_set_values;
         
+        std::vector<uint8_t> deb1;
+        std::vector<uint8_t> deb2;
+        std::vector<uint8_t> deb3;
+
         std::chrono::high_resolution_clock timer;
         using mi = std::chrono::duration<float, std::micro>;
         
-        Ecomax_920_Frame ecomax_920_frame;
+        //test
+        Ecomax_920_Frame_Header ecomax_header;
+        Ecomax_920_Live_Data_Frame_payload ecomax_920_frame;
+
         Ecomax920_payload ecomax920_payload;
+        
         Ecoster_payload ecoster_payload;
 
         Ecomax920_payload ecomax920_buffer;
@@ -36,8 +44,8 @@ class EcoNet{
 
         uint8_t eco____address = 0x50; //??
 
-        uint8_t ecomax_address = 0x45;
-        uint8_t ecomax_frame = 0x08; // broadcast with live data 
+        uint8_t ecomax_address = 0x45; // master address
+        uint8_t ecomax_live_data_frame = 0x08; // broadcast with live data 
         uint8_t ecomax_frame2 = 0x35; // some kind of broadcast 
         uint8_t ecomax_frame3 = 0x0a; // ask slaves for data / hartbeet  
         uint8_t ecomax_settings_frame = 0xe1; 
@@ -67,7 +75,9 @@ class EcoNet{
         void register_mqtt(Mqtt_Client *mqtt_);
         void register_cfg(Config_manager *cfg_);
     private:
+
         void print_buffer(uint8_t *buf, int len);
+        void show_diff(std::vector<uint8_t> payload);
         std::string date();
         void analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload);
         void analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload);
