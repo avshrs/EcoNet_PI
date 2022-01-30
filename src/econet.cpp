@@ -32,7 +32,7 @@ void EcoNet::run()
         message.clear();
         
         serial.serial_read_bytes(header, 8); 
-        memcpy(&ecomax_header, header.data(), header.size()*sizeof(uint8_t));
+        memcpy(&ecomax_header, header.data(), header.size());
 
         print_buffer(header.data(), header.size());
         std::cout << std::dec;
