@@ -34,9 +34,9 @@ void EcoNet::run()
         serial.serial_read_bytes(header, 8); 
 
         print_buffer(header.data(), header.size());
-        ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
+        auto ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
         print_buffer(header.data(), header.size());
-        
+
         std::cout << " 0x" << std::setw(2);
         std::cout << std::setfill('0') << std::hex;
         std::cout << static_cast<int>(ecomax_header.frame_begine);
