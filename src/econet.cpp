@@ -33,6 +33,12 @@ void EcoNet::run()
         
         serial.serial_read_bytes(header, 8); 
         memcpy(&ecomax_header, header.data(), header.size()*sizeof(uint8_t));
+
+        std::cout << " 0x" << std::setw(2);
+        std::cout << std::setfill('0') << std::hex;
+        std::cout << static_cast<int>(ecomax_header.frame_size);
+        std::cout<<std::endl;
+
         if(ecomax_header.frame_begine == frame_begin)
         {
             for(int i =0 ; i< ecomax_header.frame_size - 8; i++)
@@ -118,7 +124,7 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
         std::cout << std::setfill('0') << std::hex;
         std::cout << static_cast<int>(buf[i]);
         }
-    std::cout <<" | \n";
+    std::cout <<" | " << std::endl;
 }
 
 
