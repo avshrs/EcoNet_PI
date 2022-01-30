@@ -36,7 +36,7 @@ void EcoNet::run()
 
         
         std::cout << std::dec;
-        std::cout << static_cast<int>(ecomax_header.frame_size);
+        std::cout << static_cast<short>(ecomax_header.frame_size);
         std::cout<<std::endl;
 
         if(ecomax_header.frame_begine == frame_begin)
