@@ -37,15 +37,13 @@ econet_get:
     sub_get_huw_temp: EcoNet/get/huw/temp
     sub_get_feeder_temp: EcoNet/get/boiler/feeder_temp
     sub_get_boiler_temp: EcoNet/get/boiler/boiler_temp
-    sub_get_weather_temp: EcoNet/get/huw/weather_temp
+    sub_get_weather_temp: EcoNet/get/weather_temp
     sub_get_exhaust_temp: EcoNet/get/boiler/exhaust_temp
     sub_get_mixer_temp: EcoNet/get/mixer/temp
     sub_get_boiler_return_temp: EcoNet/get/boiler/return_temp
     sub_get_upper_buffer_temp: EcoNet/get/huw/upper_buffer_temp
     sub_get_lower_buffer_temp: EcoNet/get/huw/lower_buffer_temp
     sub_get_flame_sensor: EcoNet/get/boiler/flame_sensor
-    sub_get_ecoster_home_temp: EcoNet/get/room_thermostat/ecoster_home_temp
-    sub_get_ecoster_home_temp_target: EcoNet/get/room_thermostat/ecoster_home_temp_target
     sub_get_huw_temp_target: EcoNet/get/huw/temp_target
     sub_get_boiler_temp_target: EcoNet/get/boiler/temp_target
     sub_get_mixer_temp_target: EcoNet/get/mixer/temp_target
@@ -72,6 +70,8 @@ econet_get:
     sub_get_boiler_max_power_fan: EcoNet/get/boiler/max_power_fan
     sub_get_boiler_mid_power_fan: EcoNet/get/boiler/mid_power_fan
     sub_get_boiler_min_power_fan: EcoNet/get/boiler/min_power_fan
+    sub_get_ecoster_home_temp: EcoNet/get/room_thermostat/ecoster_home_temp
+    sub_get_ecoster_home_temp_target: EcoNet/get/room_thermostat/ecoster_home_temp_target
     sub_get_room_thermostat_summer_winter_mode: EcoNet/get/room_thermostat/summer_winter_mode
     sub_get_room_thermostat_night_temp: EcoNet/get/room_thermostat/night_temp
     sub_get_room_thermostat_day_temp: EcoNet/get/room_thermostat/day_temp

@@ -55,9 +55,9 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
                     //ecomax live data
-                    memcpy(&ecomax_920_frame, payload.data(), payload.size()*sizeof(uint8_t));
+                    memcpy(&ecomax920_payload, payload.data(), payload.size()*sizeof(uint8_t));
                     show_diff(payload);
-                    analyze_frame_ecomax_920P1(payload);
+                    // analyze_frame_ecomax_920P1(payload);
                     update_statuses();
                 }
                 else if(ecomax_header.src_address == ecomax_address 
@@ -309,41 +309,41 @@ void EcoNet::analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload)
     //     value = "Value error";
      econet_set_values.pub_room_thermostat_summer_winter_mode = value;
 }
-void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
-{   
-    ecomax920_payload.operating_status = payload.at(29); 
-    ecomax920_payload.huw_temp = retrun_float(payload, 78);      
-    ecomax920_payload.mixer_temp = retrun_float(payload, 82);                                             
-    ecomax920_payload.weather_temp = retrun_float(payload, 86);  
-    ecomax920_payload.boiler_return_temp = retrun_float(payload, 90);   
-    ecomax920_payload.exhaust_temp = retrun_float(payload, 94); 
-    ecomax920_payload.feeder_temp = retrun_float(payload, 98);   
-    ecomax920_payload.boiler_temp = retrun_float(payload, 102);      
-    ecomax920_payload.flame_sensor = retrun_float(payload, 106);                                                   
-    ecomax920_payload.upper_buffer_temp = retrun_float(payload, 110); 
-    ecomax920_payload.lower_buffer_temp = retrun_float(payload, 114); 
-    ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(167)); 
-    ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
-    ecomax920_payload.boiler_temp_target = static_cast<int>(payload.at(172));
-    ecomax920_payload.huw_pomp_state = static_cast<int>(payload.at(194));
-    ecomax920_payload.fuel_level = static_cast<int>(payload.at(217));
-    ecomax920_payload.fan_in_power = static_cast<int>(payload.at(254));
-    ecomax920_payload.fan_out_power = static_cast<int>(payload.at(255));
-    ecomax920_payload.boiler_power_kw = retrun_float(payload, 256);
-    ecomax920_payload.fuel_stream = retrun_float(payload, 260);
-    ecomax920_payload.boiler_pomp_state = static_cast<int>(payload.at(265));
-    ecomax920_payload.power_max_time = retrun_short(payload, 266); 
-    ecomax920_payload.power_medium_time = retrun_short(payload, 268);
-    ecomax920_payload.power_min_time = retrun_short(payload, 270);
-    ecomax920_payload.feeder_time = retrun_short(payload, 272);
-    ecomax920_payload.ignitions = retrun_short(payload, 274);
-    ecomax920_payload.ignitions_fails = retrun_short(payload, 276);
-}
-
 // void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
 // {   
-
+//     ecomax920_payload.operating_status = payload.at(29); 
+//     ecomax920_payload.huw_temp = retrun_float(payload, 78);      
+//     ecomax920_payload.mixer_temp = retrun_float(payload, 82);                                             
+//     ecomax920_payload.weather_temp = retrun_float(payload, 86);  
+//     ecomax920_payload.boiler_return_temp = retrun_float(payload, 90);   
+//     ecomax920_payload.exhaust_temp = retrun_float(payload, 94); 
+//     ecomax920_payload.feeder_temp = retrun_float(payload, 98);   
+//     ecomax920_payload.boiler_temp = retrun_float(payload, 102);      
+//     ecomax920_payload.flame_sensor = retrun_float(payload, 106);                                                   
+//     ecomax920_payload.upper_buffer_temp = retrun_float(payload, 110); 
+//     ecomax920_payload.lower_buffer_temp = retrun_float(payload, 114); 
+//     ecomax920_payload.huw_temp_target = static_cast<int>(payload.at(167)); 
+//     ecomax920_payload.mixer_temp_target =  static_cast<int>(payload.at(166));
+//     ecomax920_payload.boiler_temp_target = static_cast<int>(payload.at(172));
+//     ecomax920_payload.huw_pomp_state = static_cast<int>(payload.at(194));
+//     ecomax920_payload.fuel_level = static_cast<int>(payload.at(217));
+//     ecomax920_payload.fan_in_power = static_cast<int>(payload.at(254));
+//     ecomax920_payload.fan_out_power = static_cast<int>(payload.at(255));
+//     ecomax920_payload.boiler_power_kw = retrun_float(payload, 256);
+//     ecomax920_payload.fuel_stream = retrun_float(payload, 260);
+//     ecomax920_payload.boiler_pomp_state = static_cast<int>(payload.at(265));
+//     ecomax920_payload.power_max_time = retrun_short(payload, 266); 
+//     ecomax920_payload.power_medium_time = retrun_short(payload, 268);
+//     ecomax920_payload.power_min_time = retrun_short(payload, 270);
+//     ecomax920_payload.feeder_time = retrun_short(payload, 272);
+//     ecomax920_payload.ignitions = retrun_short(payload, 274);
+//     ecomax920_payload.ignitions_fails = retrun_short(payload, 276);
 // }
+
+void EcoNet::analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload)
+{   
+
+}
 
 float EcoNet::retrun_float(std::vector<uint8_t> &payload, int p)
 {
@@ -936,6 +936,16 @@ void EcoNet::register_cfg(Config_manager *cfg_)
 {
     cfg = cfg_;
 }
+
+
+
+
+
+
+
+
+
+
 void EcoNet::update_statuses()
 {
     if (ecomax920_buffer.huw_temp != ecomax920_payload.huw_temp)
@@ -1051,10 +1061,10 @@ void EcoNet::update_statuses()
         ecomax920_buffer.fan_out_power = ecomax920_payload.fan_out_power;
     }
 
-    if (ecomax920_buffer.boiler_power != ecomax920_payload.boiler_power)
+    if (ecomax920_buffer.boiler_power != ecomax920_payload.boiler_power_kw)
     {
          mqtt->pub_state(get_boiler_power_kw(), cfg->sub_get_boiler_power_kw());
-        ecomax920_buffer.boiler_power = ecomax920_payload.boiler_power;
+        ecomax920_buffer.boiler_power = ecomax920_payload.boiler_power_kw;
     }
 
     if (ecomax920_buffer.huw_pomp_state != ecomax920_payload.huw_pomp_state)

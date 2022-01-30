@@ -10,11 +10,12 @@ sensor:
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_upper_buffer_temp
   name: "Ciepła woda top"
-  state_topic: "EcoNet/get_upper_buffer_temp"
+  state_topic: "EcoNet/get/upper_buffer_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -25,7 +26,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_lower_buffer_temp
   name: "Ciepła woda bottom"
-  state_topic: "EcoNet/get_lower_buffer_temp"
+  state_topic: "EcoNet/get/lower_buffer_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -36,73 +37,79 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_feeder_temp
   name: "Podajnik temperatura"
-  state_topic: "EcoNet/get_feeder_temp"
+  state_topic: "EcoNet/get/boiler/feeder_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_boiler_temp
   name: "Piec temperatura"
-  state_topic: "EcoNet/get_boiler_temp"
+  state_topic: "EcoNet/get/boiler/boiler_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_weather_temp
   name: "Czujnik pogodowy"
-  state_topic: "EcoNet/get_weather_temp"
+  state_topic: "EcoNet/get/weather_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_exhaust_temp
   name: "Spaliny temperatura"
-  state_topic: "EcoNet/get_exhaust_temp"
+  state_topic: "EcoNet/get/boiler/exhaust_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_mixer_temp
   name: "Zasilanie na Grzejniki temperatura"
-  state_topic: "EcoNet/get_mixer_temp"
+  state_topic: "EcoNet/get/mixer/temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_boiler_return_temp
   name: "Powrót do Pieca temperatura"
-  state_topic: "EcoNet/get_boiler_return_temp"
+  state_topic: "EcoNet/get/boiler/return_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_flame_sensor
   name: "Czujnik Płomienia"
-  state_topic: "EcoNet/get_flame_sensor"
+  state_topic: "EcoNet/get/boiler/flame_sensor"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -110,22 +117,24 @@ sensor:
     {{ value | round(0) }}'
   unit_of_measurement: "%"
   icon: mdi:fire
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_ecoster_home_temp
   name: "Dom temperatura"
-  state_topic: "EcoNet/get_ecoster_home_temp"
+  state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:thermometer
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_ecoster_home_temp_target
   name: "Dom zadana temperatura"
-  state_topic: "EcoNet/get_ecoster_home_temp_target"
+  state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp_target"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -137,7 +146,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_huw_temp_target
   name: "Ciepła woda zadana temperatura"
-  state_topic: "EcoNet/get_huw_temp_target"
+  state_topic: "EcoNet/get/huw/temp_target"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -149,7 +158,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_temp_target
   name: "Piec zadana temperatura"
-  state_topic: "EcoNet/get_boiler_temp_target"
+  state_topic: "EcoNet/get/boiler/temp_target"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -161,7 +170,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_mixer_temp_target
   name: "Grzejniki Zasilanie zadana temperatura "
-  state_topic: "EcoNet/get_mixer_temp_target"
+  state_topic: "EcoNet/get/mixer/temp_target"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -173,18 +182,19 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_fuel_level
   name: "Poziom paliwa"
-  state_topic: "EcoNet/get_fuel_level"
+  state_topic: "EcoNet/get/boiler/fuel_level"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "%"
   icon: mdi:fuel
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_fan_out_power
   name: "Wiatrak wyciągowy"
-  state_topic: "EcoNet/get_fan_out_power"
+  state_topic: "EcoNet/get/boiler/fan_out_power"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -196,7 +206,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_fan_in_power
   name: "Nadmuch pieca"
-  state_topic: "EcoNet/get_fan_in_power"
+  state_topic: "EcoNet/get/boiler/fan_in_power"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -208,7 +218,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_huw_pomp_state
   name: "Pompa Ciepłej wody"
-  state_topic: "EcoNet/get_huw_pomp_state"
+  state_topic: "EcoNet/get/huw/pomp_state"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -217,7 +227,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_pomp_state
   name: "Pompa Pieca"
-  state_topic: "EcoNet/get_boiler_pomp_state"
+  state_topic: "EcoNet/get/boiler/pomp_state"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -226,16 +236,17 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_fuel_stream
   name: "Strumień paliwa"
-  state_topic: "EcoNet/get_fuel_stream"
+  state_topic: "EcoNet/get/boiler/fuel_stream"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "kg/h"
   icon: mdi:fuel
+  state_class: measurement
 
 - platform: mqtt
-  unique_id: ecoNet_get_boiler_power_kw
+  unique_id: EcoNet/get/boiler/boiler_power_kw
   name: "Moc pieca"
   state_topic: "EcoNet/get_boiler_power_kw"
   availability_mode: all
@@ -244,11 +255,12 @@ sensor:
   value_template: "{{ value }}"
   unit_of_measurement: "kW"
   icon: mdi:fire
+  state_class: measurement
 
 - platform: mqtt
   unique_id: ecoNet_get_power_max_time
   name: "Palink czas pracy na max mocy"
-  state_topic: "EcoNet/get_power_max_time"
+  state_topic: "EcoNet/get/boiler/power_max_time"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -259,7 +271,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_power_medium_time
   name: "Palink czas pracy na mid mocy"
-  state_topic: "EcoNet/get_power_medium_time"
+  state_topic: "EcoNet/get/boiler/power_medium_time"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -270,7 +282,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_power_min_time
   name: "Palink czas pracy na min mocy"
-  state_topic: "EcoNet/get_power_min_time"
+  state_topic: "EcoNet/get/boiler/power_min_time"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -281,7 +293,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_feeder_time
   name: "Podajnik czas pracy"
-  state_topic: "EcoNet/get_feeder_time"
+  state_topic: "EcoNet/get/boiler/feeder_time"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -292,7 +304,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_ignitions
   name: "Rozpalenia"
-  state_topic: "EcoNet/get_ignitions"
+  state_topic: "EcoNet/get/boiler/ignitions"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -302,7 +314,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_ignitions_fails
   name: "Rozpalenia nieudane"
-  state_topic: "EcoNet/get_ignitions_fails"
+  state_topic: "EcoNet/get/boiler/ignitions_fails"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -312,7 +324,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_huw_pump_mode
   name: "Tryb pracy Ciepłej wody"
-  state_topic: "EcoNet/get_huw_pump_mode"
+  state_topic: "EcoNet/get/huw/pump_mode"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -321,7 +333,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_huw_temp_hysteresis
   name: "Ciepł Woda Histereza"
-  state_topic: "EcoNet/get_huw_temp_hysteresis"
+  state_topic: "EcoNet/get/huw/temp_hysteresis"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -333,7 +345,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_huw_container_disinfection
   name: "Ciepła woda Sterylizacja Bojlera"
-  state_topic: "EcoNet/get_huw_container_disinfection"
+  state_topic: "EcoNet/get/huw/container_disinfection"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -342,7 +354,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_max_power_kw
   name: "Palnik Max Moc"
-  state_topic: "EcoNet/get_boiler_max_power_kw"
+  state_topic: "EcoNet/get/boiler/max_power_kw"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -353,7 +365,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_mid_power_kw
   name: "Palnik Mid Moc"
-  state_topic: "EcoNet/get_boiler_mid_power_kw"
+  state_topic: "EcoNet/get/boiler/mid_power_kw"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -364,7 +376,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_min_power_kw
   name: "Palnik Min Moc"
-  state_topic: "EcoNet/get_boiler_min_power_kw"
+  state_topic: "EcoNet/get/boiler/min_power_kw"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -375,7 +387,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_max_power_fan
   name: "Palnik Max Moc Wiatrak"
-  state_topic: "EcoNet/get_boiler_max_power_fan"
+  state_topic: "EcoNet/get/boiler/max_power_fan"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -387,7 +399,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_mid_power_fan
   name: "Palnik Mid Moc Wiatrak"
-  state_topic: "EcoNet/get_boiler_mid_power_fan"
+  state_topic: "EcoNet/get/boiler/mid_power_fan"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -399,7 +411,7 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_boiler_min_power_fan
   name: "Palnik Min Moc Wiatrak"
-  state_topic: "EcoNet/get_boiler_min_power_fan"
+  state_topic: "EcoNet/get/boiler/min_power_fan"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
@@ -411,21 +423,19 @@ sensor:
 - platform: mqtt
   unique_id: ecoNet_get_room_thermostat_summer_winter_mode
   name: "Palnik Tryb pracy"
-  state_topic: "EcoNet/get_room_thermostat_summer_winter_mode"
+  state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
-  value_template: "{{ value }}"
   icon: mdi:fire
 
 - platform: mqtt
   unique_id: ecoNet_get_room_thermostat_night_temp
   name: "Termostat nocna temperatura"
-  state_topic: "EcoNet/get_room_thermostat_night_temp"
+  state_topic: "EcoNet/get/room_thermostat/night_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
-  value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:fire
 
@@ -436,27 +446,24 @@ sensor:
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
-  value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:fire
 
 - platform: mqtt
   unique_id: ecoNet_get_room_thermostat_operating_mode
   name: "Termostat tryb pracy"
-  state_topic: "EcoNet/get_room_thermostat_operating_mode"
+  state_topic: "EcoNet/get/room_thermostat/day_temp"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
-  value_template: "{{ value }}"
 
 - platform: mqtt
   unique_id: ecoNet_get_room_thermostat_hysteresis
   name: "Termostat Histereza"
-  state_topic: "EcoNet/get_room_thermostat_hysteresis"
+  state_topic: "EcoNet/get/room_thermostat/hysteresis"
   availability_mode: all
   availability_topic: "ecomax_920_master"
   payload_available: "Online"
-  value_template: "{{ value }}"
   unit_of_measurement: "°C"
   icon: mdi:fire
 
@@ -464,69 +471,69 @@ sensor:
 
 climate:
   - platform: mqtt
-    send_if_off: true
-    modes:
-      - "heat"
-      - "auto"
-      - "off"
-    name: "Regulator temperatury dom"
-    unique_id: ecoNet_regulator_temperatury_dom
-    current_temperature_topic: "EcoNet/get_ecoster_home_temp"
-    mode_command_topic: "EcoNet/set_room_thermostat_operating_mode"
-    mode_state_topic: "EcoNet/get_room_thermostat_operating_mode"
-    temperature_low_command_topic: "EcoNet/set_room_thermostat_night_temp"
-    temperature_low_state_topic: "EcoNet/get_room_thermostat_night_temp"
-    temperature_high_command_topic: "EcoNet/set_room_thermostat_day_temp"
-    temperature_high_state_topic: "EcoNet/get_room_thermostat_day_temp"
-    min_temp: 15
-    max_temp: 25
-    value_template: "{{ value }}"
-    temp_step: 0.1
+  send_if_off: true
+  modes:
+    - "heat"
+    - "auto"
+    - "off"
+  name: "Regulator temperatury dom"
+  unique_id: ecoNet_regulator_temperatury_dom
+  current_temperature_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
+  mode_command_topic: "EcoNet/set/room_thermostat/operating_mode"
+  mode_state_topic: "EcoNet/get/room_thermostat/operating_mode"
+  temperature_low_command_topic: "EcoNet/set/room_thermostat/night_temp"
+  temperature_low_state_topic: "EcoNet/get/room_thermostat/night_temp"
+  temperature_high_command_topic: "EcoNet/set/room_thermostat/day_temp"
+  temperature_high_state_topic: "EcoNet/get/room_thermostat/day_temp"
+  min_temp: 15
+  max_temp: 25
+  value_template: "{{ value }}"
+  temp_step: 0.1
 
-  - platform: mqtt
-    send_if_off: true
-    modes:
-      - "heat"
-      - "off"
-    name: "Ciepła woda"
-    unique_id: ecoNet_regulator_ciepla_woda
-    current_temperature_topic: "EcoNet/get_huw_temp"
-    mode_command_topic: "EcoNet/set_huw_pump_mode"
-    mode_state_topic: "EcoNet/get_huw_pump_mode"
-    temperature_command_topic: "EcoNet/set_huw_temp"
-    temperature_state_topic: "EcoNet/get_huw_temp_target"
-    min_temp: 45
-    max_temp: 60
-    value_template: "{{ value }}"
-    temp_step: 1
+- platform: mqtt
+  send_if_off: true
+  modes:
+    - "heat"
+    - "off"
+  name: "Ciepła woda"
+  unique_id: ecoNet_regulator_ciepla_woda
+  current_temperature_topic: "EcoNet/get/huw/temp"
+  mode_command_topic: "EcoNet/set/huw/pump_mode"
+  mode_state_topic: "EcoNet/get/huw/pump_mode"
+  temperature_command_topic: "EcoNet/set/huw/temp"
+  temperature_state_topic: "EcoNet/get/huw/temp_target"
+  min_temp: 45
+  max_temp: 60
+  value_template: "{{ value }}"
+  temp_step: 1
 
-  - platform: mqtt
-    send_if_off: true
-    name: "Piec"
-    unique_id: ecoNet_regulator_piec
-    current_temperature_topic: "EcoNet/get_boiler_temp"
+- platform: mqtt
+  send_if_off: true
+  name: "Piec"
+  unique_id: ecoNet_regulator_piec
+  current_temperature_topic: "EcoNet/get/boiler/temp"
 
-    temperature_command_topic: "EcoNet/set_boiler_temp"
-    temperature_state_topic: "EcoNet/get_boiler_temp_target"
-    min_temp: 35
-    max_temp: 80
-    value_template: "{{ value }}"
-    temp_step: 1
+  temperature_command_topic: "EcoNet/set/boiler/temp"
+  temperature_state_topic: "EcoNet/get/boiler/temp_target"
+  min_temp: 35
+  max_temp: 80
+  value_template: "{{ value }}"
+  temp_step: 1
 
-  - platform: mqtt
-    send_if_off: true
-    modes:
-      - "heat"
-      - "off"
-      - "auto"
-    name: "Grzejniki zasilanie"
-    unique_id: ecoNet_regulator_grzejniki
-    mode_command_topic: "EcoNet/set_room_thermostat_summer_winter_mode"
-    mode_state_topic: "EcoNet/get_room_thermostat_summer_winter_mode"
-    current_temperature_topic: "EcoNet/get_mixer_temp"
-    temperature_command_topic: "EcoNet/set_mixer_temp"
-    temperature_state_topic: "EcoNet/get_mixer_temp_target"
-    min_temp: 35
-    max_temp: 65
-    value_template: "{{ value }}"
-    temp_step: 1
+- platform: mqtt
+  send_if_off: true
+  modes:
+    - "heat"
+    - "off"
+    - "auto"
+  name: "Grzejniki zasilanie"
+  unique_id: ecoNet_regulator_grzejniki
+  mode_command_topic: "EcoNet/set/room_thermostat/summer_winter_mode"
+  mode_state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
+  current_temperature_topic: "EcoNet/get/mixer/temp"
+  temperature_command_topic: "EcoNet/set/mixer/temp"
+  temperature_state_topic: "EcoNet/get/mixer/temp_target"
+  min_temp: 35
+  max_temp: 65
+  value_template: "{{ value }}"
+  temp_step: 1
