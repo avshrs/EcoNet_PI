@@ -32,11 +32,11 @@ void EcoNet::run()
         message.clear();
         
         serial.serial_read_bytes(header, 8); 
-        //memcpy(&ecomax_header, header.data(), header.size());
+
         print_buffer(header.data(), header.size());
-        // std::copy(&ecomax_header, &ecomax_header + 1, reinterpret_cast<Ecomax_920_Frame_Header*>(header.data()));
         ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
         print_buffer(header.data(), header.size());
+        
         std::cout << " 0x" << std::setw(2);
         std::cout << std::setfill('0') << std::hex;
         std::cout << static_cast<int>(ecomax_header.frame_begine);
