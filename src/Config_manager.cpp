@@ -21,18 +21,20 @@ void Config_manager::read_config(){
   
     
     std::cout << date() << "Loading Settings" << std::endl;
+    
+    // econet:
+    eco_config.serial_file = config["econet"]["serial_file"].as<std::string>();
+    eco_config.boudrate = config["econet"]["boudrate"].as<int>();
+    eco_config.remove_lead_zero = config["econet"]["remove_lead_zero"].as<int>();
+    // mqtt cnfig 
     mqtt_config.ClientId = config["mqtt"]["ClientId"].as<std::string>();
     mqtt_config.ServerIp = config["mqtt"]["ServerIp"].as<std::string>();
     mqtt_config.username = config["mqtt"]["username"].as<std::string>();
     mqtt_config.password = config["mqtt"]["password"].as<std::string>();
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
-    
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
     
-    eco_config.serial_file = config["econet"]["serial_file"].as<std::string>();
-    eco_config.boudrate = config["econet"]["boudrate"].as<int>();
-    eco_config.remove_lead_zero = config["econet"]["remove_lead_zero"].as<int>();
 
 
     econet_mqtt.pub_huw_temp = config["econet_set"]["pub_huw_temp"].as<std::string>();
@@ -53,6 +55,7 @@ void Config_manager::read_config(){
     econet_mqtt.pub_room_thermostat_day_temp = config["econet_set"]["pub_room_thermostat_day_temp"].as<std::string>();
     econet_mqtt.pub_room_thermostat_operating_mode = config["econet_set"]["pub_room_thermostat_operating_mode"].as<std::string>();
     econet_mqtt.pub_room_thermostat_hysteresis = config["econet_set"]["pub_room_thermostat_hysteresis"].as<std::string>();
+    
     econet_mqtt.sub_get_huw_temp = config["econet_get"]["sub_get_huw_temp"].as<std::string>();
     econet_mqtt.sub_get_huw_temp = config["econet_get"]["sub_get_huw_temp"].as<std::string>();
     econet_mqtt.sub_get_feeder_temp = config["econet_get"]["sub_get_feeder_temp"].as<std::string>();
