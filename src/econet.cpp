@@ -42,7 +42,7 @@ void EcoNet::run()
         std::cout << static_cast<int>(ecomax_header.frame_begine);
         std::cout<<std::endl;
         std::cout << std::dec;
-        std::cout << static_cast<short>(ecomax_header.frame_size);
+        std::cout << ecomax_header.frame_size;
         std::cout<<std::endl;
         std::cout << " 0x" << std::setw(2);
         std::cout << std::setfill('0') << std::hex;
