@@ -434,14 +434,12 @@ struct Ecomax_920_Frame{
 
 struct Ecomax_920_Frame_Header{
     uint8_t frame_begine = 0; 	// 0
-    short frame_size = 0;    // 1
+    uint16_t frame_size = 0;    // 1
     uint8_t dst_address = 0;    // 3
     uint8_t src_address = 0;    // 4
     uint8_t nn_5 = 0;           // 5
     uint8_t nn_6 = 0;           // 6
     uint8_t payload_type = 0;   // 7
-
-
 };
 
 
