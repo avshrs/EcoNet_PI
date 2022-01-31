@@ -52,11 +52,6 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-
-                if(ecomax_header.src_address == econet_address) // debug
-                {  
-                    print_buffer(message.data(), message.size());
-                }   
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
@@ -66,6 +61,8 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
+                    print_buffer(message.data(), message.size());
+
                     // std::cout<<"ecomax settings"<< std::endl;
                     // show_diff(payload);
                     // print_buffer(payload.data(), payload.size());
@@ -73,16 +70,22 @@ void EcoNet::run()
                     update_statuses();
                     
                 }
-                
+                else if(ecomax_header.src_address == econet_address) // debug
+                {  
+                    print_buffer(message.data(), message.size());
+                }   
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame)
                 {
+
                     ecoster_payload = *reinterpret_cast<Ecoster_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
                 }            
                 else if(ecomax_header.src_address == ecoster_address 
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
+                    print_buffer(message.data(), message.size());
+
                     // std::cout<<"ecomax settings"<< std::endl;
                     // show_diff(payload);
 
@@ -94,23 +97,23 @@ void EcoNet::run()
                     //  for debug 
                     //  print_buffer(message.data(), message.size());
                 }
-                // auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
-                // if( deltaTime > 60e6)
-                // {   
-                //     // set the same value to force master broadcsat with all ecomax settings 
-                //     // only transmitted on change
+                auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
+                if( deltaTime > 60e6)
+                {   
+                    // set the same value to force master broadcsat with all ecomax settings 
+                    // only transmitted on change
                     
-                //     std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x03, 0x96, 0x00, 0x8b, 0x16}; //holiday temp to 15
-                //     buf.push_back(crc_set(buf));
-                //     buf.push_back(0x16);
-                //     serial.serial_send(buf); 
-                //     sleep(5);
-                //     std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
-                //     buf2.push_back(crc_set(buf2));
-                //     buf2.push_back(0x16);
-                //     serial.serial_send(buf2); 
-                //     start = timer.now();
-                // }
+                    std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x03, 0x96, 0x00, 0x8b, 0x16}; //holiday temp to 15
+                    buf.push_back(crc_set(buf));
+                    buf.push_back(0x16);
+                    // serial.serial_send(buf); 
+                    sleep(5);
+                    std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
+                    buf2.push_back(crc_set(buf2));
+                    buf2.push_back(0x16);
+                    // serial.serial_send(buf2); 
+                    start = timer.now();
+                }
 
             }
         }
