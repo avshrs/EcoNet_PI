@@ -59,21 +59,8 @@ void EcoNet::run()
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
-                                    std::cout << "dupa1" <<std::endl;
-                std::cout << " 0x" << std::setw(2);
-                std::cout << std::setfill('0') << std::hex;
-                std::cout << static_cast<int>(ecomax_header.src_address);
-                std::cout<<std::endl;
-                std::cout << " 0x" << std::setw(2);
-                std::cout << std::setfill('0') << std::hex;
-                std::cout << static_cast<int>(ecomax_header.payload_type);
-                std::cout<<std::endl;
-                std::cout<<std::endl;
-                    //ecomax live data
+                    show_diff(payload);
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
-                  
-                   show_diff(payload);
-                         
                     // analyze_frame_ecomax_920P1(payload);
                     update_statuses();
                 }
