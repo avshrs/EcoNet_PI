@@ -139,7 +139,7 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
   
     for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
     {
-        if(payload.at(i) != deb1.at(i))
+        if(payload.at(i) != deb1.at(i) && i != 29 && i < 78 && i > 116)
         {
             std::cout << std::dec<<i << ": " ;
             std::cout << " 0x" << std::setw(2);
