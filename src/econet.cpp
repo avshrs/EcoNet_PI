@@ -61,6 +61,9 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
+                    std::cout<<"ecomax settings"<< std::endl;
+                    show_diff(payload);
+
                     ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
                     
                 }
@@ -76,6 +79,9 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecoster_address 
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
+                    std::cout<<"ecomax settings"<< std::endl;
+                    show_diff(payload);
+                    
                     ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                 } 
                 else
