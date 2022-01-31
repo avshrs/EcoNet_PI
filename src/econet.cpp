@@ -51,9 +51,11 @@ void EcoNet::run()
 
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
-            print_buffer(header.data(), header.size());
-            print_buffer(payload.data(), payload.size());
-            show_diff(header);
+            
+            std::cout << " 0x" << std::setw(2);
+            std::cout << std::setfill('0') << std::hex;
+            std::cout << static_cast<int>(ecomax_header.payload_type);
+            std::cout << std::endl;
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
                 if(ecomax_header.src_address == eco____address )
