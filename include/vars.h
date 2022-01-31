@@ -415,10 +415,105 @@ struct __attribute__((packed)) Ecomax_920_Live_Data_Frame_payload{
 
 
 
+struct __attribute__((packed)) Ecoster_Live_Data_Frame_payload{
+    uint8_t nn_0 = 0;
+    uint8_t nn_1 = 0;
+    uint8_t nn_2 = 0;
+    uint8_t nn_3 = 0;
+    uint8_t nn_4 = 0;
+    uint8_t nn_5 = 0;
+    uint8_t nn_6 = 0;
+    uint8_t nn_7 = 0;
+    uint8_t nn_8 = 0;
+    uint8_t nn_9 = 0;
+    uint8_t nn_10 = 0;
+    uint8_t nn_11 = 0;
+    uint8_t nn_12 = 0;
+    uint8_t nn_13 = 0;
+    uint8_t nn_14 = 0;
+    uint8_t nn_15 = 0;
+    float room_thermostat_temp_target = 0;
+    float room_thermostat_home_temp = 0;
+    float room_thermostat_ecoster_1_temp = 0;
+    float room_thermostat_ecoster_2_temp = 0;
+    uint8_t nn_32 = 0;
+    uint8_t nn_33 = 0;
+    uint8_t nn_34 = 0;
+    uint8_t nn_35 = 0;
+    uint8_t nn_36 = 0;
+    uint8_t nn_37 = 0;
+    uint8_t nn_38 = 0;
+    uint8_t nn_39 = 0;
+    uint8_t nn_40 = 0;
+    uint8_t nn_41 = 0;
+    uint8_t nn_42 = 0;
+    uint8_t nn_43 = 0;
+    uint8_t nn_44 = 0;
+    uint8_t nn_45 = 0;
+    uint8_t nn_46 = 0;
+    uint8_t nn_47 = 0;
+    uint8_t nn_48 = 0;
+    uint8_t nn_49 = 0;
+    uint8_t nn_50 = 0;
+    uint8_t nn_51 = 0;
+    uint8_t nn_52 = 0;
+};
 
-
-
-
+struct __attribute__((packed)) Ecoster_Settings_Frame_payload{
+    uint8_t nn_0 = 0;
+    uint8_t nn_1 = 0;
+    uint8_t nn_2 = 0;
+    uint8_t nn_3 = 0;
+    uint8_t nn_4 = 0;
+    uint8_t nn_5 = 0;
+    uint8_t nn_6 = 0;
+    uint8_t nn_7 = 0;
+    uint8_t nn_8 = 0;
+    uint8_t nn_9 = 0;
+    uint8_t nn_10 = 0;
+    uint8_t room_thermostat_operating_mode = 0;
+    uint8_t nn_12 = 0;
+    uint8_t nn_13 = 0;
+    uint8_t nn_14 = 0;
+    uint8_t nn_15 = 0;
+    uint8_t nn_16 = 0;
+    uint8_t nn_17 = 0;
+    uint8_t nn_18 = 0;
+    uint8_t nn_19 = 0;
+    uint8_t nn_20 = 0;
+    uint8_t nn_21 = 0;
+    uint8_t nn_22 = 0;
+    uint8_t nn_23 = 0;
+    uint8_t nn_24 = 0;
+    uint8_t nn_25 = 0;
+    uint8_t nn_26 = 0;
+    uint8_t nn_27 = 0;
+    uint8_t nn_28 = 0;
+    uint8_t nn_29 = 0;
+    uint8_t nn_30 = 0;
+    uint8_t nn_31 = 0;
+    uint8_t nn_32 = 0;
+    uint8_t room_thermostat_hysteresis = 0;
+    uint8_t nn_34 = 0;
+    uint8_t nn_35 = 0;
+    uint8_t room_thermostat_day_temp_int = 0;
+    uint8_t nn_37 = 0;
+    uint8_t nn_38 = 0;
+    uint8_t room_thermostat_day_temp_fract = 0;
+    uint8_t nn_40 = 0;
+    uint8_t nn_41 = 0;
+    uint8_t room_thermostat_night_temp_int = 0;
+    uint8_t nn_43 = 0;
+    uint8_t nn_44 = 0;
+    uint8_t room_thermostat_night_temp_fract = 0;
+    uint8_t nn_46 = 0;
+    uint8_t nn_47 = 0;
+    uint8_t nn_48 = 0;
+    uint8_t nn_49 = 0;
+    uint8_t nn_50 = 0;
+    uint8_t nn_51 = 0;
+    uint8_t nn_52 = 0;
+};
 
 
 struct EcoNet_cfg
