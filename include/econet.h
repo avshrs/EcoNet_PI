@@ -21,8 +21,6 @@ class EcoNet{
         std::chrono::high_resolution_clock timer;
         using mi = std::chrono::duration<float, std::micro>;
         
-        //test
-        // Ecomax_920_Frame_Header ecomax_header;
         Ecomax_920_Live_Data_Frame_payload ecomax920_payload;
 
         Ecoster_payload ecoster_payload;

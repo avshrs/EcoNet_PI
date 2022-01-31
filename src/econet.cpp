@@ -35,6 +35,7 @@ void EcoNet::run()
 
         print_buffer(header.data(), header.size());
         auto ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
+        
         print_buffer(reinterpret_cast<uint8_t*>(&ecomax_header), header.size());
 
         std::cout << " 0x" << std::setw(2);
