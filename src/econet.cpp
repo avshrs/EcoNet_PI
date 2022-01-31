@@ -18,14 +18,14 @@ void EcoNet::run()
     std::vector<uint8_t> header;
     header.reserve(10);
     std::vector<uint8_t> payload;
-    payload.reserve(400);
+    payload.reserve(1024);
     std::vector<uint8_t> message;
-    message.reserve(400);
-    deb1.reserve(400);
-    deb2.reserve(400);
-    deb3.reserve(400);
+    message.reserve(1024);
+    deb1.reserve(1024);
+    deb2.reserve(1024);
+    deb3.reserve(1024);
 
-    for(int i =0; i<400 ; i++)
+    for(int i =0; i<1024 ; i++)
     {
         deb1.push_back(0);
         deb2.push_back(0);
