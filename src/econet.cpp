@@ -53,7 +53,7 @@ void EcoNet::run()
             message.insert(message.end(), payload.begin(), payload.end());
             
             print_buffer(payload.data(), payload.size());
-
+            show_diff(header);
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
                 if(ecomax_header.src_address == eco____address )
