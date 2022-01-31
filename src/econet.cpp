@@ -21,7 +21,9 @@ void EcoNet::run()
     payload.reserve(400);
     std::vector<uint8_t> message;
     message.reserve(400);
-
+    deb1.push_back(400);
+    deb2.push_back(400);
+    deb3.push_back(400);
 
 
     auto start = timer.now();
