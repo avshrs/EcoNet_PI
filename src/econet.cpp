@@ -25,12 +25,12 @@ void EcoNet::run()
     deb2.reserve(400);
     deb3.reserve(400);
 
-    // for(int i =0; i<400 ; i++)
-    // {
-    //     deb1.push_back(0);
-    //     deb2.push_back(0);
-    //     deb3.push_back(0);
-    // }
+    for(int i =0; i<400 ; i++)
+    {
+        deb1.push_back(0);
+        deb2.push_back(0);
+        deb3.push_back(0);
+    }
     auto start = timer.now();
     while (true)
     {
