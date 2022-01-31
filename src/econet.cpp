@@ -76,8 +76,8 @@ void EcoNet::run()
                 }   
                 else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35) // debug
                 {  
-                    print_buffer(message.data(), message.size());
-                    show_diff(payload);
+                   // print_buffer(message.data(), message.size());
+                    //show_diff(payload);
                 }   
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame)
@@ -90,7 +90,7 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     print_buffer(message.data(), message.size());
-                    
+
                     // std::cout<<"ecomax settings"<< std::endl;
                     // show_diff(payload);
 
@@ -114,8 +114,8 @@ void EcoNet::run()
                     // serial.serial_send(buf); 
                     sleep(5);
                     // std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
-                    std::vector<uint8_t> buf2 = {0x68, 0x0a, 0x00, 0x45, 0x56, 0x30, 0x05, 0x39, 0x7d, 0x16}; // room temp. factor to 0
-                    // std::vector<uint8_t> buf2 = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x3e, 0xff, 0x00, 0x83, 0x16}; // room temp. factor to 0
+                    //std::vector<uint8_t> buf2 = {0x68, 0x0a, 0x00, 0x45, 0x56, 0x30, 0x05, 0x39, 0x7d, 0x16}; // room temp. factor to 0
+                     std::vector<uint8_t> buf2 = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x3e, 0xff, 0x00, 0x83, 0x16}; // room temp. factor to 0
                     
                     buf2.push_back(crc_set(buf2));
                     buf2.push_back(0x16);
