@@ -429,8 +429,8 @@ struct Ecomax_920_Frame{
     uint8_t frame_crc = 0;
     uint8_t frame_end_signature = 0;
 };
-__attribute__((packed))
-struct Ecomax_920_Frame_Header{
+
+struct __attribute__((packed)) Ecomax_920_Frame_Header{
     uint8_t frame_begine;  	// 0
     short frame_size;       // 1
     uint8_t dst_address;    // 3
