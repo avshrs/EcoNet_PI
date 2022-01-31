@@ -62,8 +62,9 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
                     //ecomax stored settings 
-                   
-                    analyze_frame_ecomax_920P1_settings(message);
+                    print_buffer(payload.data(), payload.size());
+                    show_diff(payload);
+                    
                     update_statuses();
                 }
                 else if(ecomax_header.src_address == econet_address) // debug
@@ -81,7 +82,7 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     //ecoster touch stored settings
-                    show_diff(payload);
+                   
                     ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                     update_statuses();
                 } 
@@ -908,6 +909,14 @@ std::string EcoNet::get_room_thermostat_operating_mode()
         value = "Comfort";      //heat
     else if(ecoster_settings_payload.room_thermostat_operating_mode == 0x03)
         value = "Outside";      // off   
+    else if(ecoster_settings_payload.room_thermostat_operating_mode == 0x04)
+        value = "Ventilation";      // off   
+    else if(ecoster_settings_payload.room_thermostat_operating_mode == 0x05)
+        value = "Party";      // off   
+    else if(ecoster_settings_payload.room_thermostat_operating_mode == 0x06)
+        value = "Holiday";      // off   
+    else if(ecoster_settings_payload.room_thermostat_operating_mode == 0x07)
+        value = "Frost_protection";      // off   
     return value;
 }
 std::string EcoNet::get_room_thermostat_hysteresis()
