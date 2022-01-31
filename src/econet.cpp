@@ -34,8 +34,9 @@ void EcoNet::run()
         serial.serial_read_bytes(header, 8); 
 
         print_buffer(header.data(), header.size());
+        std::cout<<"dupa1" << std::endl;
         auto ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
-
+        std::cout<<"dupa2" << std::endl;
        
         if(ecomax_header.frame_begine == frame_begin)
         {
