@@ -22,10 +22,9 @@ class EcoNet{
         using mi = std::chrono::duration<float, std::micro>;
         
         Ecomax_920_Live_Data_Frame_payload ecomax920_payload;
+        Ecomax_920_Live_Data_Frame_payload ecomax920_buffer;
 
         Ecoster_payload ecoster_payload;
-
-        Ecomax920_payload ecomax920_buffer;
         Ecoster_payload ecoster_buffer;
         
         Econet_Mqtt econet_set_buffer;

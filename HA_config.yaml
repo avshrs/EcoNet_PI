@@ -1,11 +1,19 @@
 
 sensor:
 - platform: mqtt
+  unique_id: ecoNet_get_operating_status
+  name: "Status Palnika"
+  state_topic: "EcoNet/get_operating_status"
+  availability_mode: all
+  availability_topic: "EcoNet/Status"
+  payload_available: "Online"
+
+- platform: mqtt
   unique_id: ecoNet_get_huw_temp
   name: "Ciepła woda "
   state_topic: "EcoNet/get_huw_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -17,7 +25,7 @@ sensor:
   name: "Ciepła woda top"
   state_topic: "EcoNet/get/upper_buffer_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -28,7 +36,7 @@ sensor:
   name: "Ciepła woda bottom"
   state_topic: "EcoNet/get/lower_buffer_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -39,7 +47,7 @@ sensor:
   name: "Podajnik temperatura"
   state_topic: "EcoNet/get/boiler/feeder_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -51,7 +59,7 @@ sensor:
   name: "Piec temperatura"
   state_topic: "EcoNet/get/boiler/boiler_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -63,7 +71,7 @@ sensor:
   name: "Czujnik pogodowy"
   state_topic: "EcoNet/get/weather_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -75,7 +83,7 @@ sensor:
   name: "Spaliny temperatura"
   state_topic: "EcoNet/get/boiler/exhaust_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -87,7 +95,7 @@ sensor:
   name: "Zasilanie na Grzejniki temperatura"
   state_topic: "EcoNet/get/mixer/temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -99,7 +107,7 @@ sensor:
   name: "Powrót do Pieca temperatura"
   state_topic: "EcoNet/get/boiler/return_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -111,7 +119,7 @@ sensor:
   name: "Czujnik Płomienia"
   state_topic: "EcoNet/get/boiler/flame_sensor"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}'
@@ -124,7 +132,7 @@ sensor:
   name: "Dom temperatura"
   state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "°C"
@@ -136,7 +144,7 @@ sensor:
   name: "Dom zadana temperatura"
   state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp_target"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -148,7 +156,7 @@ sensor:
   name: "Ciepła woda zadana temperatura"
   state_topic: "EcoNet/get/huw/temp_target"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -160,7 +168,7 @@ sensor:
   name: "Piec zadana temperatura"
   state_topic: "EcoNet/get/boiler/temp_target"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -172,7 +180,7 @@ sensor:
   name: "Grzejniki Zasilanie zadana temperatura "
   state_topic: "EcoNet/get/mixer/temp_target"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -184,7 +192,7 @@ sensor:
   name: "Poziom paliwa"
   state_topic: "EcoNet/get/boiler/fuel_level"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "%"
@@ -196,7 +204,7 @@ sensor:
   name: "Wiatrak wyciągowy"
   state_topic: "EcoNet/get/boiler/fan_out_power"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -208,7 +216,7 @@ sensor:
   name: "Nadmuch pieca"
   state_topic: "EcoNet/get/boiler/fan_in_power"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -220,7 +228,7 @@ sensor:
   name: "Pompa Ciepłej wody"
   state_topic: "EcoNet/get/huw/pomp_state"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
 
@@ -229,7 +237,7 @@ sensor:
   name: "Pompa Pieca"
   state_topic: "EcoNet/get/boiler/pomp_state"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
 
@@ -238,7 +246,7 @@ sensor:
   name: "Strumień paliwa"
   state_topic: "EcoNet/get/boiler/fuel_stream"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "kg/h"
@@ -250,7 +258,7 @@ sensor:
   name: "Moc pieca"
   state_topic: "EcoNet/get_boiler_power_kw"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "kW"
@@ -262,7 +270,7 @@ sensor:
   name: "Palink czas pracy na max mocy"
   state_topic: "EcoNet/get/boiler/power_max_time"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "h"
@@ -273,7 +281,7 @@ sensor:
   name: "Palink czas pracy na mid mocy"
   state_topic: "EcoNet/get/boiler/power_medium_time"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "h"
@@ -284,7 +292,7 @@ sensor:
   name: "Palink czas pracy na min mocy"
   state_topic: "EcoNet/get/boiler/power_min_time"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "h"
@@ -295,7 +303,7 @@ sensor:
   name: "Podajnik czas pracy"
   state_topic: "EcoNet/get/boiler/feeder_time"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   unit_of_measurement: "h"
@@ -306,7 +314,7 @@ sensor:
   name: "Rozpalenia"
   state_topic: "EcoNet/get/boiler/ignitions"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   icon: mdi:fire
@@ -316,7 +324,7 @@ sensor:
   name: "Rozpalenia nieudane"
   state_topic: "EcoNet/get/boiler/ignitions_fails"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
   icon: mdi:fire
@@ -326,7 +334,7 @@ sensor:
   name: "Tryb pracy Ciepłej wody"
   state_topic: "EcoNet/get/huw/pump_mode"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
 
@@ -335,7 +343,7 @@ sensor:
   name: "Ciepł Woda Histereza"
   state_topic: "EcoNet/get/huw/temp_hysteresis"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -347,7 +355,7 @@ sensor:
   name: "Ciepła woda Sterylizacja Bojlera"
   state_topic: "EcoNet/get/huw/container_disinfection"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: "{{ value }}"
 
@@ -356,7 +364,7 @@ sensor:
   name: "Palnik Max Moc"
   state_topic: "EcoNet/get/boiler/max_power_kw"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -367,7 +375,7 @@ sensor:
   name: "Palnik Mid Moc"
   state_topic: "EcoNet/get/boiler/mid_power_kw"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -378,7 +386,7 @@ sensor:
   name: "Palnik Min Moc"
   state_topic: "EcoNet/get/boiler/min_power_kw"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -389,7 +397,7 @@ sensor:
   name: "Palnik Max Moc Wiatrak"
   state_topic: "EcoNet/get/boiler/max_power_fan"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -401,7 +409,7 @@ sensor:
   name: "Palnik Mid Moc Wiatrak"
   state_topic: "EcoNet/get/boiler/mid_power_fan"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -413,7 +421,7 @@ sensor:
   name: "Palnik Min Moc Wiatrak"
   state_topic: "EcoNet/get/boiler/min_power_fan"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   value_template: >-
     {{ value | round(0) }}
@@ -425,7 +433,7 @@ sensor:
   name: "Palnik Tryb pracy"
   state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   icon: mdi:fire
 
@@ -434,7 +442,7 @@ sensor:
   name: "Termostat nocna temperatura"
   state_topic: "EcoNet/get/room_thermostat/night_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   unit_of_measurement: "°C"
   icon: mdi:fire
@@ -444,7 +452,7 @@ sensor:
   name: "Termostat dzienna temperatura"
   state_topic: "EcoNet/get_room_thermostat_day_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   unit_of_measurement: "°C"
   icon: mdi:fire
@@ -454,7 +462,7 @@ sensor:
   name: "Termostat tryb pracy"
   state_topic: "EcoNet/get/room_thermostat/day_temp"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
 
 - platform: mqtt
@@ -462,7 +470,7 @@ sensor:
   name: "Termostat Histereza"
   state_topic: "EcoNet/get/room_thermostat/hysteresis"
   availability_mode: all
-  availability_topic: "ecomax_920_master"
+  availability_topic: "EcoNet/Status"
   payload_available: "Online"
   unit_of_measurement: "°C"
   icon: mdi:fire

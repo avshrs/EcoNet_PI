@@ -40,8 +40,6 @@ void EcoNet::run()
         
         serial.serial_read_bytes(header, 8); 
 
-        // print_buffer(header.data(), header.size());
-        
         auto ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
        
         if(ecomax_header.frame_begine == frame_begin)
@@ -59,7 +57,6 @@ void EcoNet::run()
                 {
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
-                    
                 }
                 else if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_settings_frame)
@@ -77,6 +74,7 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_frame)
                 {
                     //ecoster touch live frame 
+                    print_buffer(payload.data(), payload.size());
                     analyze_frame_ecoster(payload);
                     update_statuses();
                 }            
@@ -1062,10 +1060,10 @@ void EcoNet::update_statuses()
         ecomax920_buffer.fan_out_power = ecomax920_payload.fan_out_power;
     }
 
-    if (ecomax920_buffer.boiler_power != ecomax920_payload.boiler_power_kw)
+    if (ecomax920_buffer.boiler_power_kw != ecomax920_payload.boiler_power_kw)
     {
          mqtt->pub_state(get_boiler_power_kw(), cfg->sub_get_boiler_power_kw());
-        ecomax920_buffer.boiler_power = ecomax920_payload.boiler_power_kw;
+        ecomax920_buffer.boiler_power_kw = ecomax920_payload.boiler_power_kw;
     }
 
     if (ecomax920_buffer.huw_pomp_state != ecomax920_payload.huw_pomp_state)
@@ -1115,6 +1113,10 @@ void EcoNet::update_statuses()
          mqtt->pub_state(get_ignitions_fails(), cfg->sub_get_ignitions_fails());
         ecomax920_buffer.ignitions_fails = ecomax920_payload.ignitions_fails;
     }
+
+
+
+
 
     if (ecoster_buffer.home_temp_target != ecoster_payload.home_temp_target)
     {
