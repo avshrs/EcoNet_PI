@@ -24,13 +24,15 @@ class EcoNet{
         Ecomax_920_Live_Data_Frame_payload ecomax920_payload;
         Ecomax_920_Live_Data_Frame_payload ecomax920_buffer;
 
+        Ecomax_settings_Frame_payload ecomax920_settings_payload;
+        Ecomax_settings_Frame_payload ecomax920_settings_buffer;
+
         Ecoster_Live_Data_Frame_payload ecoster_payload;
         Ecoster_Live_Data_Frame_payload ecoster_buffer;
+        
         Ecoster_Settings_Frame_payload ecoster_settings_payload;
+        Ecoster_Settings_Frame_payload ecoster_settings_buffer;
         
-        
-        Econet_Mqtt econet_set_buffer;
-
         uint8_t frame_begin = 0x68;
         uint8_t frame_end = 0x16;
 
