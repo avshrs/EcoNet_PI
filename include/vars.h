@@ -663,8 +663,8 @@ struct __attribute__((packed)) Ecomax_920_Live_Data_Frame_payload{
     uint8_t nn_163 = 0;
     uint8_t nn_164 = 0;
     uint8_t nn_165 = 0;
-    uint8_t mixer_temp_target = 0;  // 166
-    uint8_t huw_temp_target = 0;  // 167 
+    uint8_t huw_temp_target = 0;  // 166
+    uint8_t mixer_temp_target = 0;  // 167
     uint8_t nn_168 = 0;
     uint8_t nn_169 = 0;
     uint8_t nn_170 = 0;
