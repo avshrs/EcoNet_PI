@@ -61,8 +61,8 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
-                    // std::cout<<"ecomax settings"<< std::endl;
-                    // show_diff(payload);
+                    std::cout<<"ecomax settings"<< std::endl;
+                    show_diff(payload);
 
                     ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
                     update_statuses();
@@ -81,8 +81,8 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecoster_address 
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
-                    std::cout<<"ecomax settings"<< std::endl;
-                    show_diff(payload);
+                    // std::cout<<"ecomax settings"<< std::endl;
+                    // show_diff(payload);
 
                     ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                     update_statuses();
@@ -744,6 +744,7 @@ std::string EcoNet::get_huw_pump_mode()
 
 std::string EcoNet::get_huw_temp_hysteresis()
 {
+    std::cout<< "huw_temp_hysteresis: " <<static_cast<int>(ecomax920_settings_payload.huw_temp_hysteresis);
     return std::to_string(static_cast<int>(ecomax920_settings_payload.huw_temp_hysteresis));
 }
 
