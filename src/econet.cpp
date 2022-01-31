@@ -57,7 +57,6 @@ void EcoNet::run()
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
-                    show_diff(payload);
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
                     
@@ -148,7 +147,6 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
             std::cout << std::setfill('0') << std::hex;
             std::cout << static_cast<int>(deb3.at(i));
             std::cout <<"\n";
-            std::cout <<" | " << std::endl;
         }
        
     }
