@@ -52,16 +52,13 @@ void EcoNet::run()
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
             
-            
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
                     show_diff(payload);
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
-                    // analyze_frame_ecomax_920P1(payload);
                     print_buffer(payload.data(), payload.size());
                     update_statuses();
                     
@@ -133,7 +130,7 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
   
     for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
     {
-        if(payload.at(i) != deb1.at(i) && i != 29 && i < 78 && i > 116)
+        if(payload.at(i) != deb1.at(i) && i != 29 && (i < 78 | i > 116))
         {
             std::cout << i << ": " ;
             std::cout << " 0x" << std::setw(2);
