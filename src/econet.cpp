@@ -81,8 +81,8 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     //ecoster touch stored settings
-                    print_buffer(payload.data(), payload.size());
-                    // analyze_frame_ecoster_settings(message);
+                    show_diff(payload);
+                    ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                     update_statuses();
                 } 
                 else
@@ -128,7 +128,7 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
     {
         if(payload.at(i) != deb1.at(i) && i != 29 && ((i < 78 )|( i > 116)))
         {
-            std::cout << i << ": " ;
+            std::cout << std::dec<<i << ": " ;
             std::cout << " 0x" << std::setw(2);
             std::cout << std::setfill('0') << std::hex;
             std::cout << static_cast<int>(payload.at(i));
