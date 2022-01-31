@@ -34,8 +34,6 @@ void Config_manager::read_config(){
     mqtt_config.serverPort = config["mqtt"]["serverPort"].as<int>();
     mqtt_config.keepAliveTopic = config["mqtt"]["keepAliveTopic"].as<std::string>();
     mqtt_config.keepAliveMsg = config["mqtt"]["keepAliveMsg"].as<std::string>();
-    
-
 
     econet_mqtt.pub_huw_temp = config["econet_set"]["pub_huw_temp"].as<std::string>();
     econet_mqtt.pub_huw_pump_mode = config["econet_set"]["pub_huw_pump_mode"].as<std::string>();

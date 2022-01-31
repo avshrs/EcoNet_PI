@@ -12,6 +12,7 @@ mqtt:
     keepAliveTopic: EcoNet/Status
     keepAliveMsg: Online
  
+ 
 econet_set:
     pub_huw_temp: EcoNet/set/huw/temp
     pub_huw_pump_mode: EcoNet/set/huw/pump_mode

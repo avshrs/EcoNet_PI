@@ -35,25 +35,8 @@ void EcoNet::run()
 
         print_buffer(header.data(), header.size());
         auto ecomax_header = *reinterpret_cast<Ecomax_920_Frame_Header*>(header.data());
-        
-        print_buffer(reinterpret_cast<uint8_t*>(&ecomax_header), header.size());
 
-        std::cout << " 0x" << std::setw(2);
-        std::cout << std::setfill('0') << std::hex;
-        std::cout << static_cast<int>(ecomax_header.frame_begine);
-        std::cout<<std::endl;
-        std::cout << std::dec;
-        std::cout << ecomax_header.frame_size;
-        std::cout<<std::endl;
-        std::cout << " 0x" << std::setw(2);
-        std::cout << std::setfill('0') << std::hex;
-        std::cout << static_cast<int>(ecomax_header.dst_address);
-        std::cout<<std::endl;
-        std::cout << " 0x" << std::setw(2);
-        std::cout << std::setfill('0') << std::hex;
-        std::cout << static_cast<int>(ecomax_header.src_address);
-        std::cout<<std::endl;
-        
+       
         if(ecomax_header.frame_begine == frame_begin)
         {
             for(int i =0 ; i< ecomax_header.frame_size - 8; i++)
