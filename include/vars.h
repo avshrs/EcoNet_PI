@@ -459,6 +459,43 @@ struct __attribute__((packed)) Ecoster_Live_Data_Frame_payload{
     uint8_t nn_52 = 0;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct __attribute__((packed)) Ecoster_Settings_Frame_payload{
     uint8_t nn_0 = 0;
     uint8_t nn_1 = 0;
@@ -570,6 +607,7 @@ struct __attribute__((packed)) Ecoster_Settings_Frame_payload{
     uint8_t nn_107 = 0;
     uint8_t nn_108 = 0;
     uint8_t nn_109 = 0;
+    uint8_t nn_110 = 0;
     uint8_t nn_111 = 0;
     uint8_t nn_112 = 0;
     uint8_t nn_113 = 0;
