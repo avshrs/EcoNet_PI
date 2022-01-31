@@ -96,7 +96,7 @@ struct Econet_Mqtt
 
 
 
-struct Ecomax_920_Frame{
+struct  Ecomax_920_Frame{
     uint8_t frame_begine = 0; 
     uint16_t frame_size = 0;
 
@@ -441,7 +441,7 @@ struct __attribute__((packed)) Ecomax_920_Frame_Header{
 };
 
 
-struct Ecomax_920_Live_Data_Frame_payload{
+struct __attribute__((packed)) Ecomax_920_Live_Data_Frame_payload{
     uint8_t nn_0 = 0;
     uint8_t nn_1 = 0;
     uint8_t nn_2 = 0;
