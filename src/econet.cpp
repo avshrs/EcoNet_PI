@@ -834,8 +834,8 @@ std::string EcoNet::get_room_thermostat_operating_mode()
 std::string EcoNet::get_room_thermostat_hysteresis()
 {
     std::string value;
-    value = std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_hysteresis) /10);
-    std::cout<< "get_room_thermostat_hysteresis: " << value << std::endl;
+    value = std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_hysteresis) / 10);
+    std::cout<< "get_room_thermostat_hysteresis: " << static_cast<int>(ecoster_settings_payload.room_thermostat_hysteresis) << std::endl;
     return value;
 }
 
