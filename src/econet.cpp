@@ -52,18 +52,15 @@ void EcoNet::run()
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
             
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(ecomax_header.payload_type);
-            std::cout << std::endl;
+
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                if(ecomax_header.src_address == eco____address )
-                {
-                    // not known frame
-                }
+                // if(ecomax_header.src_address == eco____address )
+                // {
+                //     // not known frame
+                // }
             
-                else if(ecomax_header.src_address == ecomax_address 
+                if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
                     //ecomax live data
