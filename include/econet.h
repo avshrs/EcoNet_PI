@@ -17,6 +17,9 @@ class EcoNet{
         std::vector<uint8_t> deb1;
         std::vector<uint8_t> deb2;
         std::vector<uint8_t> deb3;
+        std::vector<uint8_t> deb11;
+        std::vector<uint8_t> deb22;
+        std::vector<uint8_t> deb33;
 
         std::chrono::high_resolution_clock timer;
         using mi = std::chrono::duration<float, std::micro>;
@@ -77,6 +80,7 @@ class EcoNet{
 
         void print_buffer(uint8_t *buf, int len);
         void show_diff(std::vector<uint8_t> payload);
+        void show_diff2(std::vector<uint8_t> payload);
         std::string date();
         void analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload);
         void analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload);
