@@ -440,6 +440,62 @@ struct __attribute__((packed)) Ecomax_920_Frame_Header{
     uint8_t payload_type;   // 7
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct __attribute__((packed)) Ecomax_920_Live_Data_Frame_payload{
     uint8_t nn_0 = 0;
     uint8_t nn_1 = 0;
@@ -762,6 +818,7 @@ struct __attribute__((packed)) Ecomax_920_Live_Data_Frame_payload{
     uint8_t nn_318 = 0;
     uint8_t nn_319 = 0;
     uint8_t nn_320 = 0;
+    uint8_t nn_321 = 0;
     uint8_t frame_crc = 0;
     uint8_t frame_end_signature = 0;
     };
