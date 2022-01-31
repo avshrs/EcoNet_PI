@@ -69,7 +69,7 @@ void EcoNet::run()
                 }
                 else if(ecomax_header.src_address == econet_address) // debug
                 {  
-                    print_buffer(payload.data(), payload.size());
+                    print_buffer(message.data(), message.size());
                 }   
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame)
