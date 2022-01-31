@@ -61,9 +61,9 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
-                    std::cout<<"ecomax settings"<< std::endl;
-                    show_diff(payload);
-                    print_buffer(payload.data(), payload.size());
+                    // std::cout<<"ecomax settings"<< std::endl;
+                    // show_diff(payload);
+                    // print_buffer(payload.data(), payload.size());
                     ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
                     update_statuses();
                     
@@ -247,7 +247,7 @@ std::string EcoNet::get_exhaust_temp()
 std::string EcoNet::get_mixer_temp()
 {
     std::stringstream out;
-    out << std::fixed << std::setprecision(1) << ecomax920_payload.boiler_temp;
+    out << std::fixed << std::setprecision(1) << ecomax920_payload.mixer_temp;
     return out.str();   
 }
 std::string EcoNet::get_boiler_return_temp()
@@ -740,7 +740,7 @@ std::string EcoNet::get_huw_pump_mode()
     if(ecomax920_settings_payload.huw_mode == 0x01)
         value = "Priority";
     else if(ecomax920_settings_payload.huw_mode == 0x02)
-        value = "Po Priority";
+        value = "Priority";
     else if(ecomax920_settings_payload.huw_mode == 0x00)
         value = "Off";        
     else
@@ -750,7 +750,6 @@ std::string EcoNet::get_huw_pump_mode()
 
 std::string EcoNet::get_huw_temp_hysteresis()
 {
-    std::cout<< "huw_temp_hysteresis: " <<static_cast<int>(ecomax920_settings_payload.huw_temp_hysteresis);
     return std::to_string(static_cast<int>(ecomax920_settings_payload.huw_temp_hysteresis));
 }
 
