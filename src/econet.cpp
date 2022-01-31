@@ -81,7 +81,7 @@ void EcoNet::run()
                     //ecomax stored settings 
                    
                     analyze_frame_ecomax_920P1_settings(message);
-                    update_statuses();
+                    //update_statuses();
                 }
                 else if(ecomax_header.src_address == econet_address) // debug
                 {  
@@ -92,14 +92,14 @@ void EcoNet::run()
                 {
                     //ecoster touch live frame 
                     analyze_frame_ecoster(payload);
-                    update_statuses();
+                   // update_statuses();
                 }            
                 else if(ecomax_header.src_address == ecoster_address 
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     //ecoster touch stored settings
                     analyze_frame_ecoster_settings(message);
-                    update_statuses();
+                   // update_statuses();
                 } 
                 else
                 {
