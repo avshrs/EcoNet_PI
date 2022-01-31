@@ -65,7 +65,7 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
                     //ecomax live data
-                    ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(header.data());
+                    ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                   
                    show_diff(payload);
                            std::cout << " 0x" << std::setw(2);
