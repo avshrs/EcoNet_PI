@@ -31,7 +31,7 @@ void EcoNet::run()
         deb2.push_back(0);
         deb3.push_back(0);
     }
-
+    auto start = timer.now();
     while (true)
     {
         header.clear();
@@ -65,6 +65,7 @@ void EcoNet::run()
                     // show_diff(payload);
 
                     ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
+                    update_statuses();
                     
                 }
                 else if(ecomax_header.src_address == econet_address) // debug
@@ -75,6 +76,7 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_frame)
                 {
                     ecoster_payload = *reinterpret_cast<Ecoster_Live_Data_Frame_payload*>(payload.data());
+                    update_statuses();
                 }            
                 else if(ecomax_header.src_address == ecoster_address 
                     && ecomax_header.payload_type == ecoster_settings_frame)
@@ -83,14 +85,25 @@ void EcoNet::run()
                     show_diff(payload);
 
                     ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
+                    update_statuses();
                 } 
                 else
                 {
                     //  for debug 
                     //  print_buffer(message.data(), message.size());
                 }
-                update_statuses();
-              
+                auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
+                if( deltaTime > 60e6)
+                {   
+                    // set the same value to force master broadcsat with all ecomax settings 
+                    // only transmitted on change
+                    std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x03, 0x96, 0x00, 0x8b, 0x16};
+                    buf.push_back(crc_set(buf));
+                    buf.push_back(0x16);
+                    serial.serial_send(buf); 
+                    start = timer.now();
+                }
+
             }
         }
 
