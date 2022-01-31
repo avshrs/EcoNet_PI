@@ -51,7 +51,7 @@ void EcoNet::run()
 
             message.insert(message.end(), header.begin(), header.end());
             message.insert(message.end(), payload.begin(), payload.end());
-            
+            print_buffer(header.data(), header.size());
             print_buffer(payload.data(), payload.size());
             show_diff(header);
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
