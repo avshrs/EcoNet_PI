@@ -59,7 +59,6 @@ void EcoNet::run()
                 {
                     show_diff(payload);
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
-                    print_buffer(payload.data(), payload.size());
                     update_statuses();
                     
                 }
@@ -130,7 +129,7 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
   
     for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
     {
-        if(payload.at(i) != deb1.at(i) && i != 29 && (i < 78 | i > 116))
+        if(payload.at(i) != deb1.at(i) && i != 29 && ((i < 78 )|( i > 116)))
         {
             std::cout << i << ": " ;
             std::cout << " 0x" << std::setw(2);
