@@ -72,7 +72,7 @@ void EcoNet::run()
                             std::cout << std::setfill('0') << std::hex;
                             std::cout << static_cast<int>(ecomax920_payload.operating_status);
                             std::cout << std::endl;
-                    // analyze_frame_ecomax_920P1(payload);
+                    analyze_frame_ecomax_920P1(payload);
                     //update_statuses();
                 }
                 else if(ecomax_header.src_address == ecomax_address 
