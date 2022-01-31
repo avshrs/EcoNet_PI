@@ -785,6 +785,7 @@ std::string EcoNet::get_room_thermostat_night_temp()
     value = std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_night_temp_int));
     value += ".";
     value += std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_night_temp_fract));
+    std::cout<< "get_room_thermostat_night_temp: " << value << std::endl;
     return value;
 }
 std::string EcoNet::get_room_thermostat_day_temp()
@@ -793,6 +794,7 @@ std::string EcoNet::get_room_thermostat_day_temp()
     value = std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_day_temp_int));
     value += ".";
     value += std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_day_temp_fract));
+    std::cout<< "get_room_thermostat_day_temp: " << value << std::endl;
     return value;
 }
 std::string EcoNet::get_room_thermostat_operating_mode()
@@ -820,6 +822,7 @@ std::string EcoNet::get_room_thermostat_hysteresis()
 {
     std::string value;
     value = std::to_string(static_cast<int>(ecoster_settings_payload.room_thermostat_hysteresis) /10);
+    std::cout<< "get_room_thermostat_hysteresis: " << value << std::endl;
     return value;
 }
 
