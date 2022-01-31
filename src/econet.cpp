@@ -65,7 +65,7 @@ void EcoNet::run()
 
                     // std::cout<<"ecomax settings"<< std::endl;
                     // show_diff(payload);
-                    // print_buffer(payload.data(), payload.size());
+                    print_buffer(payload.data(), payload.size());
                     ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
                     update_statuses();
                     
@@ -90,7 +90,7 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     print_buffer(message.data(), message.size());
-
+                    
                     // std::cout<<"ecomax settings"<< std::endl;
                     // show_diff(payload);
 
