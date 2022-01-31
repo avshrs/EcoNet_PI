@@ -62,6 +62,7 @@ void EcoNet::run()
                     show_diff(payload);
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                     // analyze_frame_ecomax_920P1(payload);
+                    print_buffer(payload.data(), payload.size());
                     update_statuses();
                     
                 }
