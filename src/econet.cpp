@@ -102,10 +102,11 @@ void EcoNet::run()
                     buf.push_back(crc_set(buf));
                     buf.push_back(0x16);
                     serial.serial_send(buf); 
-                    buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
-                    buf.push_back(crc_set(buf));
-                    buf.push_back(0x16);
-                    serial.serial_send(buf); 
+                    sleep(5);
+                    std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
+                    buf2.push_back(crc_set(buf2));
+                    buf2.push_back(0x16);
+                    serial.serial_send(buf2); 
                     start = timer.now();
                 }
 
