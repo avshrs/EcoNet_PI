@@ -56,11 +56,16 @@ void EcoNet::run()
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
                 std::cout << "dupa1" <<std::endl;
-                // if(ecomax_header.src_address == eco____address )
-                // {
-                //     // not known frame
-                // }
-            
+                std::cout << " 0x" << std::setw(2);
+                std::cout << std::setfill('0') << std::hex;
+                std::cout << static_cast<int>(ecomax_header.src_address);
+                std::cout<<std::endl;
+                std::cout << "dupa1" <<std::endl;
+                std::cout << " 0x" << std::setw(2);
+                std::cout << std::setfill('0') << std::hex;
+                std::cout << static_cast<int>(ecomax_header.payload_type);
+                std::cout<<std::endl;
+                std::cout<<std::endl;
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
