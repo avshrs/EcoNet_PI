@@ -727,11 +727,11 @@ std::string EcoNet::get_boiler_min_power_fan()
 std::string EcoNet::get_room_thermostat_summer_winter_mode()
 {    
     std::string value;
-     if(ecomax920_settings_payload.boiler_summer_winter_mode == 0x01)
+     if(ecomax920_settings_payload.boiler_summer_winter_mode == 0x00)
         value = "Winter";
-     else if(ecomax920_settings_payload.boiler_summer_winter_mode == 0x02)
+     else if(ecomax920_settings_payload.boiler_summer_winter_mode == 0x01)
         value = "Summer";
-     else if(ecomax920_settings_payload.boiler_summer_winter_mode == 0x00)
+     else if(ecomax920_settings_payload.boiler_summer_winter_mode == 0x02)
         value = "Auto";        
     return value;
 }
