@@ -105,7 +105,7 @@ void EcoNet::run()
                 else
                 {
                     //  for debug 
-           //         print_buffer(message.data(), message.size());
+                    print_buffer(message.data(), message.size());
                 }
                 auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
                 if( deltaTime > 60e6)
@@ -387,13 +387,13 @@ std::string EcoNet::get_ignitions_fails()
 std::string EcoNet::get_ecoster_home_temp()
 {
     std::stringstream out;
-    out << std::fixed << std::setprecision(1) << ecoster_payload.room_thermostat_temp_target;
+    out << std::fixed << std::setprecision(1) << ecoster_payload.room_thermostat_home_temp;
     return out.str();   
 }
 std::string EcoNet::get_ecoster_home_temp_target()
 {
     std::stringstream out;
-    out << std::fixed << std::setprecision(1) << ecoster_payload.room_thermostat_home_temp;
+    out << std::fixed << std::setprecision(1) << ecoster_payload.room_thermostat_temp_target;
     return out.str();   
 } 
 std::string EcoNet::get_huw_pomp_state()
