@@ -83,7 +83,7 @@ void EcoNet::run()
                 {  
                    std::cout<<"45-35"<< std::endl;
                    print_buffer(message.data(), message.size());
-                   // show_diff2(message);
+                   show_diff2(message);
                 } 
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame )
