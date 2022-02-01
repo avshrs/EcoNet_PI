@@ -79,7 +79,7 @@ void EcoNet::run()
                 {  
                     // print_buffer(message.data(), message.size());
                 }   
-                else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
+                else if(ecomax_header.src_address == 0x45 )//&& ecomax_header.payload_type == 0x35  ) // debug
                 {  
                    // print_buffer(message.data(), message.size());
                    // show_diff2(message);
@@ -105,7 +105,7 @@ void EcoNet::run()
                 else
                 {
                     //  for debug 
-                    print_buffer(message.data(), message.size());
+                 //   print_buffer(message.data(), message.size());
                 }
                 auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
                 if( deltaTime > 60e6)
@@ -125,6 +125,11 @@ void EcoNet::run()
                     start = timer.now();
                 }
 
+            }
+            else
+            {
+                //  for debug 
+                print_buffer(message.data(), message.size());
             }
         }
 
