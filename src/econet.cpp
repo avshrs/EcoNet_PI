@@ -115,7 +115,7 @@ void EcoNet::run()
             else
             {
                 //  for debug 
-                print_buffer(header.data(), header.size());
+                // print_buffer(header.data(), header.size());
             }
         }
 
