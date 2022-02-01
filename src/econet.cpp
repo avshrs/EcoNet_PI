@@ -115,12 +115,12 @@ void EcoNet::run()
                     // set the same value to force master broadcsat with all ecomax settings 
                     // only transmitted on change
                     
-                    std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x03, 0x96, 0x00, 0x8b, 0x16}; //holiday temp to 15
-                    serial.serial_send(buf); 
-                    sleep(5);
-                    std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
-                    serial.serial_send(buf2); 
-                    start = timer.now();
+                    // std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x03, 0x96, 0x00, 0x8b, 0x16}; //holiday temp to 15
+                    // serial.serial_send(buf); 
+                    // sleep(5);
+                    // std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
+                    // serial.serial_send(buf2); 
+                    // start = timer.now();
                 }
 
             }
@@ -185,7 +185,7 @@ void EcoNet::show_diff(std::vector<uint8_t> payload)
   
     for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
     {
-        if(payload.at(i) != deb1.at(i))
+        if(payload.at(i) != deb1.at(i) && (i>128 || i<86) )
         {
             std::cout << std::dec<<i << ": " ;
             std::cout << " 0x" << std::setw(2);
