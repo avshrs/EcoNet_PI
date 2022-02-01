@@ -312,21 +312,21 @@ void EcoNet::set_huw_temp(uint8_t temp)
 }
 void EcoNet::set_huw_pump_mode(std::string pump_mode)
 {
-    if(pump_mode == "Priority")
+    if(pump_mode == "Priority" || pump_mode == "heat")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x01};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
-    else if(pump_mode == "No_Priority")
+    else if(pump_mode == "No_Priority" || pump_mode == "auto")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x02};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
-    else if(pump_mode == "Off")
+    else if(pump_mode == "Off"|| pump_mode == "off")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x39, 0x00};
         buf.push_back(crc_set(buf));
@@ -374,21 +374,21 @@ void EcoNet::set_huw_container_disinfection(bool state)
 
 void EcoNet::set_room_thermostat_summer_winter_mode(std::string state)
 {
-    if(state == "Winter")
+    if(state == "Winter" || state == "heat")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x00};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
-    else if (state == "Summer")
+    else if (state == "Summer" || state == "off")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x01};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);    
     }
-    else if (state == "Auto")
+    else if (state == "Auto" || state == "auto")
     {
         std::vector<uint8_t> buf = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x3d, 0x02};
         buf.push_back(crc_set(buf));
@@ -503,7 +503,7 @@ void EcoNet::set_room_thermostat_day_temp(float temp_)
 
 void EcoNet::set_room_thermostat_operating_mode(std::string state)
 {   
-    if (state == "Schedule")
+    if (state == "Schedule" || state == "auto")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x00};
         buf.push_back(crc_set(buf));
@@ -517,14 +517,14 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         buf.push_back(0x16);
         serial.serial_send(buf); 
     }
-    else if(state == "Comfort")
+    else if(state == "Comfort" || state == "heat")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x02};
         buf.push_back(crc_set(buf));
         buf.push_back(0x16);
         serial.serial_send(buf);
     }
-    else if (state == "Outside")
+    else if (state == "Outside" || state == "cool")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x03};
         buf.push_back(crc_set(buf));
@@ -552,7 +552,7 @@ void EcoNet::set_room_thermostat_operating_mode(std::string state)
         buf.push_back(0x16);
         serial.serial_send(buf); 
     }
-    else if (state == "Frost_protection")
+    else if (state == "Frost_protection" || state == "off")
     {
         std::vector<uint8_t> buf = {0x68, 0x0c, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x01, 0x07};
         buf.push_back(crc_set(buf));

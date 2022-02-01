@@ -1,547 +1,544 @@
 
 sensor:
-- platform: mqtt
-  unique_id: ecoNet_get_operating_status
-  name: "Status Palnika"
-  state_topic: "EcoNet/get_operating_status"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
+  - platform: mqtt
+    unique_id: ecoNet_get_operating_status
+    name: "Status Palnika"
+    state_topic: "EcoNet/get/boiler/operating_status"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
 
-- platform: mqtt
-  unique_id: ecoNet_get_huw_temp
-  name: "Ciepła woda "
-  state_topic: "EcoNet/get_huw_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_huw_temp
+    name: "Ciepła woda "
+    state_topic: "EcoNet/get/huw/temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_upper_buffer_temp
-  name: "Ciepła woda top"
-  state_topic: "EcoNet/get/upper_buffer_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_upper_buffer_temp
+    name: "Ciepła woda top"
+    state_topic: "EcoNet/get/huw/upper_buffer_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_lower_buffer_temp
-  name: "Ciepła woda bottom"
-  state_topic: "EcoNet/get/lower_buffer_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_lower_buffer_temp
+    name: "Ciepła woda bottom"
+    state_topic: "EcoNet/get/huw/lower_buffer_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_feeder_temp
-  name: "Podajnik temperatura"
-  state_topic: "EcoNet/get/boiler/feeder_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_feeder_temp
+    name: "Podajnik temperatura"
+    state_topic: "EcoNet/get/boiler/feeder_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_temp
-  name: "Piec temperatura"
-  state_topic: "EcoNet/get/boiler/boiler_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_temp
+    name: "Piec temperatura"
+    state_topic: "EcoNet/get/boiler/boiler_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_weather_temp
-  name: "Czujnik pogodowy"
-  state_topic: "EcoNet/get/weather_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_weather_temp
+    name: "Czujnik pogodowy"
+    state_topic: "EcoNet/get/weather_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_exhaust_temp
-  name: "Spaliny temperatura"
-  state_topic: "EcoNet/get/boiler/exhaust_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_exhaust_temp
+    name: "Spaliny temperatura"
+    state_topic: "EcoNet/get/boiler/exhaust_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_mixer_temp
-  name: "Zasilanie na Grzejniki temperatura"
-  state_topic: "EcoNet/get/mixer/temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_mixer_temp
+    name: "Zasilanie na Grzejniki temperatura"
+    state_topic: "EcoNet/get/mixer/temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_return_temp
-  name: "Powrót do Pieca temperatura"
-  state_topic: "EcoNet/get/boiler/return_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_return_temp
+    name: "Powrót do Pieca temperatura"
+    state_topic: "EcoNet/get/boiler/return_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_flame_sensor
-  name: "Czujnik Płomienia"
-  state_topic: "EcoNet/get/boiler/flame_sensor"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}'
-  unit_of_measurement: "%"
-  icon: mdi:fire
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_flame_sensor
+    name: "Czujnik Płomienia"
+    state_topic: "EcoNet/get/boiler/flame_sensor"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}'
+    unit_of_measurement: "%"
+    icon: mdi:fire
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_ecoster_home_temp
-  name: "Dom temperatura"
-  state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_ecoster_home_temp
+    name: "Dom temperatura"
+    state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_ecoster_home_temp_target
-  name: "Dom zadana temperatura"
-  state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp_target"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_ecoster_home_temp_target
+    name: "Dom zadana temperatura"
+    state_topic: "EcoNet/get/room_thermostat/ecoster_home_temp_target"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_huw_temp_target
-  name: "Ciepła woda zadana temperatura"
-  state_topic: "EcoNet/get/huw/temp_target"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_huw_temp_target
+    name: "Ciepła woda zadana temperatura"
+    state_topic: "EcoNet/get/huw/temp_target"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_temp_target
-  name: "Piec zadana temperatura"
-  state_topic: "EcoNet/get/boiler/temp_target"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_temp_target
+    name: "Piec zadana temperatura"
+    state_topic: "EcoNet/get/boiler/temp_target"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_mixer_temp_target
-  name: "Grzejniki Zasilanie zadana temperatura "
-  state_topic: "EcoNet/get/mixer/temp_target"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_mixer_temp_target
+    name: "Grzejniki Zasilanie zadana temperatura "
+    state_topic: "EcoNet/get/mixer/temp_target"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_fuel_level
-  name: "Poziom paliwa"
-  state_topic: "EcoNet/get/boiler/fuel_level"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "%"
-  icon: mdi:fuel
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_fuel_level
+    name: "Poziom paliwa"
+    state_topic: "EcoNet/get/boiler/fuel_level"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "%"
+    icon: mdi:fuel
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_fan_out_power
-  name: "Wiatrak wyciągowy"
-  state_topic: "EcoNet/get/boiler/fan_out_power"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "%"
-  icon: mdi:fan
+  - platform: mqtt
+    unique_id: ecoNet_get_fan_out_power
+    name: "Wiatrak wyciągowy"
+    state_topic: "EcoNet/get/boiler/fan_out_power"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "%"
+    icon: mdi:fan
 
-- platform: mqtt
-  unique_id: ecoNet_get_fan_in_power
-  name: "Nadmuch pieca"
-  state_topic: "EcoNet/get/boiler/fan_in_power"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "%"
-  icon: mdi:fan
+  - platform: mqtt
+    unique_id: ecoNet_get_fan_in_power
+    name: "Nadmuch pieca"
+    state_topic: "EcoNet/get/boiler/fan_in_power"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "%"
+    icon: mdi:fan
 
-- platform: mqtt
-  unique_id: ecoNet_get_huw_pomp_state
-  name: "Pompa Ciepłej wody"
-  state_topic: "EcoNet/get/huw/pomp_state"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
+  - platform: mqtt
+    unique_id: ecoNet_get_huw_pomp_state
+    name: "Pompa Ciepłej wody"
+    state_topic: "EcoNet/get/huw/pomp_state"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_pomp_state
-  name: "Pompa Pieca"
-  state_topic: "EcoNet/get/boiler/pomp_state"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_pomp_state
+    name: "Pompa Pieca"
+    state_topic: "EcoNet/get/boiler/pomp_state"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
 
-- platform: mqtt
-  unique_id: ecoNet_get_fuel_stream
-  name: "Strumień paliwa"
-  state_topic: "EcoNet/get/boiler/fuel_stream"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "kg/h"
-  icon: mdi:fuel
-  state_class: measurement
+  - platform: mqtt
+    unique_id: ecoNet_get_fuel_stream
+    name: "Strumień paliwa"
+    state_topic: "EcoNet/get/boiler/fuel_stream"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "kg/h"
+    icon: mdi:fuel
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: EcoNet/get/boiler/boiler_power_kw
-  name: "Moc pieca"
-  state_topic: "EcoNet/get_boiler_power_kw"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "kW"
-  icon: mdi:fire
-  state_class: measurement
+  - platform: mqtt
+    unique_id: EcoNet/get/boiler/boiler_power_kw
+    name: "Moc pieca"
+    state_topic: "EcoNet/get/boiler/boiler_power_kw"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "kW"
+    icon: mdi:fire
+    state_class: measurement
 
-- platform: mqtt
-  unique_id: ecoNet_get_power_max_time
-  name: "Palink czas pracy na max mocy"
-  state_topic: "EcoNet/get/boiler/power_max_time"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "h"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_power_max_time
+    name: "Palink czas pracy na max mocy"
+    state_topic: "EcoNet/get/boiler/power_max_time"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "h"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_power_medium_time
-  name: "Palink czas pracy na mid mocy"
-  state_topic: "EcoNet/get/boiler/power_medium_time"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "h"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_power_medium_time
+    name: "Palink czas pracy na mid mocy"
+    state_topic: "EcoNet/get/boiler/power_medium_time"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "h"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_power_min_time
-  name: "Palink czas pracy na min mocy"
-  state_topic: "EcoNet/get/boiler/power_min_time"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "h"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_power_min_time
+    name: "Palink czas pracy na min mocy"
+    state_topic: "EcoNet/get/boiler/power_min_time"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "h"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_feeder_time
-  name: "Podajnik czas pracy"
-  state_topic: "EcoNet/get/boiler/feeder_time"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  unit_of_measurement: "h"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_feeder_time
+    name: "Podajnik czas pracy"
+    state_topic: "EcoNet/get/boiler/feeder_time"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    unit_of_measurement: "h"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_ignitions
-  name: "Rozpalenia"
-  state_topic: "EcoNet/get/boiler/ignitions"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_ignitions
+    name: "Rozpalenia"
+    state_topic: "EcoNet/get/boiler/ignitions"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_ignitions_fails
-  name: "Rozpalenia nieudane"
-  state_topic: "EcoNet/get/boiler/ignitions_fails"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_ignitions_fails
+    name: "Rozpalenia nieudane"
+    state_topic: "EcoNet/get/boiler/ignitions_fails"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_huw_pump_mode
-  name: "Tryb pracy Ciepłej wody"
-  state_topic: "EcoNet/get/huw/pump_mode"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
+  - platform: mqtt
+    unique_id: ecoNet_get_huw_pump_mode
+    name: "Tryb pracy Ciepłej wody"
+    state_topic: "EcoNet/get/huw/pump_mode"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
 
-- platform: mqtt
-  unique_id: ecoNet_get_huw_temp_hysteresis
-  name: "Ciepł Woda Histereza"
-  state_topic: "EcoNet/get/huw/temp_hysteresis"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "°C"
-  icon: mdi:thermometer
+  - platform: mqtt
+    unique_id: ecoNet_get_huw_temp_hysteresis
+    name: "Ciepł Woda Histereza"
+    state_topic: "EcoNet/get/huw/temp_hysteresis"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
 
-- platform: mqtt
-  unique_id: ecoNet_get_huw_container_disinfection
-  name: "Ciepła woda Sterylizacja Bojlera"
-  state_topic: "EcoNet/get/huw/container_disinfection"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: "{{ value }}"
+  - platform: mqtt
+    unique_id: ecoNet_get_huw_container_disinfection
+    name: "Ciepła woda Sterylizacja Bojlera"
+    state_topic: "EcoNet/get/huw/container_disinfection"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: "{{ value }}"
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_max_power_kw
-  name: "Palnik Max Moc"
-  state_topic: "EcoNet/get/boiler/max_power_kw"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "kW"
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_max_power_kw
+    name: "Palnik Max Moc"
+    state_topic: "EcoNet/get/boiler/max_power_kw"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "kW"
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_mid_power_kw
-  name: "Palnik Mid Moc"
-  state_topic: "EcoNet/get/boiler/mid_power_kw"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "kW"
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_mid_power_kw
+    name: "Palnik Mid Moc"
+    state_topic: "EcoNet/get/boiler/mid_power_kw"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "kW"
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_min_power_kw
-  name: "Palnik Min Moc"
-  state_topic: "EcoNet/get/boiler/min_power_kw"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "kW"
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_min_power_kw
+    name: "Palnik Min Moc"
+    state_topic: "EcoNet/get/boiler/min_power_kw"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "kW"
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_max_power_fan
-  name: "Palnik Max Moc Wiatrak"
-  state_topic: "EcoNet/get/boiler/max_power_fan"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "%"
-  icon: mdi:fan
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_max_power_fan
+    name: "Palnik Max Moc Wiatrak"
+    state_topic: "EcoNet/get/boiler/max_power_fan"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "%"
+    icon: mdi:fan
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_mid_power_fan
-  name: "Palnik Mid Moc Wiatrak"
-  state_topic: "EcoNet/get/boiler/mid_power_fan"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "%"
-  icon: mdi:fan
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_mid_power_fan
+    name: "Palnik Mid Moc Wiatrak"
+    state_topic: "EcoNet/get/boiler/mid_power_fan"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "%"
+    icon: mdi:fan
 
-- platform: mqtt
-  unique_id: ecoNet_get_boiler_min_power_fan
-  name: "Palnik Min Moc Wiatrak"
-  state_topic: "EcoNet/get/boiler/min_power_fan"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  value_template: >-
-    {{ value | round(0) }}
-  unit_of_measurement: "%"
-  icon: mdi:fan
+  - platform: mqtt
+    unique_id: ecoNet_get_boiler_min_power_fan
+    name: "Palnik Min Moc Wiatrak"
+    state_topic: "EcoNet/get/boiler/min_power_fan"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    value_template: >-
+      {{ value | round(0) }}
+    unit_of_measurement: "%"
+    icon: mdi:fan
 
-- platform: mqtt
-  unique_id: ecoNet_get_room_thermostat_summer_winter_mode
-  name: "Palnik Tryb pracy"
-  state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_room_thermostat_summer_winter_mode
+    name: "Palnik Tryb pracy"
+    state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_room_thermostat_night_temp
-  name: "Termostat nocna temperatura"
-  state_topic: "EcoNet/get/room_thermostat/night_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  unit_of_measurement: "°C"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_room_thermostat_night_temp
+    name: "Termostat nocna temperatura"
+    state_topic: "EcoNet/get/room_thermostat/night_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    unit_of_measurement: "°C"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_room_thermostat_day_temp
-  name: "Termostat dzienna temperatura"
-  state_topic: "EcoNet/get_room_thermostat_day_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  unit_of_measurement: "°C"
-  icon: mdi:fire
+  - platform: mqtt
+    unique_id: ecoNet_get_room_thermostat_day_temp
+    name: "Termostat dzienna temperatura"
+    state_topic: "EcoNet/get/room_thermostat/day_temp"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    unit_of_measurement: "°C"
+    icon: mdi:fire
 
-- platform: mqtt
-  unique_id: ecoNet_get_room_thermostat_operating_mode
-  name: "Termostat tryb pracy"
-  state_topic: "EcoNet/get/room_thermostat/day_temp"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
+  - platform: mqtt
+    unique_id: ecoNet_get_room_thermostat_operating_mode
+    name: "Termostat tryb pracy"
+    state_topic: "EcoNet/get/room_thermostat/operating_mode"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
 
-- platform: mqtt
-  unique_id: ecoNet_get_room_thermostat_hysteresis
-  name: "Termostat Histereza"
-  state_topic: "EcoNet/get/room_thermostat/hysteresis"
-  availability_mode: all
-  availability_topic: "EcoNet/Status"
-  payload_available: "Online"
-  unit_of_measurement: "°C"
-  icon: mdi:fire
-
+  - platform: mqtt
+    unique_id: ecoNet_get_room_thermostat_hysteresis
+    name: "Termostat Histereza"
+    state_topic: "EcoNet/get/room_thermostat/hysteresis"
+    availability_mode: all
+    availability_topic: "EcoNet/Status"
+    payload_available: "Online"
+    unit_of_measurement: "°C"
+    icon: mdi:fire
 
 
 climate:
   - platform: mqtt
-  send_if_off: true
-  modes:
-    - "heat"
-    - "auto"
-    - "off"
-  name: "Regulator temperatury dom"
-  unique_id: ecoNet_regulator_temperatury_dom
-  current_temperature_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
-  mode_command_topic: "EcoNet/set/room_thermostat/operating_mode"
-  mode_state_topic: "EcoNet/get/room_thermostat/operating_mode"
-  temperature_low_command_topic: "EcoNet/set/room_thermostat/night_temp"
-  temperature_low_state_topic: "EcoNet/get/room_thermostat/night_temp"
-  temperature_high_command_topic: "EcoNet/set/room_thermostat/day_temp"
-  temperature_high_state_topic: "EcoNet/get/room_thermostat/day_temp"
-  min_temp: 15
-  max_temp: 25
-  value_template: "{{ value }}"
-  temp_step: 0.1
+    send_if_off: true
+    modes:
+      - "heat"
+      - "cool"
+      - "auto"
+      - "off"
+    name: "Regulator temperatury dom"
+    unique_id: ecoNet_regulator_temperatury_dom
+    current_temperature_topic: "EcoNet/get/room_thermostat/ecoster_home_temp"
+    mode_command_topic: "EcoNet/set/room_thermostat/operating_mode"
+    mode_state_topic: "EcoNet/get/room_thermostat/operating_mode"
+    mode_state_template: >-
+      {% set values = { 'Schedule':'auto', 'Comfort':'heat',  'Outside':'cool', 'Frost_protection':off} %}
+      {{ values[value] if value in values.keys() else 'off' }}
+    temperature_low_command_topic: "EcoNet/set/room_thermostat/night_temp"
+    temperature_low_state_topic: "EcoNet/get/room_thermostat/night_temp"
+    temperature_high_command_topic: "EcoNet/set/room_thermostat/day_temp"
+    temperature_high_state_topic: "EcoNet/get/room_thermostat/day_temp"
+    min_temp: 15
+    max_temp: 25
+    value_template: "{{ value }}"
+    temp_step: 0.1
 
-- platform: mqtt
-  send_if_off: true
-  modes:
-    - "heat"
-    - "off"
-  name: "Ciepła woda"
-  unique_id: ecoNet_regulator_ciepla_woda
-  current_temperature_topic: "EcoNet/get/huw/temp"
-  mode_command_topic: "EcoNet/set/huw/pump_mode"
-  mode_state_topic: "EcoNet/get/huw/pump_mode"
-  temperature_command_topic: "EcoNet/set/huw/temp"
-  temperature_state_topic: "EcoNet/get/huw/temp_target"
-  min_temp: 45
-  max_temp: 60
-  value_template: "{{ value }}"
-  temp_step: 1
+  - platform: mqtt
+    send_if_off: true
+    modes:
+      - "heat"
+      - "off"
+      - "auto"
+    name: "Ciepła woda"
+    unique_id: ecoNet_regulator_ciepla_woda
+    current_temperature_topic: "EcoNet/get/huw/temp"
+    mode_command_topic: "EcoNet/set/huw/pump_mode"
+    mode_state_topic: "EcoNet/get/huw/pump_mode"
+    mode_state_template: >-
+      {% set values = { 'No_Priority':'auto', 'Priority':'heat',   'Off':off} %}
+      {{ values[value] if value in values.keys() else 'off' }}
+    temperature_command_topic: "EcoNet/set/huw/temp"
+    temperature_state_topic: "EcoNet/get/huw/temp_target"
+    min_temp: 45
+    max_temp: 60
+    value_template: "{{ value }}"
+    temp_step: 1
 
-- platform: mqtt
-  send_if_off: true
-  name: "Piec"
-  unique_id: ecoNet_regulator_piec
-  current_temperature_topic: "EcoNet/get/boiler/temp"
-
-  temperature_command_topic: "EcoNet/set/boiler/temp"
-  temperature_state_topic: "EcoNet/get/boiler/temp_target"
-  min_temp: 35
-  max_temp: 80
-  value_template: "{{ value }}"
-  temp_step: 1
-
-- platform: mqtt
-  send_if_off: true
-  modes:
-    - "heat"
-    - "off"
-    - "auto"
-  name: "Grzejniki zasilanie"
-  unique_id: ecoNet_regulator_grzejniki
-  mode_command_topic: "EcoNet/set/room_thermostat/summer_winter_mode"
-  mode_state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
-  current_temperature_topic: "EcoNet/get/mixer/temp"
-  temperature_command_topic: "EcoNet/set/mixer/temp"
-  temperature_state_topic: "EcoNet/get/mixer/temp_target"
-  min_temp: 35
-  max_temp: 65
-  value_template: "{{ value }}"
-  temp_step: 1
+  - platform: mqtt
+    send_if_off: true
+    modes:
+      - "heat"
+      - "off"
+      - "auto"
+    name: "Grzejniki zasilanie"
+    unique_id: ecoNet_regulator_grzejniki
+    mode_command_topic: "EcoNet/set/room_thermostat/summer_winter_mode"
+    mode_state_topic: "EcoNet/get/room_thermostat/summer_winter_mode"
+    mode_state_template: >-
+      {% set values = { 'Auto':'auto', 'Winter':'heat',  'Summer':'off'} %}
+      {{ values[value] if value in values.keys() else 'off' }}
+    current_temperature_topic: "EcoNet/get/mixer/temp"
+    temperature_command_topic: "EcoNet/set/mixer/temp"
+    temperature_state_topic: "EcoNet/get/mixer/temp_target"
+    min_temp: 35
+    max_temp: 65
+    value_template: "{{ value }}"
+    temp_step: 1
