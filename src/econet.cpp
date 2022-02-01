@@ -60,9 +60,10 @@ void EcoNet::run()
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
+                    print_buffer(message.data(), message.size());
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
-                    //show_diff(message);
+                    show_diff(message);
                     
                 }
                 else if(ecomax_header.src_address == ecomax_address 
@@ -82,8 +83,8 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
                 {  
                    std::cout<<"45-35"<< std::endl;
-                   print_buffer(message.data(), message.size());
-                   show_diff2(message);
+                   //print_buffer(message.data(), message.size());
+                   //show_diff2(message);
                 } 
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame )
