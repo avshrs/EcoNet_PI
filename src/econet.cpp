@@ -45,7 +45,6 @@ void EcoNet::run()
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
-                    // print_buffer(message.data(), message.size());
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
                     
@@ -53,9 +52,6 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_settings_frame)
                 {   
-                    std::cout<<"ecomax settings"<< std::endl;
-                    // show_diff(payload);
-                    // print_buffer(payload.data(), payload.size());
                     ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
                     update_statuses();
                     
@@ -66,7 +62,6 @@ void EcoNet::run()
                 }   
                 else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
                 {  
-                   //print_buffer(message.data(), message.size());
                 } 
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame )
@@ -77,16 +72,14 @@ void EcoNet::run()
                 else if(ecomax_header.src_address == ecoster_address 
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
-                    // print_buffer(message.data(), message.size());
                     ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                     update_statuses();
                 } 
                 else
                 {
                     //  for debug 
-                 //   print_buffer(message.data(), message.size());
+                    //   print_buffer(message.data(), message.size());
                 }
-       
             }
             else
             {
