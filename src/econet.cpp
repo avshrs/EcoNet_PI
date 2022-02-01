@@ -21,22 +21,7 @@ void EcoNet::run()
     payload.reserve(1024);
     std::vector<uint8_t> message;
     message.reserve(1024);
-    deb1.reserve(1024);
-    deb2.reserve(1024);
-    deb3.reserve(1024);
-    deb11.reserve(1024);
-    deb22.reserve(1024);
-    deb33.reserve(1024);
-    for(int i =0; i<1024 ; i++)
-    {
-        deb1.push_back(0);
-        deb2.push_back(0);
-        deb3.push_back(0);
-        deb11.push_back(0);
-        deb22.push_back(0);
-        deb33.push_back(0);
-    }
-    auto start = timer.now();
+
     while (true)
     {
         header.clear();
@@ -60,10 +45,9 @@ void EcoNet::run()
                 if(ecomax_header.src_address == ecomax_address 
                     && ecomax_header.payload_type == ecomax_live_data_frame)
                 {
-                    print_buffer(message.data(), message.size());
+                    // print_buffer(message.data(), message.size());
                     ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
-                    show_diff(message);
                     
                 }
                 else if(ecomax_header.src_address == ecomax_address 
@@ -82,14 +66,11 @@ void EcoNet::run()
                 }   
                 else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
                 {  
-                   std::cout<<"45-35"<< std::endl;
                    //print_buffer(message.data(), message.size());
-                   //show_diff2(message);
                 } 
                 else if(ecomax_header.src_address == ecoster_address
                     && ecomax_header.payload_type == ecoster_frame )
                 {
-
                     ecoster_payload = *reinterpret_cast<Ecoster_Live_Data_Frame_payload*>(payload.data());
                     update_statuses();
                 }            
@@ -97,10 +78,6 @@ void EcoNet::run()
                     && ecomax_header.payload_type == ecoster_settings_frame)
                 {
                     // print_buffer(message.data(), message.size());
-
-                    // std::cout<<"ecomax settings"<< std::endl;
-                    // show_diff(payload);
-
                     ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                     update_statuses();
                 } 
@@ -109,25 +86,12 @@ void EcoNet::run()
                     //  for debug 
                  //   print_buffer(message.data(), message.size());
                 }
-                auto deltaTime = std::chrono::duration_cast<mi>(timer.now() - start).count();
-                if( deltaTime > 60e6)
-                {   
-                    // set the same value to force master broadcsat with all ecomax settings 
-                    // only transmitted on change
-                    
-                    std::vector<uint8_t> buf = {0x68, 0x0d, 0x00, 0x45, 0x56, 0x30, 0x05, 0x5d, 0x03, 0x96, 0x00, 0x8b, 0x16}; //holiday temp to 15
-                    serial.serial_send(buf); 
-                    sleep(5);
-                    std::vector<uint8_t> buf2 = {0x68, 0x0e, 0x00, 0x45, 0x56, 0x30, 0x05, 0x56, 0x05, 0x01, 0x94, 0x00, 0x86, 0x16}; // room temp. factor to 0
-                    serial.serial_send(buf2); 
-                    start = timer.now();
-                }
-
+       
             }
             else
             {
                 //  for debug 
-                print_buffer(header.data(), header.size());
+                // print_buffer(header.data(), header.size());
             }
         }
 
@@ -145,76 +109,6 @@ void EcoNet::print_buffer(uint8_t *buf, int len)
         }
     std::cout <<" | " << std::endl;
 }
-
-
-void EcoNet::show_diff2(std::vector<uint8_t> payload)
-{   //debug tool
-  
-    for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
-    {
-        if(payload.at(i) != deb11.at(i))
-        {
-            std::cout << std::dec<<i << ": " ;
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(payload.at(i));
-            
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(deb11.at(i));
-            
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(deb22.at(i));
-            
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(deb33.at(i));
-            std::cout <<"\n";
-        }
-       
-    }
-    deb33=deb22;
-    deb22=deb11;
-    deb11=payload;
-    std::cout <<"2\n";
-    
-}
-void EcoNet::show_diff(std::vector<uint8_t> payload)
-{   //debug tool
-  
-    for(int i = 0; i <  static_cast<int>(payload.size()) ; i++)
-    {
-        if(payload.at(i) != deb1.at(i))
-        {
-            std::cout << std::dec<<i << ": " ;
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(payload.at(i));
-            
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(deb1.at(i));
-            
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(deb2.at(i));
-            
-            std::cout << " 0x" << std::setw(2);
-            std::cout << std::setfill('0') << std::hex;
-            std::cout << static_cast<int>(deb3.at(i));
-            std::cout <<"\n";
-            
-        }
-       
-    }
-    deb3=deb2;
-    deb2=deb1;
-    deb1=payload;
-    std::cout <<"1\n";
-    
-}
-
 
 
 std::string EcoNet::date()

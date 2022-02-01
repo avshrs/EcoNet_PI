@@ -14,13 +14,6 @@ class EcoNet{
         Config_manager *cfg;
         Econet_Mqtt econet_set_values;
         
-        std::vector<uint8_t> deb1;
-        std::vector<uint8_t> deb2;
-        std::vector<uint8_t> deb3;
-        std::vector<uint8_t> deb11;
-        std::vector<uint8_t> deb22;
-        std::vector<uint8_t> deb33;
-
         std::chrono::high_resolution_clock timer;
         using mi = std::chrono::duration<float, std::micro>;
         
@@ -40,9 +33,9 @@ class EcoNet{
         uint8_t frame_end = 0x16;
 
         uint8_t econet_address = 0x56;
-        uint8_t econet_frame = 0xb0;
-        uint8_t econet_set_frame = 0x57;
-        uint8_t econet_set_write_frame = 0x56; //??
+        uint8_t econet_frame = 0xb0;  //??
+        uint8_t econet_frame_2 = 0x57; //??
+        uint8_t econet_frame_3 = 0x56; //??
 
         uint8_t eco____address = 0x50; //??
 
@@ -76,27 +69,16 @@ class EcoNet{
         void run();
         void register_mqtt(Mqtt_Client *mqtt_);
         void register_cfg(Config_manager *cfg_);
+
     private:
-
         void print_buffer(uint8_t *buf, int len);
-        void show_diff(std::vector<uint8_t> payload);
-        void show_diff2(std::vector<uint8_t> payload);
         std::string date();
-        void analyze_frame_ecomax_920P1(std::vector<uint8_t> &payload);
-        void analyze_frame_ecomax_920P1_settings(std::vector<uint8_t> &payload);
-        void analyze_frame_ecoster_settings(std::vector<uint8_t> &payload);
-
-        void analyze_frame_econet(std::vector<uint8_t> &payload);
-        void analyze_frame_ecoster(std::vector<uint8_t> &payload);
-        float retrun_float(std::vector<uint8_t> &payload, int position);
-        short retrun_short(std::vector<uint8_t> &payload, int p);
-        
         uint8_t crc(std::vector<uint8_t> &message);
         uint8_t crc_set(std::vector<uint8_t> &message);
         void update_statuses();
+
     public:
         std::string get_operating_status();
-        
         std::string get_huw_temp();
         std::string get_feeder_temp();
         std::string get_boiler_temp();
@@ -107,10 +89,8 @@ class EcoNet{
         std::string get_upper_buffer_temp();
         std::string get_lower_buffer_temp();
         std::string get_flame_sensor();
-
         std::string get_ecoster_home_temp();
         std::string get_ecoster_home_temp_target();
-
         std::string get_huw_temp_target();
         std::string get_boiler_temp_target();
         std::string get_mixer_temp_target();
@@ -132,7 +112,6 @@ class EcoNet{
         std::string get_huw_pump_mode();
         std::string get_huw_temp_hysteresis();
         std::string get_huw_container_disinfection();
-        
         std::string get_boiler_on_off();
         std::string get_boiler_max_power_kw();
         std::string get_boiler_mid_power_kw();
@@ -140,7 +119,6 @@ class EcoNet{
         std::string get_boiler_max_power_fan();
         std::string get_boiler_mid_power_fan();
         std::string get_boiler_min_power_fan();
-        
         std::string get_room_thermostat_summer_winter_mode();
         std::string get_room_thermostat_night_temp();
         std::string get_room_thermostat_day_temp();
@@ -152,7 +130,6 @@ class EcoNet{
         void set_huw_pump_mode(std::string pump_mode);
         void set_huw_temp_hysteresis(uint8_t hysteresis);
         void set_huw_container_disinfection(bool state);
-        
         void set_boiler_temp(uint8_t temp);
         void set_boiler_on_off(bool state);
         void set_boiler_max_power_kw(uint8_t power_kw);
@@ -161,14 +138,11 @@ class EcoNet{
         void set_boiler_max_power_fan(uint8_t fun_max);
         void set_boiler_mid_power_fan(uint8_t fun_max);
         void set_boiler_min_power_fan(uint8_t fun_max);
-        
         void set_mixer_temp(uint8_t temp);
-        
         void set_room_thermostat_summer_winter_mode(std::string state);
         void set_room_thermostat_night_temp(float temp);
         void set_room_thermostat_day_temp(float temp);
         void set_room_thermostat_operating_mode(std::string state);
         void set_room_thermostat_hysteresis(float hysteresis);
-    
 };
 
