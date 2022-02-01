@@ -2,10 +2,12 @@
 (Po zmianie linkowania do libek w cmake również na x86_64)
 
 Integracja urządzeń firmy Plum z Home Assistant napisana w C++
+
+Obsługiwane urządznia:
 Ecomax 920p i Ecoster Touch
  
  
-**Pobieranie informacji ze sterownika: **
+**Pobieranie informacji ze sterownika:**
 * Sterownik
    * Ramka z danymi live
        * Aktualny status sterownika (praca, postój...)
@@ -44,7 +46,7 @@ Ecomax 920p i Ecoster Touch
        * Sterylizacja CWU
        * tryb lato zima auto
  
-* * Termostat
+* Termostat
    * Ramka z danymi live
        * Aktualna temperatura zadana
        * Aktualna temperatura pomieszczenia
@@ -84,17 +86,17 @@ Ecomax 920p i Ecoster Touch
    * Minimalna moc wiatraka
  
  
-** Komunikacja **
-Do komunikacji używam zwykłego konwertera rs485 na usb CH340 (za ok 8zł ze znanego portalu aukcyjnego).
-** Info **
-Niestety nie miałem czasu analizować i wyłapać ramki z zapytaniem o konfigurację, dlatego odczyt ramek z ustawieniami odbywa się na razie tylko po zmianie ustawień. w trakcie działania to nie przeszkadza bo dane są buforowane i uaktualniane w przypadku zmiany.
+**Komunikacja**
+* Do komunikacji używam zwykłego konwertera rs485 na usb CH340 (za ok 8zł ze znanego portalu aukcyjnego).
+**Info**
+* Niestety nie miałem czasu analizować i wyłapać ramki z zapytaniem o konfigurację, dlatego odczyt ramek z ustawieniami odbywa się na razie tylko po zmianie ustawień. w trakcie działania to nie przeszkadza bo dane są buforowane i uaktualniane w przypadku zmiany.
 Pierwsze uruchomienie wymaga set'ow aby master rozgłosił ramki z ustawieniami.
  
-** Home Assistant **
-   plik HA_config zawiera moje ustawienia - przykład użycia.
+**Home Assistant** 
+* plik HA_config zawiera moje ustawienia - przykład użycia.
  
-** Todo **
-Złapać ramkę/sekwencję ramek podczas startu econet albo ecoster, która prosi mastera o rozgłoszenie ramek z ustawieniami aby użyć jej do odczytu ustawień przy starcie aplikacji i ewentualnemu wymuszaniu uaktualnienia ustawień.
+**Todo**
+* Złapać ramkę/sekwencję ramek podczas startu econet albo ecoster, która prosi mastera o rozgłoszenie ramek z ustawieniami aby użyć jej do odczytu ustawień przy starcie aplikacji i ewentualnemu wymuszaniu uaktualnienia ustawień.
  
  
  
