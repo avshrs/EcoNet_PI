@@ -677,11 +677,9 @@ std::string EcoNet::get_huw_pump_mode()
     if(ecomax920_settings_payload.huw_mode == 0x01)
         value = "Priority";
     else if(ecomax920_settings_payload.huw_mode == 0x02)
-        value = "Priority";
+        value = "No_Priority";
     else if(ecomax920_settings_payload.huw_mode == 0x00)
         value = "Off";        
-    else
-        value = "value error";  
     return value;
 }
 
