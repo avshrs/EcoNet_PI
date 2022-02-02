@@ -129,87 +129,93 @@ void Mqtt_Client::pub_state(std::string msg, std::string pub){
 
 
 void Mqtt_Client::on_message(const struct mosquitto_message *message){
-    std::string message_topic(message->topic);
-    std::string message_payload(static_cast<char*>(message->payload));
-    
-    std::cout << date() <<"get instruction: " << message_payload << std::endl;
-    
+    try
+    {
+        std::string message_topic(message->topic);
+        std::string message_payload(static_cast<char*>(message->payload));
+        
+        std::cout << date() <<"get instruction: " << message_payload << std::endl;
+        
 
-    if(!message_payload.empty() && message_topic == cfg->get_huw_temp())
-    {   
-        econet->set_huw_temp(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
+        if(!message_payload.empty() && message_topic == cfg->get_huw_temp())
+        {   
+            econet->set_huw_temp(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
 
-    if(!message_payload.empty() && message_topic == cfg->get_huw_pump_mode())
-    {   
-        econet->set_huw_pump_mode(message_payload.data());
-    }
+        if(!message_payload.empty() && message_topic == cfg->get_huw_pump_mode())
+        {   
+            econet->set_huw_pump_mode(message_payload.data());
+        }
 
-    if(!message_payload.empty() && message_topic == cfg->get_huw_temp_hysteresis())
-    {   
-        econet->set_huw_temp_hysteresis(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        if(!message_payload.empty() && message_topic == cfg->get_huw_temp_hysteresis())
+        {   
+            econet->set_huw_temp_hysteresis(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_huw_container_disinfection())
+        {   
+            econet->set_huw_container_disinfection(static_cast<bool>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_temp())
+        {   
+            econet->set_boiler_temp(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_on_off())
+        {   
+            econet->set_boiler_on_off(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_max_power_kw())
+        {   
+            econet->set_boiler_max_power_kw(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_mid_power_kw())
+        {   
+            econet->set_boiler_mid_power_kw(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_min_power_kw())
+        {   
+            econet->set_boiler_min_power_kw(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_max_power_fan())
+        {   
+            econet->set_boiler_max_power_fan(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_mid_power_fan())
+        {   
+            econet->set_boiler_mid_power_fan(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_boiler_min_power_fan())
+        {   
+            econet->set_boiler_min_power_fan(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_mixer_temp())
+        {   
+            econet->set_mixer_temp(static_cast<uint8_t>(std::stoi(message_payload.data())));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_summer_winter_mode())
+        {   
+            econet->set_room_thermostat_summer_winter_mode(message_payload.data());
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_night_temp())
+        {   
+            econet->set_room_thermostat_night_temp(std::stof(message_payload.data()));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_day_temp())
+        {   
+            econet->set_room_thermostat_day_temp(std::stof(message_payload.data()));
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_operating_mode())
+        {   
+            econet->set_room_thermostat_operating_mode(message_payload.data());
+        }
+        if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_hysteresis())
+        {   
+            econet->set_room_thermostat_hysteresis(std::stof(message_payload.data()));
+        }
     }
-    if(!message_payload.empty() && message_topic == cfg->get_huw_container_disinfection())
-    {   
-        econet->set_huw_container_disinfection(static_cast<bool>(std::stoi(message_payload.data())));
+    catch (...)
+    {
+        std::cout<< "ERROR: wrong payload" << std::endl;
     }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_temp())
-    {   
-        econet->set_boiler_temp(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_on_off())
-    {   
-        econet->set_boiler_on_off(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_max_power_kw())
-    {   
-        econet->set_boiler_max_power_kw(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_mid_power_kw())
-    {   
-        econet->set_boiler_mid_power_kw(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_min_power_kw())
-    {   
-        econet->set_boiler_min_power_kw(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_max_power_fan())
-    {   
-        econet->set_boiler_max_power_fan(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_mid_power_fan())
-    {   
-        econet->set_boiler_mid_power_fan(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_boiler_min_power_fan())
-    {   
-        econet->set_boiler_min_power_fan(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_mixer_temp())
-    {   
-        econet->set_mixer_temp(static_cast<uint8_t>(std::stoi(message_payload.data())));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_summer_winter_mode())
-    {   
-        econet->set_room_thermostat_summer_winter_mode(message_payload.data());
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_night_temp())
-    {   
-        econet->set_room_thermostat_night_temp(std::stof(message_payload.data()));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_day_temp())
-    {   
-        econet->set_room_thermostat_day_temp(std::stof(message_payload.data()));
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_operating_mode())
-    {   
-        econet->set_room_thermostat_operating_mode(message_payload.data());
-    }
-    if(!message_payload.empty() && message_topic == cfg->get_room_thermostat_hysteresis())
-    {   
-        econet->set_room_thermostat_hysteresis(std::stof(message_payload.data()));
-    }
-
          
  
 }
