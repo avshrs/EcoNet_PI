@@ -6,6 +6,8 @@ Integracja urządzeń firmy Plum z Home Assistant napisana w C++
 Obsługiwane urządznia:
 Ecomax 920p i Ecoster Touch
  
+ ![termostaty ](https://github.com/avshrs/EcoNet_PI/blob/master/HA_termostaty.png?raw=true)
+ ![parametry all](https://github.com/avshrs/EcoNet_PI/blob/master/HA_Parametry_all.png?raw=true)
  
 **Pobieranie informacji ze sterownika:**
 * Sterownik
