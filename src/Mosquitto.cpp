@@ -134,7 +134,7 @@ void Mqtt_Client::on_message(const struct mosquitto_message *message){
         std::string message_topic(message->topic);
         std::string message_payload(static_cast<char*>(message->payload));
         
-        std::cout << date() <<"get instruction: " << message_payload << std::endl;
+        std::cout << date() <<"Received instruction: " << message_topic << "with payload: " << message_payload << std::endl;
         
 
         if(!message_payload.empty() && message_topic == cfg->get_huw_temp())
@@ -214,7 +214,7 @@ void Mqtt_Client::on_message(const struct mosquitto_message *message){
     }
     catch (...)
     {
-        std::cout<< "ERROR: wrong payload" << std::endl;
+        std::cout<< date() << "ERROR: wrong payload" << std::endl;
     }
          
  
