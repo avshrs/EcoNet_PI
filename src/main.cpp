@@ -9,7 +9,6 @@ void th1(EcoNet *econet)
     econet->run();
 }
 
-
 int main()
 {
     Config_manager cfg;
