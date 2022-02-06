@@ -42,13 +42,11 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                if(ecomax_header.src_address == ecomax_address 
-                    && ecomax_header.payload_type == ecomax_live_data_frame)
+                if(ecomax_header.src_address == ecomax_address )
                 {
                     // ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
                 }
-                else if(ecomax_header.src_address == ecomax_address 
-                    && ecomax_header.payload_type == ecomax_settings_frame)
+                else if(ecomax_header.src_address == ecomax_address )
                 {   
                     // ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
                 }
@@ -57,8 +55,7 @@ void EcoNet::run()
                     print_buffer(message.data(), message.size());
                     // ecoster_payload = *reinterpret_cast<Ecoster_Live_Data_Frame_payload*>(payload.data());
                 }            
-                else if(ecomax_header.src_address == ecoster_address 
-                    && ecomax_header.payload_type == ecoster_settings_frame)
+                else if(ecomax_header.src_address == ecoster_address )
                 {
                     // ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
                 } 
@@ -72,7 +69,7 @@ void EcoNet::run()
                 else // debug 
                 {
                     //  for debug 
-                      print_buffer(message.data(), message.size());
+                     print_buffer(message.data(), message.size());
                 }
                 
             }
