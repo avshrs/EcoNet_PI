@@ -42,35 +42,26 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                if(ecomax_header.src_address == ecomax_address )
-                {
-                    // ecomax920_payload = *reinterpret_cast<Ecomax_920_Live_Data_Frame_payload*>(payload.data());
-                }
-                else if(ecomax_header.src_address == ecomax_address )
+                if(ecomax_header.src_address == ecomax_address && ecomax_header.src_address == ecoster_address )
                 {   
-                    // ecomax920_settings_payload = *reinterpret_cast<Ecomax_settings_Frame_payload*>(payload.data());
+                    print_buffer(message.data(), message.size());
                 }
                 else if(ecomax_header.src_address == ecoster_address)
                 {
                     print_buffer(message.data(), message.size());
-                    // ecoster_payload = *reinterpret_cast<Ecoster_Live_Data_Frame_payload*>(payload.data());
                 }            
-                else if(ecomax_header.src_address == ecoster_address )
-                {
-                    // ecoster_settings_payload = *reinterpret_cast<Ecoster_Settings_Frame_payload*>(payload.data());
-                } 
-                else if(ecomax_header.src_address == econet_address) // debug
-                {  
+                // else if(ecomax_header.src_address == econet_address) // debug
+                // {  
                     
-                }   
-                else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
-                {  
-                } 
-                else // debug 
-                {
-                    //  for debug 
-                     print_buffer(message.data(), message.size());
-                }
+                // }   
+                // else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
+                // {  
+                // } 
+                // else // debug 
+                // {
+                //     //  for debug 
+                //      print_buffer(message.data(), message.size());
+                // }
                 
             }
             // else
