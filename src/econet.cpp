@@ -42,7 +42,7 @@ void EcoNet::run()
             
             if(crc(message) == static_cast<uint8_t>(message.at(message.size()-2)))
             {
-                if(ecomax_header.src_address == ecomax_address && ecomax_header.src_address == ecoster_address )
+                if(ecomax_header.src_address == ecomax_address && ecomax_header.dst_address == ecoster_address )
                 {   
                     print_buffer(message.data(), message.size());
                 }
