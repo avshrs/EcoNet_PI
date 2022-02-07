@@ -50,10 +50,10 @@ void EcoNet::run()
                 {
                     print_buffer(message.data(), message.size());
                 }            
-                // else if(ecomax_header.src_address == econet_address) // debug
-                // {  
-                    
-                // }   
+                else if(ecomax_header.src_address == 0x50) // debug
+                {  
+                    print_buffer(message.data(), message.size());
+                }   
                 // else if(ecomax_header.src_address == 0x45 && ecomax_header.payload_type == 0x35  ) // debug
                 // {  
                 // } 
