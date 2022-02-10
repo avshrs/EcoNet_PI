@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8.9)
 project(EcoNet)
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
+set(CMAKE_CXX_STANDARD 17)
+# target_compile_features(myexecutable PUBLIC cxx_std_17)
 
 include_directories(include)
 
