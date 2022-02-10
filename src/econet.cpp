@@ -783,10 +783,10 @@ std::string EcoNet::get_room_thermostat_hysteresis()
 
 void EcoNet::update_statuses()
 {
-    if (ecomax920_buffer.huw_temp != ecomax920_payload.huw_temp)
+    if (const auto asd = get_huw_temp(); ecomax920_buffer.huw_temp != atof(asd))
     {
-         mqtt->pub_state(get_huw_temp(), cfg->sub_get_huw_temp());
-        ecomax920_buffer.huw_temp = ecomax920_payload.huw_temp;
+         mqtt->pub_state(asd, cfg->sub_get_huw_temp());
+        ecomax920_buffer.huw_temp = atof(asd);
     }
     if (ecomax920_buffer.operating_status != ecomax920_payload.operating_status)
     {
