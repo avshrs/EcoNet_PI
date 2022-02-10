@@ -35,7 +35,7 @@ class EcoNet{
         uint8_t econet_address = 0x56;
         uint8_t econet_frame = 0xb0;  //??
         uint8_t econet_frame_2 = 0x57; //??
-        uint8_t econet_frame_3 = 0x56; //??
+        uint8_t econet_frame_3 = 0x89; //??
 
         uint8_t eco____address = 0x50; //??
 
