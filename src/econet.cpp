@@ -783,79 +783,79 @@ std::string EcoNet::get_room_thermostat_hysteresis()
 
 void EcoNet::update_statuses()
 {
-    if (const auto value = get_huw_temp(); ecomax920_buffer.huw_temp != atof(value.c_str()))
+    if (auto value = get_huw_temp(); ecomax920_buffer.huw_temp != atof(value.c_str()))
     {
         mqtt->pub_state(value, cfg->sub_get_huw_temp());
         ecomax920_buffer.huw_temp = atof(value.c_str());
     }
-    if (const auto value = get_operating_status(); ecomax920_buffer.operating_status != atof(value.c_str()))
+    if (auto value = get_operating_status(); ecomax920_buffer.operating_status != atof(value.c_str()))
     {
         mqtt->pub_state(get_boiler_on_off(), cfg->sub_get_boiler_on_off());
         mqtt->pub_state(get_operating_status(), cfg->sub_get_operating_status());
         ecomax920_buffer.operating_status = atof(value.c_str());
     }
 
-    if (const auto value = get_feeder_temp(); ecomax920_buffer.feeder_temp  != atof(value.c_str()))
+    if (auto value = get_feeder_temp(); ecomax920_buffer.feeder_temp  != atof(value.c_str()))
     {
         mqtt->pub_state(get_feeder_temp(), cfg->sub_get_feeder_temp());
         ecomax920_buffer.feeder_temp = atof(value.c_str());
     }
   
-    if (const auto value = get_boiler_temp(); ecomax920_buffer.boiler_temp != atof(value.c_str()))
+    if (auto value = get_boiler_temp(); ecomax920_buffer.boiler_temp != atof(value.c_str()))
     {
         mqtt->pub_state(get_boiler_temp(), cfg->sub_get_boiler_temp());
         ecomax920_buffer.boiler_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_boiler_return_temp(); ecomax920_buffer.boiler_return_temp != atof(value.c_str()))
+    if (auto value = get_boiler_return_temp(); ecomax920_buffer.boiler_return_temp != atof(value.c_str()))
     {
         mqtt->pub_state(get_boiler_return_temp(), cfg->sub_get_boiler_return_temp());
         ecomax920_buffer.boiler_return_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_flame_sensor(); ecomax920_buffer.flame_sensor != atof(value.c_str()))
+    if (auto value = get_flame_sensor(); ecomax920_buffer.flame_sensor != atof(value.c_str()))
     {
         mqtt->pub_state(get_flame_sensor(), cfg->sub_get_flame_sensor());
         ecomax920_buffer.flame_sensor = atof(value.c_str());
     }
 
-    if (const auto value = get_upper_buffer_temp(); ecomax920_buffer.upper_buffer_temp != atof(value.c_str()))
+    if (auto value = get_upper_buffer_temp(); ecomax920_buffer.upper_buffer_temp != atof(value.c_str()))
     {
          mqtt->pub_state(get_upper_buffer_temp(), cfg->sub_get_upper_buffer_temp());
         ecomax920_buffer.upper_buffer_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_lower_buffer_temp(); ecomax920_buffer.lower_buffer_temp != atof(value.c_str()))
+    if (auto value = get_lower_buffer_temp(); ecomax920_buffer.lower_buffer_temp != atof(value.c_str()))
     {
          mqtt->pub_state(get_lower_buffer_temp(), cfg->sub_get_lower_buffer_temp());
         ecomax920_buffer.lower_buffer_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_weather_temp(); ecomax920_buffer.weather_temp != atof(value.c_str()))
+    if (auto value = get_weather_temp(); ecomax920_buffer.weather_temp != atof(value.c_str()))
     {
          mqtt->pub_state(get_weather_temp(), cfg->sub_get_weather_temp());
         ecomax920_buffer.weather_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_exhaust_temp(); ecomax920_buffer.exhaust_temp != atof(value.c_str()))
+    if (auto value = get_exhaust_temp(); ecomax920_buffer.exhaust_temp != atof(value.c_str()))
     {
          mqtt->pub_state(get_exhaust_temp(), cfg->sub_get_exhaust_temp());
         ecomax920_buffer.exhaust_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_mixer_temp(); ecomax920_buffer.mixer_temp != atof(value.c_str()))
+    if (auto value = get_mixer_temp(); ecomax920_buffer.mixer_temp != atof(value.c_str()))
     {
          mqtt->pub_state(get_mixer_temp(), cfg->sub_get_mixer_temp());
         ecomax920_buffer.mixer_temp = atof(value.c_str());
     }
 
-    if (const auto value = get_boiler_power_kw(); ecomax920_buffer.boiler_power_kw != atof(value.c_str()))
+    if (auto value = get_boiler_power_kw(); ecomax920_buffer.boiler_power_kw != atof(value.c_str()))
     {
          mqtt->pub_state(get_boiler_power_kw(), cfg->sub_get_boiler_power_kw());
         ecomax920_buffer.boiler_power_kw = atof(value.c_str());
     }
 
-    if (const auto value = get_fuel_stream(); ecomax920_buffer.fuel_stream != atof(value.c_str()))
+    if (auto value = get_fuel_stream(); ecomax920_buffer.fuel_stream != atof(value.c_str()))
     {
          mqtt->pub_state(get_fuel_stream(), cfg->sub_get_fuel_stream());
         ecomax920_buffer.fuel_stream = atof(value.c_str());
@@ -897,7 +897,7 @@ void EcoNet::update_statuses()
         ecomax920_buffer.fan_out_power = ecomax920_payload.fan_out_power;
     }
 
-    if (const auto value = get_boiler_power_kw(); ecomax920_buffer.boiler_power_kw != atof(value.c_str()))
+    if (auto value = get_boiler_power_kw(); ecomax920_buffer.boiler_power_kw != atof(value.c_str()))
     {
          mqtt->pub_state(get_boiler_power_kw(), cfg->sub_get_boiler_power_kw());
         ecomax920_buffer.boiler_power_kw = atof(value.c_str());
@@ -951,13 +951,13 @@ void EcoNet::update_statuses()
         ecomax920_buffer.ignitions_fails = ecomax920_payload.ignitions_fails;
     }
 
-    if (const auto value = get_ecoster_home_temp_target(); ecoster_buffer.room_thermostat_temp_target != atof(value.c_str()))
+    if (auto value = get_ecoster_home_temp_target(); ecoster_buffer.room_thermostat_temp_target != atof(value.c_str()))
     {
          mqtt->pub_state(get_ecoster_home_temp_target(), cfg->sub_get_ecoster_home_temp_target());
         ecoster_buffer.room_thermostat_temp_target = atof(value.c_str());
     }
 
-    if (const auto value = get_ecoster_home_temp(); ecoster_buffer.room_thermostat_home_temp != atof(value.c_str()))
+    if (auto value = get_ecoster_home_temp(); ecoster_buffer.room_thermostat_home_temp != atof(value.c_str()))
     {
          mqtt->pub_state(get_ecoster_home_temp(), cfg->sub_get_ecoster_home_temp());
         ecoster_buffer.room_thermostat_home_temp = atof(value.c_str());
