@@ -14,9 +14,14 @@ void th2(Mqtt_Client *mqtt)
     mqtt->client_loop_forever();
 }
 
-int main()
-{
+int main(int argc, char * argv[])
+{ 
+
+    
+    std::cout<<"App executed with paramiters: " << argc -1 << "  |  config path: " << argv[1] <<  std::endl;
     Config_manager cfg;
+
+    cfg.register_config(static_cast<std::string>((argv[1])));
     cfg.read_config();
 
     EcoNet econet;

@@ -15,7 +15,7 @@ std::string Config_manager::date(){
 }
 
 void Config_manager::read_config(){
-    YAML::Node config = YAML::LoadFile("config.yaml");
+    YAML::Node config = YAML::LoadFile(config_path);
     
 
   
@@ -102,7 +102,9 @@ void Config_manager::read_config(){
     std::cout << date() << "Settings Loaded" << std::endl;
 
 }
-    
+void Config_manager::register_config(std::string config_path_){
+    config_path = config_path_;
+}
 
 std::string Config_manager::get_mqtt_ClientId(){
     return  mqtt_config.ClientId;

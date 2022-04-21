@@ -7,8 +7,10 @@ class Config_manager{
         Mqtt_config mqtt_config;
         EcoNet_cfg eco_config;
         Econet_Mqtt econet_mqtt;
+        std::string config_path;
 
     public:
+        void register_config(std::string config_path_);
         void read_config();
         std::string date();
         std::string get_mqtt_ClientId();
